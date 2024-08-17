@@ -27,6 +27,7 @@ group :development, :test do
 end
 
 group :development do
+  gem "brakeman", require: false
   gem "erb_lint", require: false
   gem "rubocop", require: false
   gem "rubocop-capybara", require: false
