@@ -1,0 +1,16 @@
+<nav class="z-10 fixed bottom-0 w-screen left-0 md:bottom-auto md:top-0 flex flex-col justify-between md:h-screen md:w-fit">
+  <div class="hidden md:flex">
+    Log
+  </div>
+  <ul class="p-1 w-full flex items-center justify-evenly md:flex-col">
+    <% 5.times.each do %>
+      <li class="px-4 py-3 flex justify-center items-center active:scale-90 hover:bg-gray-200 rounded-lg">
+        <%= inline_svg_tag "icon/home" %>
+        <span class="sr-only">Home</span>
+      </li>
+    <% end %>
+  </ul>
+  <div class="hidden md:flex">
+    Bot
+  </div>
+</nav>

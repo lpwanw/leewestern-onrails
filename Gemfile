@@ -10,6 +10,7 @@ gem "bootsnap", require: false
 gem "cssbundling-rails"
 gem "jbuilder"
 gem "jsbundling-rails"
+gem "inline_svg"
 gem "pg", "~> 1.1"
 gem "puma", ">= 5.0"
 gem "rails_best_practices"
