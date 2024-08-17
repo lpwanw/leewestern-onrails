@@ -117,6 +117,7 @@ GEM
     debug (1.9.2)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    dotenv (3.1.1)
     drb (2.2.1)
     dry-cli (1.1.0)
     erb_lint (0.5.0)
@@ -346,6 +347,7 @@ DEPENDENCIES
   capybara
   cssbundling-rails
   debug
+  dotenv
   erb_lint
   jbuilder
   jsbundling-rails
