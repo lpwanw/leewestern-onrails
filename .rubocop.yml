@@ -4,6 +4,18 @@ require:
   - rubocop-capybara
   - rubocop-rails
   - rubocop-performance
+  - rubocop-rspec
+  - rubocop-rspec_rails
+  - rubocop-factory_bot
 
 AllCops:
   NewCops: enable
+
+RSpec/NamedSubject:
+  EnforcedStyle: named_only
+
+RSpec/FilePath:
+  Enabled: false
+
+RSpec/SpecFilePathFormat:
+  Enabled: false
