@@ -21,6 +21,7 @@ gem "tzinfo-data", platforms: %i[windows jruby]
 gem "vite_rails"
 
 group :development, :test do
+  gem "bullet"
   gem "debug", platforms: %i[mri windows]
   gem "pry"
 end
