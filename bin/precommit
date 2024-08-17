@@ -1,0 +1,42 @@
+#!/usr/bin/env sh
+
+# Run RuboCop
+echo "Running RuboCop..."
+if bundle exec rubocop; then
+  echo "RuboCop passed!"
+else
+  echo "RuboCop found issues!"
+  exit 1
+fi
+
+# Run Rails Best Practices
+echo "Running Rails Best Practices..."
+if bundle exec rails_best_practices; then
+  echo "Rails Best Practices passed!"
+else
+  echo "Rails Best Practices found issues!"
+  exit 1
+fi
+
+# Run Brakeman
+echo "Running Brakeman..."
+if bundle exec brakeman; then
+  echo "Brakeman passed!"
+else
+  echo "Brakeman found issues!"
+  exit 1
+fi
+
+# Run ERB Lint
+echo "Running ERB Lint..."
+if bundle exec erblint --lint-all; then
+  echo "ERB Lint passed!"
+else
+  echo "ERB Lint found issues!"
+  exit 1
+fi
+
+echo "All linters passed successfully!"
+
+# Exit with a success code
+exit 0

@@ -2,7 +2,7 @@
 
 require "active_support/core_ext/integer/time"
 
-Rails.application.configure do
+Rails.application.configure do # rubocop:disable Metrics/BlockLength
   config.after_initialize do
     Bullet.enable        = true
     Bullet.alert         = true
