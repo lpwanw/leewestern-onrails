@@ -6,35 +6,27 @@ ruby "3.2.2"
 
 gem "rails", "~> 7.1.3", ">= 7.1.3.2"
 
-gem "sprockets-rails"
-
-gem "pg", "~> 1.1"
-
-gem "puma", ">= 5.0"
-
-gem "jsbundling-rails"
-
-gem "turbo-rails"
-
-gem "stimulus-rails"
-
-gem "cssbundling-rails"
-
-gem "jbuilder"
-
-gem "redis", ">= 4.0.1"
-
-gem "tzinfo-data", platforms: %i[windows jruby]
-
 gem "bootsnap", require: false
-
+gem "cssbundling-rails"
+gem "jbuilder"
+gem "jsbundling-rails"
+gem "pg", "~> 1.1"
+gem "puma", ">= 5.0"
+gem "rails_best_practices"
+gem "redis", ">= 4.0.1"
+gem "sprockets-rails"
+gem "stimulus-rails"
+gem "turbo-rails"
+gem "tzinfo-data", platforms: %i[windows jruby]
 gem "vite_rails"
 
 group :development, :test do
   gem "debug", platforms: %i[mri windows]
+  gem "pry"
 end
 
 group :development do
+  gem "erb_lint", require: false
   gem "rubocop", require: false
   gem "rubocop-capybara", require: false
   gem "rubocop-performance", require: false
