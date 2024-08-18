@@ -1,16 +1,37 @@
-<nav class="z-10 fixed bottom-0 w-screen left-0 md:bottom-auto md:top-0 flex flex-col justify-between md:h-screen md:w-fit">
+<nav class="p-4 z-10 fixed bottom-0 w-screen left-0 md:bottom-auto md:top-0 flex flex-col justify-between md:h-screen md:w-fit">
   <div class="hidden md:flex">
     Log
   </div>
-  <ul class="p-1 w-full flex items-center justify-evenly md:flex-col">
+  <ul class=" w-full flex items-center justify-evenly md:flex-col">
     <% 5.times.each do %>
-      <li class="px-4 py-3 flex justify-center items-center active:scale-90 hover:bg-gray-200 rounded-lg">
-        <%= inline_svg_tag "icon/home" %>
-        <span class="sr-only">Home</span>
+      <li>
+        <%= link_to root_path do %>
+          <%= render Navigation::Item.new :home %>
+        <% end %>
       </li>
     <% end %>
   </ul>
-  <div class="hidden md:flex">
-    Bot
-  </div>
+  <ul class="hidden md:flex">
+    <li data-controller="dropdown">
+      <div data-dropdown-target="trigger">
+        <%= render Navigation::Item.new :home %>
+      </div>
+      <div data-dropdown-target="dropdown" class="z-20 border-2 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+        <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+          <li>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+          </li>
+          <li>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+          </li>
+          <li>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+          </li>
+          <li>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a>
+          </li>
+        </ul>
+      </div>
+    </li>
+  </ul>
 </nav>
