@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   root "home#index"
 
   devise_for :user
+  resources :posts, only: %i[index]
 end

@@ -1,0 +1,8 @@
+<%= turbo_stream.append :posts do %>
+  <%= render @posts %>
+<% end %>
+<%= turbo_stream.replace :load_more do %>
+  <% return if params[:page].to_i > 10 %>
+  <%= turbo_frame_tag :load_more, loading: :lazy,
+                      src: posts_path(format: :turbo_stream, page: (params[:page].to_i) + 1) %>
+<% end %>
