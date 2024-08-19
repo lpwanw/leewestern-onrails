@@ -6,17 +6,22 @@ module Navigation
       home: "icon/home",
     }.freeze
 
-    def initialize(icon)
+    def initialize(icon, html_options = {})
       @icon = icon
+      @html_options = html_options
       super
     end
 
     private
 
-    attr_reader :icon
+    attr_reader :icon, :html_options
 
     def icon_svg
       ICONS[icon]
+    end
+
+    def class_options
+      @class_options ||= html_options[:class] || ""
     end
   end
 end
