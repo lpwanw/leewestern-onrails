@@ -35,6 +35,8 @@ group :development do
   gem "brakeman", require: false
   gem "erb_lint", require: false
   gem "factory_bot_rails", require: false
+  gem "letter_opener"
+  gem "letter_opener_web"
   gem "rubocop", require: false
   gem "rubocop-capybara", require: false
   gem "rubocop-factory_bot", require: false
