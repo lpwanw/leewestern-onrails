@@ -26,5 +26,6 @@ RSpec.describe Post do
     it { is_expected.to belong_to(:user) }
     it { is_expected.to belong_to(:shared_post).class_name("Post").optional(true) }
     it { is_expected.to have_many(:reposts).class_name("Post").inverse_of(:shared_post).dependent(:nullify) }
+    it { is_expected.to have_many(:likes).dependent(:delete_all) }
   end
 end
