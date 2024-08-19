@@ -2,7 +2,7 @@
 
 class PostsController < ApplicationController
   def index
-    @posts = Post.all
+    @pagy, @posts = pagy(Post.includes([:user]))
 
     respond_to do |format|
       format.html

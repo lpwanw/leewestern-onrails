@@ -1,17 +1,17 @@
-<a href="#" class="flex gap-2 w-full px-3 py-2 bg-white hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 last:border last:border-gray-200">
+<div class="flex gap-2 w-full px-3 py-2 bg-white hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 last:border last:border-gray-200">
   <div>
-    <img class="w-6 h-6 rounded-full" src="https://avatar.iran.liara.run/public" alt="Rounded avatar">
+    <img class="w-6 h-6 rounded-full" src="https://avatar.iran.liara.run/public/<%= post.user_id % 101 %>" alt="Rounded avatar">
   </div>
   <div>
     <div class="w-full flex justify-between">
-      <span class="block font-semibold hover:underline">
-        user.name
-      </span>
+      <a href="#user" class="block font-semibold hover:underline">
+        <%= post.user_email.split("@").first %>
+      </a>
     </div>
     <div>
-      <div>
+      <a href="#post">
         <%= post.title %>
-      </div>
+      </a>
       <div>
         <span class="hover:text-gray-950 hover:underline">Like</span>
         <span class="hover:text-gray-950 hover:underline">Comment</span>
@@ -20,4 +20,4 @@
       </div>
     </div>
   </div>
-</a>
+</div>

@@ -11,4 +11,6 @@ class Post < ApplicationRecord
 
   validates :title, presence: true, unless: :shared_post
   validates :title, length: { maximum: 255 }, allow_blank: true
+
+  delegate :email, to: :user, prefix: true
 end
