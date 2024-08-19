@@ -27,6 +27,8 @@ group :development, :test do
   gem "bullet"
   gem "debug", platforms: %i[mri windows]
   gem "dotenv"
+  gem "factory_bot_rails"
+  gem "ffaker"
   gem "pry"
   gem "rspec-rails", "~> 6.1.0"
 end
@@ -34,7 +36,6 @@ end
 group :development do
   gem "brakeman", require: false
   gem "erb_lint", require: false
-  gem "factory_bot_rails", require: false
   gem "letter_opener"
   gem "letter_opener_web"
   gem "rubocop", require: false
