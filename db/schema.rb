@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_19_033245) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_19_042304) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "posts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "title"
+    t.json "body"
+    t.bigint "shared_post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shared_post_id"], name: "index_posts_on_shared_post_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -39,4 +50,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_19_033245) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "posts", "posts", column: "shared_post_id"
+  add_foreign_key "posts", "users"
 end
