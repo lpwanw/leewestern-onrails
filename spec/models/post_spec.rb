@@ -28,4 +28,21 @@ RSpec.describe Post do
     it { is_expected.to have_many(:reposts).class_name("Post").inverse_of(:shared_post).dependent(:nullify) }
     it { is_expected.to have_many(:likes).dependent(:delete_all) }
   end
+
+  describe "#liked_by?" do
+    subject { post.liked_by?(user) }
+
+    let(:post) { create(:post) }
+    let(:user) { create(:user) }
+
+    context "when liked by user" do
+      before { create(:like, user:, post:) }
+
+      it { is_expected.to be true }
+    end
+
+    context "when not liked by user" do
+      it { is_expected.to be false }
+    end
+  end
 end

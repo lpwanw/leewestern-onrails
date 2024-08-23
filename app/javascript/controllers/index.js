@@ -9,3 +9,6 @@ application.register("dropdown", DropdownController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import LikeController from "./like_controller"
+application.register("like", LikeController)

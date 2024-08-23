@@ -2,7 +2,7 @@
 
 class PostsController < ApplicationController
   def index
-    @pagy, @posts = pagy(Post.includes([:user]))
+    @pagy, @posts = pagy(Post.includes(%i[user likes]))
 
     respond_to do |format|
       format.html

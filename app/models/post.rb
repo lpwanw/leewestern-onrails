@@ -16,4 +16,8 @@ class Post < ApplicationRecord
   validates :title, length: { maximum: 255 }, allow_blank: true
 
   delegate :email, to: :user, prefix: true
+
+  def liked_by?(user)
+    likes.any? { |like| like.user_id == user.id }
+  end
 end
