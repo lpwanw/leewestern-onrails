@@ -6,11 +6,9 @@ RSpec.describe PostsController, type: :controller do
   describe "GET index" do
     subject { get :index }
 
-    let(:user) { create(:user) }
     let(:posts) { create_list(:post, 10) }
 
     before do
-      sign_in user
       subject
     end
 

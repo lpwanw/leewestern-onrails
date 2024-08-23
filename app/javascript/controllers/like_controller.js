@@ -17,7 +17,12 @@ export default class extends Controller {
     this.isLiked = !this.isLiked;
     this.element.dataset.liked = this.isLiked;
     this.count = this.count + (this.isLiked ? 1 : -1);
-    this.countTarget.innerHTML = this.count;
+    if (this.count > 0) {
+      this.countTarget.innerHTML = this.count;
+    }
+    if (this.count === 0) {
+      this.countTarget.innerHTML = "";
+    }
     put(this.urlValue);
   }
 }
