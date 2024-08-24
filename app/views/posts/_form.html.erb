@@ -1,0 +1,22 @@
+<div class="grow flex p-4 rounded-lg border">
+  <img class="w-10 h-10 rounded-full" src="https://avatar.iran.liara.run/public/<%= current_user.id % 101 %>" alt="Rounded avatar">
+  <%= form_for post, html: { class: "grow overflow-x-auto px-4", data: { turbo: false } } do |f| %>
+    <div class="w-full flex justify-between">
+      <a href="#user" class="block font-semibold hover:underline">
+        <%= current_user.email.split("@").first %>
+      </a>
+    </div>
+    <div>
+      <%= f.label :title, class: "sr-only" %>
+      <%= f.text_area :title, class: "w-4/6 h-12 ring-0 border-0 focus:ring-0 p-0 overflow-hidden text-xl font-bold", placeholder: "Enter post's title...", data: { controller: "text-auto-expand" } %>
+    </div>
+    <div>
+      <%= f.button :status, value: :draft, class: "py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700" do %>
+        Save Draft
+      <% end %>
+      <%= f.button :status, value: :posted, class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" do %>
+        Post
+      <% end %>
+    </div>
+  <% end %>
+</div>

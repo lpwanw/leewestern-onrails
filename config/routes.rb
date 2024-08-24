@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root "posts#index"
 
   devise_for :user
-  resources :posts, only: %i[index] do
+  resources :posts, only: %i[index new create] do
     resource :likes, only: %i[update]
   end
 end

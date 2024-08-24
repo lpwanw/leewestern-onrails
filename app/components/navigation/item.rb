@@ -4,6 +4,7 @@ module Navigation
   class Item < ViewComponent::Base
     ICONS = {
       home: "icon/home",
+      add: "icon/add",
     }.freeze
 
     def initialize(icon, html_options = {})

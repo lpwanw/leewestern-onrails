@@ -3,10 +3,10 @@
     Log
   </div>
   <ul class=" w-full flex items-center justify-evenly md:flex-col">
-    <% 5.times.each do %>
+    <% %i[home home add home home].each do |item| %>
       <li>
-        <%= link_to root_path do %>
-          <%= render Navigation::Item.new :home, { class: "active:scale-90 hover:bg-gray-200" } %>
+        <%= link_to navigation_path(item) do %>
+          <%= render Navigation::Item.new item, { class: "active:scale-90 hover:bg-gray-200" } %>
         <% end %>
       </li>
     <% end %>
