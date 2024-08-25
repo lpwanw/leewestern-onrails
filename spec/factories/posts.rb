@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :post do
     user
     title { FFaker::Lorem.sentence }
-    body { "" }
+    body { {} }
     shared_post { nil }
   end
 end

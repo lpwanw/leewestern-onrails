@@ -28,7 +28,7 @@ class Post < ApplicationRecord
   def standardize_body
     return if body.instance_of?(Hash)
 
-    self.body = JSON.parse(body)
+    self.body = JSON.parse(body || "{}")
   rescue JSON::ParserError
     errors.add(:body, :invalid)
   end

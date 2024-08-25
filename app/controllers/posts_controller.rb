@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  skip_before_action :authenticate_user!, only: %i[index]
+  skip_before_action :authenticate_user!, only: %i[index show]
 
   def index
     @pagy, @posts = pagy(Post.includes(%i[user likes]))
@@ -12,6 +12,10 @@ class PostsController < ApplicationController
     end
   end
 
+  def show
+    @post = Post.find_by(id: params[:id])
+  end
+
   def new
     @post = Post.new
   end
@@ -20,7 +24,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.new post_params
 
     if @post.save
-      redirect_to root_path
+      redirect_to post_path(@post)
     else
       render :new, status: :unprocessable_entity
     end

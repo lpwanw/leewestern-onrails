@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import DisplayEditorController from "./display_editor_controller"
+application.register("display-editor", DisplayEditorController)
+
 import DropdownController from "./dropdown_controller"
 application.register("dropdown", DropdownController)
 

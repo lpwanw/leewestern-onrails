@@ -28,3 +28,8 @@ Style/TrailingCommaInHashLiteral:
 
 RSpec/NestedGroups:
   Max: 5
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+  Exclude:
+    - config/application.rb

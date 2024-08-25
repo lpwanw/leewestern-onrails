@@ -51,6 +51,7 @@ RSpec.describe PostsController, type: :controller do
 
     context "when valid params" do
       let(:title) { "valid title" }
+      let(:last_post) { Post.last }
 
       it { expect { subject }.to change(Post, :count).by(1) }
 
@@ -58,8 +59,8 @@ RSpec.describe PostsController, type: :controller do
         before { subject }
 
         it { expect(response).to have_http_status(:redirect) }
-        it { expect(response).to redirect_to(root_path) }
-        it { expect(assigns[:post]).to be_instance_of Post }
+        it { expect(response).to redirect_to(post_path(last_post)) }
+        it { expect(last_post.title).to eq title }
       end
     end
 
@@ -76,5 +77,23 @@ RSpec.describe PostsController, type: :controller do
         it { expect(assigns[:post]).to be_instance_of Post }
       end
     end
+  end
+
+  describe "GET show" do
+    subject { get :show, params: }
+
+    let(:params) do
+      {
+        id:,
+      }
+    end
+
+    let(:post) { create(:post) }
+    let(:id) { post.id }
+
+    before { subject }
+
+    it { expect(response).to have_http_status(:ok) }
+    it { expect(response).to render_template(:show) }
   end
 end

@@ -1,0 +1,16 @@
+<div class="grow flex p-4 rounded-lg border overflow-x-auto">
+  <img class="w-10 h-10 rounded-full" src="https://avatar.iran.liara.run/public/<%= post.user_id % 101 %>" alt="Rounded avatar">
+  <div class="px-4 w-full">
+    <div class="w-full flex justify-between">
+      <a href="#user" class="block font-semibold hover:underline">
+        <%= post.user_email.split("@").first %>
+      </a>
+    </div>
+    <h2 class="font-bold text-xl">
+      <%= post.title %>
+    </h2>
+    <div class="mt-4 py-2 border-y w-full">
+      <%= render Editor::Component.new post.body %>
+    </div>
+  </div>
+</div>

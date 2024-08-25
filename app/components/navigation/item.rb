@@ -1,28 +1,26 @@
 # frozen_string_literal: true
 
-module Navigation
-  class Item < ViewComponent::Base
-    ICONS = {
-      home: "icon/home",
-      add: "icon/add",
-    }.freeze
+class Navigation::Item < ViewComponent::Base
+  ICONS = {
+    home: "icon/home",
+    add: "icon/add",
+  }.freeze
 
-    def initialize(icon, html_options = {})
-      @icon = icon
-      @html_options = html_options
-      super
-    end
+  def initialize(icon, html_options = {})
+    @icon = icon
+    @html_options = html_options
+    super
+  end
 
-    private
+  private
 
-    attr_reader :icon, :html_options
+  attr_reader :icon, :html_options
 
-    def icon_svg
-      ICONS[icon]
-    end
+  def icon_svg
+    ICONS[icon]
+  end
 
-    def class_options
-      @class_options ||= html_options[:class] || ""
-    end
+  def class_options
+    @class_options ||= html_options[:class] || ""
   end
 end
