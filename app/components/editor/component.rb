@@ -12,7 +12,11 @@ class Editor::Component < ViewComponent::Base
 
   def component_blocks
     @component_blocks ||= blocks.map do |block|
-      Editor::Paragraph::Component.new block
+      type = block[:type].camelcase
+      block_kclass = "Editor::#{type}::Component".constantize
+      block_kclass.new block
+    rescue NameError
+      Editor::BaseComponent.new block
     end
   end
 

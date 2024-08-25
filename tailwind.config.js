@@ -10,7 +10,9 @@ module.exports = {
     aspectRatio: false,
   },
   plugins: [
-    require("@tailwindcss/typography"),
+    require("@tailwindcss/typography")({
+      className: "typography",
+    }),
     require("@tailwindcss/forms"),
     require("@tailwindcss/aspect-ratio"),
     require("flowbite/plugin"),

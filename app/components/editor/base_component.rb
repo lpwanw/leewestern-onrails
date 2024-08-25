@@ -14,6 +14,14 @@ class Editor::BaseComponent < ViewComponent::Base
     @content ||= block.dig(:data, :text)
   end
 
+  def tag_name
+    "div"
+  end
+
+  def options
+    {}
+  end
+
   def html_content
     doc = Nokogiri::HTML::DocumentFragment.parse(content)
 

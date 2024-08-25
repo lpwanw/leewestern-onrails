@@ -19,8 +19,8 @@
     </div>
     <div>
       <%= f.label :body %>
-      <%= f.hidden_field :body, data: { "editor-target": "content" } %>
-      <div id="editorjs"> </div>
+      <%= f.hidden_field :body, value: post.body.to_json, data: { "editor-target": "content" } %>
+      <div id="editorjs" class="typography"> </div>
     </div>
     <div>
       <%= f.button :status,
