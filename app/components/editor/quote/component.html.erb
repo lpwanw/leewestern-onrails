@@ -1,0 +1,10 @@
+<div>
+  <%= tag.send(tag_name, **options) do %>
+    <p class="text-2xl italic font-medium">
+      <%= html_content %>
+    </p>
+  <% end %>
+  <figcaption class="flex items-center justify-center mt-6 space-x-3 rtl:space-x-reverse">
+    <%= caption %>
+  </figcaption>
+</div>
