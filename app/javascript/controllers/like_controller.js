@@ -13,7 +13,8 @@ export default class extends Controller {
     this.count = +this.countTarget.innerHTML;
   }
 
-  toggle() {
+  toggle(event) {
+    event.stopPropagation();
     this.isLiked = !this.isLiked;
     this.element.dataset.liked = this.isLiked;
     this.count = this.count + (this.isLiked ? 1 : -1);

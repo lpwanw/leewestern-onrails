@@ -16,5 +16,8 @@ application.register("hello", HelloController)
 import LikeController from "./like_controller"
 application.register("like", LikeController)
 
+import PostClickController from "./post_click_controller"
+application.register("post-click", PostClickController)
+
 import TextAutoExpandController from "./text_auto_expand_controller"
 application.register("text-auto-expand", TextAutoExpandController)

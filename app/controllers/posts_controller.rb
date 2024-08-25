@@ -2,6 +2,7 @@
 
 class PostsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
+  before_action :load_post, only: %i[show edit update]
 
   def index
     @pagy, @posts = pagy(Post.includes(%i[user likes]))
@@ -12,13 +13,13 @@ class PostsController < ApplicationController
     end
   end
 
-  def show
-    @post = Post.find_by(id: params[:id])
-  end
+  def show; end
 
   def new
     @post = Post.new
   end
+
+  def edit; end
 
   def create
     @post = current_user.posts.new post_params
@@ -30,9 +31,26 @@ class PostsController < ApplicationController
     end
   end
 
+  def update
+    @post.assign_attributes post_params
+    if @post.save
+      redirect_to post_path(@post)
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def post_params
     params.required(:post).permit(:title, :body, :shared_post_id)
+  end
+
+  def load_post
+    @post = Post.find_by(id: params[:id])
+
+    return if @post
+
+    redirect_to root_path, alert: I18n.t("Not found")
   end
 end

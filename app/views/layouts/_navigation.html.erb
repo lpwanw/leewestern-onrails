@@ -12,7 +12,7 @@
     <% end %>
   </ul>
   <ul class="hidden md:flex">
-    <li data-controller="dropdown">
+    <li data-controller="dropdown" data-dropdown-overlay-value="true">
       <div data-dropdown-target="trigger">
         <%= render Navigation::Item.new :home, { class: "hover:text-gray-950" } %>
       </div>

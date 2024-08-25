@@ -1,10 +1,10 @@
-<div class="flex gap-2 w-full px-3 py-2 bg-white dark:bg-gray-800 last:border last:border-gray-200">
+<div data-controller="post-click" data-action="click->post-click#goto" data-post-click-url-value="<%= post_path(post) %>" class="flex gap-2 w-full px-3 py-2 bg-white dark:bg-gray-800 last:border last:border-gray-200">
   <div>
     <img class="w-6 h-6 rounded-full" src="https://avatar.iran.liara.run/public/<%= post.user_id % 101 %>" alt="Rounded avatar">
   </div>
   <div>
     <div class="w-full flex justify-between">
-      <a href="#user" class="block font-semibold hover:underline">
+      <a href="#user" class="block font-semibold hover:underline childLink">
         <%= post.user_email.split("@").first %>
       </a>
     </div>
@@ -18,7 +18,7 @@
           data-action="click->like#toggle"
           data-like-url-value="<%= post_likes_path(post) %>"
           data-liked="<%= post.liked_by?(current_user) %>"
-          class="group cursor-pointer flex justify-center items-center gap-0.5 px-2 py-1 active:scale-90 rounded-full hover:bg-gray-200">
+          class="childDiv group cursor-pointer flex justify-center items-center gap-0.5 px-2 py-1 active:scale-90 rounded-full hover:bg-gray-200">
           <svg class="w-5 h-5 text-gray-800 dark:text-white group-data-[liked=true]:hidden" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
             <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>

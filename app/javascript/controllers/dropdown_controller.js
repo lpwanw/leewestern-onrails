@@ -4,17 +4,18 @@ import { Dropdown } from "flowbite";
 // Connects to data-controller="dropdown"
 export default class extends Controller {
   static targets = ["dropdown", "trigger"];
+  static values = {
+    overlay: Boolean,
+    placement: { type: String, defalt: "top" },
+  };
 
   connect() {
-    const offsetHeight = +this.triggerTarget.offsetHeight;
-    const offsetWidth = +this.triggerTarget.offsetWidth;
     const options = {
-      placement: "top",
+      placement: this.placementValue || "top",
       triggerType: "click",
-      offsetSkidding: offsetWidth,
-      offsetDistance: -offsetHeight,
       delay: 300,
       ignoreClickOutsideClass: false,
+      ...this.offsetOptions(),
     };
 
     this.dropdown = new Dropdown(
@@ -22,5 +23,25 @@ export default class extends Controller {
       this.triggerTarget,
       options,
     );
+  }
+
+  offsetOptions() {
+    const offsetHeight = +this.triggerTarget.offsetHeight;
+    const offsetWidth = +this.triggerTarget.offsetWidth;
+    this.dropdownTarget.classList.remove("hidden");
+    const dropdownOffestWidth = +this.dropdownTarget.offsetWidth;
+    this.dropdownTarget.classList.add("hidden");
+
+    if (this.overlayValue) {
+      return {
+        offsetSkidding: offsetWidth,
+        offsetDistance: -offsetHeight,
+      };
+    } else {
+      return {
+        offsetSkidding: -dropdownOffestWidth / 2,
+        offsetDistance: 0,
+      };
+    }
   }
 }
