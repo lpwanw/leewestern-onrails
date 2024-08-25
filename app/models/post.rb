@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Post < ApplicationRecord
+  before_validation :standardize_body
+
   belongs_to :user
   belongs_to :shared_post, class_name: "Post", optional: true
 
@@ -19,5 +21,15 @@ class Post < ApplicationRecord
 
   def liked_by?(user)
     likes.any? { |like| like.user_id == user.id }
+  end
+
+  private
+
+  def standardize_body
+    return if body.instance_of?(Hash)
+
+    self.body = JSON.parse(body)
+  rescue JSON::ParserError
+    errors.add(:body, :invalid)
   end
 end

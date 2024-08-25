@@ -25,3 +25,6 @@ Style/Documentation:
 
 Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: consistent_comma
+
+RSpec/NestedGroups:
+  Max: 5

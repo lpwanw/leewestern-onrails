@@ -7,6 +7,11 @@
   resolved "https://registry.yarnpkg.com/@alloc/quick-lru/-/quick-lru-5.2.0.tgz#7bf68b20c0a350f936915fcae06f58e32007ce30"
   integrity sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==
 
+"@editorjs/editorjs@^2.30.5":
+  version "2.30.5"
+  resolved "https://registry.yarnpkg.com/@editorjs/editorjs/-/editorjs-2.30.5.tgz#c1a6fc2b99f567a0271408c0edd51d3da21b4534"
+  integrity sha512-sE7m/UPbuf+nSGjv9cmWggFsfvtYlgEX7PCby2lZWvOsOLbRxuLT+ZYlwbWshD+8BFJwiAmBj9e+ScZcOjCzeg==
+
 "@esbuild/aix-ppc64@0.21.5":
   version "0.21.5"
   resolved "https://registry.yarnpkg.com/@esbuild/aix-ppc64/-/aix-ppc64-0.21.5.tgz#c7184a326533fcdf1b8ee0733e21c713b975575f"
