@@ -2,6 +2,7 @@ import { Controller } from "@hotwired/stimulus";
 import EditorJS from "@editorjs/editorjs";
 import Header from "@editorjs/header";
 import Quote from "@editorjs/quote";
+import editorjsCodecup from '@calumk/editorjs-codecup';
 
 // Connects to data-controller="editor"
 export default class extends Controller {
@@ -11,10 +12,12 @@ export default class extends Controller {
     this.editor = new EditorJS({
       placeholder: "Type something",
       data: this.getInitialContent(),
+      readOnly: this.isReadonly(),
       minHeight: 32,
       tools: {
         header: Header,
         quote: Quote,
+        code: editorjsCodecup,
       },
     });
   }
@@ -37,5 +40,9 @@ export default class extends Controller {
       return JSON.parse(hiddenContentField.value);
     }
     return {};
+  }
+
+  isReadonly() {
+    return this.element.getAttribute("readonly") === "true";
   }
 }

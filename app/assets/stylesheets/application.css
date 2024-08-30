@@ -1,3 +1,16 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+.codeBoxSelectDiv, .codeBoxHolder {
+  overflow: visible !important;
+}
+
+.codeBoxSelectItem:hover {
+  opacity: 0.9 !important;
+}
+
+pre { 
+  background-color: transparent !important;
+  color: inherit !important;
+}
