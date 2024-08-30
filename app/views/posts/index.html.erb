@@ -25,7 +25,6 @@
     </div>
   </div>
   <div class="grow rounded-lg border divide-y divide-gray-200 overflow-y-auto">
-    <div class="h-12"></div>
     <%= turbo_frame_tag :posts, class: "block divide-y divide-gray-200" do %>
       <%= render @posts %>
     <% end %>

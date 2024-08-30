@@ -6,13 +6,29 @@ FactoryBot.define do
     title { FFaker::Lorem.sentence }
     body do
       {
-        time: 1_724_551_781_547,
+        time: Time.current.to_i,
         blocks: [
+          {
+            id: SecureRandom.hex,
+            type: "header",
+            data: {
+              text: FFaker::Lorem.sentences,
+              level: 2,
+            },
+          },
           {
             id: SecureRandom.hex,
             type: "paragraph",
             data: {
               text: FFaker::Lorem.sentence,
+            },
+          },
+          {
+            id: SecureRandom.hex,
+            type: "quote",
+            data: {
+              text: FFaker::Lorem.sentence,
+              caption: "From noone",
             },
           }
         ],
