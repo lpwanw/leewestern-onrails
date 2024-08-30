@@ -6,12 +6,22 @@
         <%= post.user_email.split("@").first %>
       </a>
     </div>
-    <h2 class="font-bold text-xl">
-      <%= post.title %>
-    </h2>
-    <div class="mt-4 py-2 border-y w-full" data-controller="editor" readonly="true">
+    <div>
+      <h2 class="font-bold text-xl">
+        <%= post.title %>
+      </h2>
+      <%= render "interact", post: %>
+    </div>
+    <div class="mt-4 py-2 border-y w-full typography" data-controller="editor" readonly="true">
       <input type="hidden" data-editor-target="content" value="<%= post.body.to_json %>">
       <div id="editorjs"></div>
+    </div>
+    <div class="mt-4">
+      <%= render "interact", post: %>
+    </div>
+
+    <div class="mt-4" id="comments">
+      <%= render "comments", post: %>
     </div>
   </div>
   <div data-controller="dropdown" data-dropdown-placement-value="bottom">

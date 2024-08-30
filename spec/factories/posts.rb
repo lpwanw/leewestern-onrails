@@ -36,5 +36,7 @@ FactoryBot.define do
       }
     end
     shared_post { nil }
+    post_type { "post" }
+    status { "published" }
   end
 end

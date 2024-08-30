@@ -20,6 +20,18 @@ RSpec.describe Post do
       it { is_expected.not_to validate_presence_of(:title) }
       it { is_expected.to validate_length_of(:title).is_at_most(255).allow_blank }
     end
+
+    context "when post_type is comment" do
+      subject { build(:post, post_type: "comment") }
+
+      it { is_expected.to validate_presence_of(:shared_post_id) }
+    end
+
+    context "when post_type is post" do
+      subject { build(:post, post_type: "post") }
+
+      it { is_expected.not_to validate_presence_of(:shared_post_id) }
+    end
   end
 
   describe "Associations" do
@@ -27,6 +39,20 @@ RSpec.describe Post do
     it { is_expected.to belong_to(:shared_post).class_name("Post").optional(true) }
     it { is_expected.to have_many(:reposts).class_name("Post").inverse_of(:shared_post).dependent(:nullify) }
     it { is_expected.to have_many(:likes).dependent(:delete_all) }
+  end
+
+  describe "Enums" do
+    it do
+      expect(subject).to define_enum_for(:status)
+        .with_values(draft: "draft", published: "published")
+        .backed_by_column_of_type(:string)
+    end
+
+    it do
+      expect(subject).to define_enum_for(:post_type)
+        .with_values(post: "post", repost: "repost", comment: "comment")
+        .backed_by_column_of_type(:string)
+    end
   end
 
   describe "#liked_by?" do

@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import CommentController from "./comment_controller"
+application.register("comment", CommentController)
+
 import DropdownController from "./dropdown_controller"
 application.register("dropdown", DropdownController)
 
@@ -18,6 +21,9 @@ application.register("like", LikeController)
 
 import PostClickController from "./post_click_controller"
 application.register("post-click", PostClickController)
+
+import ScrollController from "./scroll_controller"
+application.register("scroll", ScrollController)
 
 import TextAutoExpandController from "./text_auto_expand_controller"
 application.register("text-auto-expand", TextAutoExpandController)

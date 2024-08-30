@@ -12,77 +12,8 @@
       <a href="#post">
         <%= post.title %>
       </a>
-      <div class="flex">
-        <div
-          data-controller="like"
-          data-action="click->like#toggle"
-          data-like-url-value="<%= post_likes_path(post) %>"
-          data-liked="<%= post.liked_by?(current_user) %>"
-          class="childDiv group cursor-pointer flex justify-center items-center gap-0.5 px-2 py-1 active:scale-90 rounded-full hover:bg-gray-200">
-          <svg class="w-5 h-5 text-gray-800 dark:text-white group-data-[liked=true]:hidden" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-            <g id="SVGRepo_iconCarrier">
-              <path d="M15.7 4C18.87 4 21 6.98 21 9.76C21 15.39 12.16 20 12 20C11.84 20 3 15.39 3 9.76C3 6.98 5.13 4 8.3 4C10.12 4 11.31 4.91 12 5.71C12.69 4.91 13.88 4 15.7 4Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-            </g>
-          </svg>
-          <svg class="hidden group-data-[liked=true]:block w-5 h-5 text-rose-500" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-            <g id="SVGRepo_iconCarrier">
-              <path d="M2 9.1371C2 14 6.01943 16.5914 8.96173 18.9109C10 19.7294 11 20.5 12 20.5C13 20.5 14 19.7294 15.0383 18.9109C17.9806 16.5914 22 14 22 9.1371C22 4.27416 16.4998 0.825464 12 5.50063C7.50016 0.825464 2 4.27416 2 9.1371Z" fill="currentColor"></path>
-            </g>
-          </svg>
-          <span data-like-target="count">
-            <% count = post.likes.size %>
-            <%= count if count.positive? %>
-          </span>
-        </div>
-        <div class="cursor-pointer flex justify-center items-center gap-0.5 px-2 py-1 active:scale-90 rounded-full hover:bg-gray-200">
-          <svg class="w-5 h-5 text-gray-800 dark:text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" transform="matrix(-1, 0, 0, 1, 0, 0)">
-            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-            <g id="SVGRepo_iconCarrier">
-              <g clip-path="url(#clip0_429_11233)">
-                <path d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 13.4876 3.36093 14.891 4 16.1272L3 21L7.8728 20C9.10904 20.6391 10.5124 21 12 21Z" stroke="#292929" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
-              </g>
-              <defs>
-                <clipPath id="clip0_429_11233">
-                  <rect width="24" height="24" fill="white"></rect>
-                </clipPath>
-              </defs>
-            </g>
-          </svg>
-          20
-        </div>
-        <div class="cursor-pointer flex justify-center items-center gap-0.5 px-2 py-1 active:scale-90 rounded-full hover:bg-gray-200">
-          <svg class="w-5 h-5 text-gray-800 dark:text-white" viewBox="-4 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000">
-            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-            <g id="SVGRepo_iconCarrier">
-              <title>arrow_repeat [#242]</title>
-              <desc>Created with Sketch.</desc>
-              <defs> </defs>
-              <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                <g id="Dribbble-Light-Preview" transform="translate(-60.000000, -7075.000000)" fill="#000000">
-                  <g id="icons" transform="translate(56.000000, 160.000000)">
-                    <path d="M24,6929.87115 L24,6936.81107 C24,6937.90659 23.105,6938.7949 22,6938.7949 L8.207,6938.7949 C7.762,6938.7949 7.539,6939.32828 7.854,6939.64058 L9.536,6941.30815 C9.926,6941.6948 9.926,6942.32237 9.536,6942.71001 C9.145,6943.09666 8.512,6943.09666 8.121,6942.71001 C6.751,6941.35078 5.737,6940.34647 4.586,6939.20436 C3.805,6938.43006 3.805,6937.17492 4.586,6936.40063 L8.121,6932.89497 C8.512,6932.50832 9.145,6932.50832 9.536,6932.89497 C9.926,6933.28262 9.926,6933.91018 9.536,6934.29783 L7.854,6935.96539 C7.539,6936.27769 7.762,6936.81206 8.207,6936.81206 L21,6936.81206 C21.552,6936.81206 22,6936.36692 22,6935.81965 L22,6929.87115 C22,6929.32388 22.448,6928.87973 23,6928.87973 C23.552,6928.87973 24,6929.32388 24,6929.87115 M4,6928.12923 L4,6921.1893 C4,6920.09477 4.895,6918.96654 6,6918.96654 L19.793,6918.96654 C20.238,6918.96654 20.461,6918.55213 20.146,6918.23983 L18.464,6916.69322 C18.074,6916.30557 18.074,6915.67801 18.464,6915.29036 C18.855,6914.90371 19.488,6914.90272 19.879,6915.29036 C20.431,6915.83762 22.867,6918.25272 23.414,6918.79205 C24.195,6919.56635 24.195,6920.81851 23.414,6921.59281 L19.879,6925.09053 C19.488,6925.47718 18.855,6925.46231 18.464,6925.07566 C18.074,6924.68801 18.074,6924.0307 18.464,6923.64306 L20.146,6921.91601 C20.461,6921.60371 20.238,6920.94938 19.793,6920.94938 L7,6920.94938 C6.448,6920.94938 6,6921.63345 6,6922.18072 L6,6928.12923 C6,6928.67748 5.552,6929.12064 5,6929.12064 C4.448,6929.12064 4,6928.67748 4,6928.12923" id="arrow_repeat-[#242]"> </path>
-                  </g>
-                </g>
-              </g>
-            </g>
-          </svg>
-        </div>
-        <div class="cursor-pointer flex justify-center items-center gap-0.5 px-2 py-1 active:scale-90 rounded-full hover:bg-gray-200">
-          <svg class="w-5 h-5 text-gray-800 dark:text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" transform="matrix(1, 0, 0, 1, 0, 0)">
-            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-            <g id="SVGRepo_iconCarrier">
-              <path d="M5.36328 12.0523C4.01081 11.5711 3.33457 11.3304 3.13309 10.9655C2.95849 10.6492 2.95032 10.2673 3.11124 9.94388C3.29694 9.57063 3.96228 9.30132 5.29295 8.76272L17.8356 3.68594C19.1461 3.15547 19.8014 2.89024 20.2154 3.02623C20.5747 3.14427 20.8565 3.42608 20.9746 3.7854C21.1106 4.19937 20.8453 4.85465 20.3149 6.16521L15.2381 18.7078C14.6995 20.0385 14.4302 20.7039 14.0569 20.8896C13.7335 21.0505 13.3516 21.0423 13.0353 20.8677C12.6704 20.6662 12.4297 19.99 11.9485 18.6375L10.4751 14.4967C10.3815 14.2336 10.3347 14.102 10.2582 13.9922C10.1905 13.8948 10.106 13.8103 10.0086 13.7426C9.89876 13.6661 9.76719 13.6193 9.50407 13.5257L5.36328 12.0523Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-            </g>
-          </svg>
-        </div>
-      </div>
+
+      <%= render "interact", post: %>
     </div>
   </div>
 </div>
