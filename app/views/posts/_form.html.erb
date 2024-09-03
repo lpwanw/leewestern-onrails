@@ -5,7 +5,6 @@
                  class: "grow px-4",
                  data: {
                    turbo: false,
-                   controller: "editor",
                  },
                } do |f| %>
     <div class="w-full flex justify-between">
@@ -18,11 +17,10 @@
       <%= f.text_area :title, class: "w-4/6 h-12 ring-0 border-0 focus:ring-0 p-0 overflow-hidden text-xl font-bold", placeholder: "Enter post's title...", data: { controller: "text-auto-expand" } %>
     </div>
     <div>
-      <%= f.label :body %>
-      <%= f.hidden_field :body, value: post.body.to_json, data: { "editor-target": "content" } %>
-      <div id="editorjs" class="typography"> </div>
+      <%= f.label :content %>
+      <%= f.rich_text_area :content %>
     </div>
-    <div>
+    <div class="flex gap-2 mt-2">
       <%= f.button :status,
                    value: :draft,
                    data: {
@@ -32,7 +30,7 @@
         Save Draft
       <% end %>
       <%= f.button :status,
-                   value: :posted,
+                   value: :published,
                    data: {
                      action: "click->editor#saveData",
                    },

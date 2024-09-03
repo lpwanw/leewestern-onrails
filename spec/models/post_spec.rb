@@ -71,24 +71,4 @@ RSpec.describe Post do
       it { is_expected.to be false }
     end
   end
-
-  describe "#standardize_body" do
-    subject { post.send(:standardize_body) }
-
-    let(:post) { build(:post, body:) }
-
-    before { subject }
-
-    context "when valid json body" do
-      let(:body) { "{}" }
-
-      it { expect(post).to be_valid }
-    end
-
-    context "when invalid json body" do
-      let(:body) { "invalid_json" }
-
-      it { expect(post).not_to be_valid }
-    end
-  end
 end

@@ -4,14 +4,8 @@
 
 import { application } from "./application"
 
-import CommentController from "./comment_controller"
-application.register("comment", CommentController)
-
 import DropdownController from "./dropdown_controller"
 application.register("dropdown", DropdownController)
-
-import EditorController from "./editor_controller"
-application.register("editor", EditorController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)

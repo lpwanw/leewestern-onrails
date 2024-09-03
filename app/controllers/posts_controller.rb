@@ -43,7 +43,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.required(:post).permit(:title, :body, :shared_post_id)
+    params.required(:post).permit(:title, :content, :shared_post_id, :status)
   end
 
   def load_post

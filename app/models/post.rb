@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 class Post < ApplicationRecord
-  before_validation :standardize_body
-
   enum status: { draft: "draft", published: "published" }
   enum post_type: { post: "post", repost: "repost", comment: "comment" }
+
+  has_rich_text :content
 
   belongs_to :user
   belongs_to :shared_post, class_name: "Post", optional: true
@@ -31,15 +31,5 @@ class Post < ApplicationRecord
 
   def liked_by?(user)
     likes.any? { |like| like.user_id == user.id }
-  end
-
-  private
-
-  def standardize_body
-    return if body.instance_of?(Hash)
-
-    self.body = JSON.parse(body || "{}")
-  rescue JSON::ParserError
-    errors.add(:body, :invalid)
   end
 end

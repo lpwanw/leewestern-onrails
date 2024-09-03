@@ -12,9 +12,8 @@
       </h2>
       <%= render "interact", post: %>
     </div>
-    <div class="mt-4 py-2 border-y w-full typography" data-controller="editor" readonly="true">
-      <input type="hidden" data-editor-target="content" value="<%= post.body.to_json %>">
-      <div id="editorjs"></div>
+    <div class="mt-4 py-2 border-y w-full">
+      <%= post.content %>
     </div>
     <div class="mt-4">
       <%= render "interact", post: %>
