@@ -1,0 +1,14 @@
+<div class="p-4 rounded-md flex">
+  <img class="w-10 h-10 rounded-full" src="https://avatar.iran.liara.run/public/<%= comment.user_id % 101 %>" alt="Rounded avatar">
+  <div class="px-4 w-full">
+    <div class="w-full flex justify-between">
+      <a href="#user" class="block font-semibold hover:underline">
+        <%= comment.user_email.split("@").first %>
+      </a>
+      <%= comment.created_at.strftime("%B %d, %Y at %I:%M %p") %>
+    </div>
+    <div class="comment_content">
+      <%= comment.content %>
+    </div>
+  </div>
+</div>

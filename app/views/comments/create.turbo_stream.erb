@@ -1,0 +1,2 @@
+<%= turbo_stream.prepend "comments", partial: "comments/comment", locals: { comment: @comment } %>
+<%= turbo_stream.replace "comment_form_#{dom_id(@post)}#{dom_id(@parent_comment) if @parent_comment}", partial: "comments/form", locals: { comment: @comment, post: @post, parent_comment: @parent_comment } %>

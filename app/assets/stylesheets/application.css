@@ -100,4 +100,18 @@
     margin-left: 0.3em;
     padding-left: 0.6em;
   }
+
+  .comment_content {
+    .trix-button-group--block-tools {
+      @apply hidden;
+    }
+
+    .trix-button-group--file-tools {
+      @apply hidden;
+    }
+
+    trix-editor {
+      @apply border border-gray-200 rounded-md p-2 min-h-10;
+    }
+  }
 }

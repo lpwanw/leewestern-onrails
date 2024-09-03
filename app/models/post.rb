@@ -2,7 +2,7 @@
 
 class Post < ApplicationRecord
   enum status: { draft: "draft", published: "published" }
-  enum post_type: { post: "post", repost: "repost", comment: "comment" }
+  enum post_type: { post: "post", repost: "repost" }
 
   has_rich_text :content
 
@@ -14,10 +14,7 @@ class Post < ApplicationRecord
                      inverse_of: :shared_post,
                      dependent: :nullify
 
-  has_many :comments, class_name: "Post",
-                      foreign_key: "shared_post_id",
-                      inverse_of: :shared_post,
-                      dependent: :nullify
+  has_many :comments, dependent: :destroy
 
   validates :shared_post_id, presence: true, unless: :post?
 

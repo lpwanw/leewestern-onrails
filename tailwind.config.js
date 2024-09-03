@@ -6,6 +6,11 @@ module.exports = {
     "./app/assets/stylesheets/**/*.css",
     "./app/javascript/**/*.js",
   ],
+  theme: {
+    fontFamily: {
+      sans: ["Inter", "sans-serif"],
+    },
+  },
   corePlugins: {
     aspectRatio: false,
   },
