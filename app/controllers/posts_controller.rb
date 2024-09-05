@@ -2,7 +2,8 @@
 
 class PostsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show]
-  before_action :load_post, only: %i[show edit update]
+  before_action :load_post, only: %i[show]
+  before_action :load_current_user_post, only: %i[edit update]
 
   def index
     @pagy, @posts = pagy(Post.includes(%i[user likes]))
@@ -51,6 +52,14 @@ class PostsController < ApplicationController
 
     return if @post
 
-    redirect_to root_path, alert: I18n.t("Not found")
+    redirect_to root_path, flash: { error: I18n.t("Not found") }
+  end
+
+  def load_current_user_post
+    @post = current_user.posts.find_by(id: params[:id])
+
+    return if @post
+
+    redirect_to root_path, flash: { error: I18n.t("Not found") }
   end
 end

@@ -3,13 +3,15 @@
 class CommentsController < ApplicationController
   before_action :load_post, only: %i[new create]
 
+  helper_method :build_comment
+
   def new
-    @comment = @post.comments.build
+    @comment = build_comment
   end
 
   def create
-    @comment = @post.comments.build(comment_params)
-    @comment.user = current_user
+    @comment = build_comment
+    @comment.assign_attributes(comment_params)
 
     return unless @comment.save
 
@@ -26,6 +28,10 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.required(:comment).permit(:content)
+    params.required(:post).permit(:content)
+  end
+
+  def build_comment
+    current_user.posts.build(post_type: :comment, shared_post_id: @post.id)
   end
 end

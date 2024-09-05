@@ -1,3 +1,3 @@
-<% post.comments.includes(:user, :rich_text_content).order(created_at: :desc).each do |comment| %>
+<% post.comments.includes(:user, :rich_text_content, :likes).order(created_at: :desc).each do |comment| %>
   <%= render "comments/comment", comment: %>
 <% end %>

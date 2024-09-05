@@ -10,6 +10,7 @@
     <%= vite_javascript_tag "application" %>
   </head>
   <body>
+    <%= render "shared/toast_container" %>
     <%= render "layouts/navigation" %>
     <div class="md:ml-20 flex justify-center">
       <%= yield %>

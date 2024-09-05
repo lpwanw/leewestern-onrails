@@ -21,3 +21,6 @@ application.register("scroll", ScrollController)
 
 import TextAutoExpandController from "./text_auto_expand_controller"
 application.register("text-auto-expand", TextAutoExpandController)
+
+import ToastController from "./toast_controller"
+application.register("toast", ToastController)

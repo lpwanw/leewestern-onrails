@@ -1,0 +1,5 @@
+<div class="fixed top-0 right-0 p-4">
+  <% flash.each do |type, message| %>
+    <%= render "shared/toast_#{type}", message: %>
+  <% end %>
+</div>
