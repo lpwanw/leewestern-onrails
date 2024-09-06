@@ -1,10 +1,10 @@
 <div class="flex">
   <div
     data-controller="like"
-    data-action="click->like#toggle"
+    data-action="<%= "click->like#toggle" if current_user %>"
     data-like-url-value="<%= post_likes_path(post) %>"
     data-liked="<%= post.liked_by?(current_user) %>"
-    class="childDiv group cursor-pointer flex justify-center items-center gap-0.5 px-2 py-1 active:scale-90 rounded-full hover:bg-gray-200">
+    class="childDiv w-fit h-fit group cursor-pointer flex justify-center items-center gap-0.5 px-2 py-1 active:scale-90 rounded-full hover:bg-gray-200">
     <svg class="w-5 h-5 text-gray-800 dark:text-white group-data-[liked=true]:hidden" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
       <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -39,7 +39,10 @@
         </defs>
       </g>
     </svg>
-    <%= 21 %>
+    <span>
+      <% comment_count = post.comments_count %>
+      <%= comment_count if comment_count.positive? %>
+    </span>
   </div>
   <div class="cursor-pointer flex justify-center items-center gap-0.5 px-2 py-1 active:scale-90 rounded-full hover:bg-gray-200">
     <svg class="w-5 h-5 text-gray-800 dark:text-white" viewBox="-4 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000">

@@ -7,6 +7,7 @@ class CreatePosts < ActiveRecord::Migration[7.1]
       t.string :title
       t.string :status, default: "draft"
       t.integer :likes_count, default: 0, null: false
+      t.integer :comments_count, default: 0, null: false
       t.string :post_type, default: "post", null: false
       t.references :shared_post, foreign_key: { to_table: :posts }
 

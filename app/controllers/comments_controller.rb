@@ -32,6 +32,6 @@ class CommentsController < ApplicationController
   end
 
   def build_comment
-    current_user.posts.build(post_type: :comment, shared_post_id: @post.id)
+    current_user.posts.build(post_type: :comment, shared_post_id: @post.id, status: :published)
   end
 end

@@ -78,6 +78,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_03_093909) do
     t.string "title"
     t.string "status", default: "draft"
     t.integer "likes_count", default: 0, null: false
+    t.integer "comments_count", default: 0, null: false
     t.string "post_type", default: "post", null: false
     t.bigint "shared_post_id"
     t.datetime "created_at", null: false

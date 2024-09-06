@@ -4,6 +4,8 @@ class Navigation::Item < ViewComponent::Base
   ICONS = {
     home: "icon/home",
     add: "icon/add",
+    more: "icon/more",
+    sign_in: "icon/sign_in",
   }.freeze
 
   def initialize(icon, html_options = {})

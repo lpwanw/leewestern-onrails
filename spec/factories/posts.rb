@@ -6,7 +6,9 @@ FactoryBot.define do
     title { FFaker::Lorem.sentence }
     shared_post { nil }
     content do
-      body = "<h1>#{FFaker::Lorem.sentence}</h1><div>#{FFaker::Lorem.paragraph}</div>"
+      header = "<h1>#{FFaker::Lorem.sentence}</h1>"
+      content = Array.new(10) { "<div>#{FFaker::Lorem.paragraph}</div>" }.join
+      body = "#{header}\n#{content}"
       ActionText::RichText.new(body:)
     end
     post_type { "post" }

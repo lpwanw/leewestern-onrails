@@ -6,6 +6,7 @@
 
 @layer base {
   trix-editor {
+    border-radius: 0.375rem !important;
     @apply w-full;
   }
   
