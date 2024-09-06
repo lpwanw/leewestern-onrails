@@ -1,5 +1,5 @@
 <div class="grow flex p-4 rounded-lg border overflow-x-auto">
-  <img class="w-10 h-10 rounded-full" src="https://avatar.iran.liara.run/public/<%= current_user.id % 101 %>" alt="Rounded avatar">
+  <img class="w-10 h-10 rounded-full" src="<%= avatar_placeholder_url(current_user) %>" alt="Rounded avatar">
   <%= form_for post,
                html: {
                  class: "grow px-4",

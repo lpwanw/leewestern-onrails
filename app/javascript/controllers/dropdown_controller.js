@@ -25,6 +25,10 @@ export default class extends Controller {
     );
   }
 
+  close() {
+    this.dropdown.hide();
+  }
+
   offsetOptions() {
     const offsetHeight = +this.triggerTarget.offsetHeight;
     const offsetWidth = +this.triggerTarget.offsetWidth;

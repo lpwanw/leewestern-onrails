@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "comment_form_#{dom_id(post)}" do %>
   <div class="p-4 rounded-md flex">
-    <img class="w-10 h-10 rounded-full" src="https://avatar.iran.liara.run/public/<%= current_user.id % 101 %>" alt="Rounded avatar">
+    <img class="w-10 h-10 rounded-full" src="<%= avatar_placeholder_url(current_user) %>" alt="Rounded avatar">
     <%= form_for comment,
                  url: post_comments_path(post),
                  html: {

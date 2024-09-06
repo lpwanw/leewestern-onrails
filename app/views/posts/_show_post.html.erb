@@ -1,6 +1,6 @@
 <div class="grow p-4 rounded-lg border overflow-x-auto">
   <div class="flex gap-2">
-  <img class="w-10 h-10 rounded-full" src="https://avatar.iran.liara.run/public/<%= post.user_id % 101 %>" alt="Rounded avatar">
+  <img class="w-10 h-10 rounded-full" src="<%= avatar_placeholder_url(post.user) %>" alt="Rounded avatar">
   <div class="px-4 w-full">
     <div class="w-full flex justify-between">
       <a href="#user" class="block font-semibold hover:underline">
@@ -35,20 +35,36 @@
     <div
         data-dropdown-target="dropdown"
         class="z-20 border hidden bg-white divide-y divide-gray-200 rounded-lg w-44 dark:bg-gray-700">
-      <ul class="p-2 text-gray-900 dark:text-gray-200">
+      <ul class="p-2 text-gray-900 dark:text-gray-200 flex flex-col gap-2">
+        <% if post.user == current_user %>
+          <li>
+            <%= link_to edit_post_path(post), class: "block rounded-md px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" do %>
+              Edit
+            <% end %>
+          </li>
+        <% end %>
+
         <li>
-          <%= link_to edit_post_path(post), class: "block rounded-md px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" do %>
-            Edit
-          <% end %>
+          <button
+            data-controller="copy"
+            data-action="click->copy#copy click->dropdown#close click->toast-provider#show"
+            data-toast-provider-message-param="Copied to clipboard"
+            data-toast-provider-type-param="success"
+            data-copy-text-value="<%= post_url(post) %>"
+            class="block w-full text-left rounded-md px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+           Copy
+          </button>
         </li>
       </ul>
     </div>
-    </div>
   </div>
-  <div class="mt-4">
-    <%= turbo_frame_tag "comment_form_#{dom_id(post)}", src: new_post_comment_path(post), loading: :lazy %>
-  </div>
-  <div class="mt-4 border-t space-y-4 divide-y divide-gray-200" id="comments">
-    <%= render "comments", post: %>
-  </div>
+</div>
+<div class="mt-4">
+  <span class="font-semibold text-lg">
+    Comments
+  </span>
+  <%= turbo_frame_tag "comment_form_#{dom_id(post)}", src: new_post_comment_path(post), loading: :lazy %>
+</div>
+<div class="mt-4 border-t space-y-4 divide-y divide-gray-200" id="comments">
+  <%= render "comments", post: %>
 </div>

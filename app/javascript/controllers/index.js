@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import CopyController from "./copy_controller"
+application.register("copy", CopyController)
+
 import DropdownController from "./dropdown_controller"
 application.register("dropdown", DropdownController)
 
@@ -24,3 +27,6 @@ application.register("text-auto-expand", TextAutoExpandController)
 
 import ToastController from "./toast_controller"
 application.register("toast", ToastController)
+
+import ToastProviderController from "./toast_provider_controller"
+application.register("toast-provider", ToastProviderController)

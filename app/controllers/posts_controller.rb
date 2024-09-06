@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   before_action :load_current_user_post, only: %i[edit update]
 
   def index
-    @pagy, @posts = pagy(Post.includes(%i[user likes]))
+    @pagy, @posts = pagy(Post.post.includes(%i[user likes]))
 
     respond_to do |format|
       format.html

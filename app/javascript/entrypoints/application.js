@@ -37,3 +37,7 @@ import "@rails/request.js";
 
 import "trix"
 import "@rails/actiontext"
+import $ from "jquery";
+
+window.$ = $;
+window.jQuery = $;
