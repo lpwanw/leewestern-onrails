@@ -35,6 +35,10 @@ class Post < ApplicationRecord
 
   delegate :email, to: :user, prefix: true
 
+  scope :accessible_by, (lambda do |user|
+    where(user:).or(where(status: :published))
+  end)
+
   def liked_by?(user)
     likes.any? { |like| like.user_id == user.id }
   end
