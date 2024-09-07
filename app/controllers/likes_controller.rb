@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class LikesController < ApplicationController
+  include Post::Broadcast
   before_action :load_post, only: %i[update]
 
   def update
@@ -11,6 +12,8 @@ class LikesController < ApplicationController
     else
       @like.save
     end
+
+    broadcast_interact(@post, current_user.dup)
   end
 
   private
