@@ -1,0 +1,28 @@
+<div class="max-w-2xl w-full mx-auto min-h-screen flex flex-col pb-[72px] md:pb-0">
+  <div class="flex items-center px-4 py-3 relative">
+    <h1 class="absolute font-medium left-1/2 transform -translate-x-1/2">Profile</h1>
+    <div class="flex-grow"></div>
+    <button class="bg-white p-1 rounded-full border hover:scale-110">
+      <svg class="rotate-90 w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
+      </svg>
+    </button>
+  </div>
+
+  <div class="grow flex flex-col rounded-3xl border bg-white">
+    <%= render "users/profile", user: @user %>
+
+    <div id="user_profile_tab" data-permanent="true" data-controller="tab" class="flex border-b relative">
+      <%= link_to "Posts", user_path(@user), class: "font-medium flex-1 text-center py-2", data: { tab_target: "link", action: "click->tab#select" } %>
+      <%= link_to "Replies", "#replies", class: "font-medium flex-1 text-center py-2 text-gray-400", data: { tab_target: "link", action: "click->tab#select" } %>
+      <%= link_to "Reposts", "#reposts", class: "font-medium flex-1 text-center py-2 text-gray-400", data: { tab_target: "link", action: "click->tab#select" } %>
+      <div data-tab-target="indicator" class="absolute bottom-0 left-0 h-0.5 bg-black"></div>
+    </div>
+
+    <%= render "users/remind_action" %>
+
+    <div class="grow divide-y divide-gray-200 overflow-y-auto">
+      <%= render partial: "posts/post", collection: @posts %>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 <%= turbo_stream_from post %>
 
-<div class="grow p-4 rounded-lg border overflow-x-auto">
+<div class="grow p-4 rounded-3xl border overflow-y-auto bg-white">
   <div class="flex">
     <div class="px-2 md:px-4 flex-grow">
       <div class="w-full py-2 flex justify-between">
@@ -58,17 +58,6 @@
       </div>
     </div>
   </div>
-  <div class="mt-4 mx-4">
-    <span class="font-semibold text-lg">
-      Comments
-    </span>
-    <% if current_user %>
-      <%= turbo_frame_tag "comment_form_#{dom_id(post)}", src: new_post_comment_path(post), loading: :lazy %>
-    <% else %>
-      <%= link_to "Login to comment", new_user_session_path, class: "block w-fit text-left rounded-md px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" %>
-    <% end %>
-  </div>
-  <div class="mt-4 px-4 border-t space-y-4 divide-y divide-gray-200 overflow-x-auto" id="<%= dom_id(post, :comments) %>">
-    <%= render "comments", post: %>
-  </div>
+
+  <%= render "comments", post: %>
 </div>

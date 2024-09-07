@@ -11,4 +11,6 @@ Rails.application.routes.draw do
     resource :likes, only: %i[update]
     resources :comments, only: %i[new create]
   end
+
+  resources :users, only: %i[show]
 end

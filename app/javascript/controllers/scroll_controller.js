@@ -9,7 +9,7 @@ export default class extends Controller {
   scrollToElement() {
     const element = document.getElementById(this.toValue);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   }
 }

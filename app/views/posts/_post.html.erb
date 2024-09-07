@@ -1,4 +1,4 @@
-<div data-controller="post-click" data-action="click->post-click#goto" data-post-click-url-value="<%= post_path(post) %>" class="flex gap-2 w-full px-3 py-2 bg-white dark:bg-gray-800 last:border last:border-gray-200">
+<div data-controller="post-click" data-action="click->post-click#goto" data-post-click-url-value="<%= post_path(post) %>" class="flex gap-2 w-full px-3 py-2 bg-white dark:bg-gray-800">
   <div>
     <img class="w-6 h-6 rounded-full" src="<%= avatar_placeholder_url(post.user) %>" alt="Rounded avatar">
   </div>
@@ -13,7 +13,7 @@
         <%= post.title %>
       </a>
 
-      <%= render "interact", post: %>
+      <%= render "posts/interact", post: %>
     </div>
   </div>
 </div>

@@ -22,6 +22,9 @@ application.register("post-click", PostClickController)
 import ScrollController from "./scroll_controller"
 application.register("scroll", ScrollController)
 
+import TabController from "./tab_controller"
+application.register("tab", TabController)
+
 import TextAutoExpandController from "./text_auto_expand_controller"
 application.register("text-auto-expand", TextAutoExpandController)
 

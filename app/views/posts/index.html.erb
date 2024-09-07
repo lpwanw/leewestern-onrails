@@ -1,4 +1,4 @@
-<div class="w-screen h-screen flex flex-col md:max-w-3xl">
+<div class="w-screen h-screen flex flex-col md:max-w-3xl pb-[72px] md:pb-0">
   <div class="w-full flex justify-center py-2">
     <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-gray-950 font-medium text-sm px-5 py-2.5 text-center inline-flex items-center" type="button">
       For You
@@ -24,7 +24,7 @@
       </ul>
     </div>
   </div>
-  <div class="grow rounded-lg border divide-y divide-gray-200 overflow-y-auto">
+  <div class="grow rounded-3xl border divide-y divide-gray-200 overflow-y-auto">
     <%= turbo_frame_tag :posts, class: "block divide-y divide-gray-200" do %>
       <%= render @posts %>
     <% end %>

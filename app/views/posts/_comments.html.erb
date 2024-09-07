@@ -1,3 +1,21 @@
-<% post.comments.includes(:user, :rich_text_content, :likes).order(created_at: :desc).each do |comment| %>
-  <%= render "comments/comment", comment: %>
-<% end %>
+<div class="mt-4 mx-4">
+  <span class="font-semibold text-lg">
+    Comments
+  </span>
+
+  <% if post.comments.empty? %>
+    <p class="text-gray-500">No comments yet</p>
+  <% end %>
+
+  <% if current_user %>
+    <%= turbo_frame_tag "comment_form_#{dom_id(post)}" %>
+  <% else %>
+    <%= link_to "Login to comment", new_user_session_path, class: "block w-fit text-left rounded-md px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" %>
+  <% end %>
+</div>
+
+<div class="mt-4 px-4 border-t space-y-4 divide-y divide-gray-200" id="<%= dom_id(post, :comments) %>">
+  <% post.comments.includes(:user, :rich_text_content, :likes).order(created_at: :desc).each do |comment| %>
+    <%= render "comments/comment", comment: %>
+  <% end %>
+</div>

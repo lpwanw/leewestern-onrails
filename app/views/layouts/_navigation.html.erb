@@ -3,7 +3,7 @@
     Log
   </div>
   <ul class="w-full flex items-center justify-evenly md:flex-col">
-    <% %i[home home add home home].each do |item| %>
+    <% %i[home home add home user].each do |item| %>
       <li>
         <%= link_to navigation_path(item) do %>
           <%= render Navigation::Item.new item, { class: "active:scale-90 hover:bg-gray-200" } %>
