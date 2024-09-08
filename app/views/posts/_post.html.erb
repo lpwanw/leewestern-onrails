@@ -1,15 +1,16 @@
-<div data-controller="post-click" data-action="click->post-click#goto" data-post-click-url-value="<%= post_path(post) %>" class="flex gap-2 w-full px-3 py-2 bg-white dark:bg-gray-800">
-  <div>
-    <img class="w-6 h-6 rounded-full" src="<%= avatar_placeholder_url(post.user) %>" alt="Rounded avatar">
-  </div>
+<div data-controller="post-click" data-action="click->post-click#goto" data-post-click-url-value="<%= post_path(post) %>" class="flex gap-2 w-full px-6 py-4 bg-white dark:bg-gray-800">
+  <%= render "posts/user_avatar", user: post.user %>
   <div>
     <div class="w-full flex justify-between">
-      <a href="#user" class="block font-semibold hover:underline childLink">
-        <%= post.user_email.split("@").first %>
-      </a>
+      <%= link_to post.user_email.split("@").first,
+                  user_path(post.user),
+                  data: {
+                    turbo_frame: "_top",
+                  },
+                  class: "block font-semibold hover:underline childLink" %>
     </div>
     <div>
-      <a href="#post">
+      <a href="#post" class="childLink">
         <%= post.title %>
       </a>
 

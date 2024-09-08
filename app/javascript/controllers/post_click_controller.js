@@ -9,9 +9,13 @@ export default class extends Controller {
   connect() {}
 
   goto(event) {
-    if (event.target.tagName.toLowerCase() === "a") {
+    const clickedElement = event.target;
+    const closestLink = clickedElement.closest('a');
+    
+    if (closestLink) {
       return;
     }
+    
     event.stopPropagation();
     Turbo.visit(this.urlValue);
   }

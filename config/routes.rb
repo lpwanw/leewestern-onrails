@@ -12,5 +12,7 @@ Rails.application.routes.draw do
     resources :comments, only: %i[new create]
   end
 
-  resources :users, only: %i[show]
+  resources :users, only: %i[show] do
+    get :modal, on: :member
+  end
 end
