@@ -5,10 +5,24 @@ module Post::Broadcast
 
   def broadcast_comment(comment, current_user)
     Turbo::StreamsChannel.broadcast_prepend_to(
-      comment.commentable,
-      target: "comments_post_#{comment.commentable_id}",
-      partial: "comments/comment",
+      broadcast_comment_stream_name(comment),
+      target: broadcast_comment_target(comment),
+      partial: broadcast_comment_partial(comment),
       locals: { comment:, current_user: },
     )
+  end
+
+  private
+
+  def broadcast_comment_stream_name(comment)
+    comment.commentable_is_a?(Post) ? comment.commentable : comment.commentable_commentable
+  end
+
+  def broadcast_comment_target(comment)
+    "comments_#{comment.commentable_type.underscore}_#{comment.commentable_id}"
+  end
+
+  def broadcast_comment_partial(comment)
+    comment.commentable_is_a?(Comment) ? "comments/comment_reply" : "comments/comment"
   end
 end

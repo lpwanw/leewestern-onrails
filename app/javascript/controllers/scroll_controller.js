@@ -8,6 +8,7 @@ export default class extends Controller {
 
   scrollToElement() {
     const element = document.getElementById(this.toValue);
+    console.log(element);
     if (element) {
       element.scrollIntoView({ behavior: "smooth", block: "start" });
     }

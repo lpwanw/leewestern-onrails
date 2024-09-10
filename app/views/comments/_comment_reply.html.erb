@@ -13,12 +13,6 @@
     <div class="comment_content">
       <%= comment.content %>
     </div>
-    <%= render "comments/interact", comment:, current_user: %>
-    <%= turbo_frame_tag dom_id(comment, :comment_form) %>
-    <div class="pt-4 border-t space-y-4 divide-y divide-gray-200" id="<%= dom_id(comment, :comments) %>">
-      <% comment.comments.includes(:user, :rich_text_content).order(id: :desc).each do |comment| %>
-        <%= render "comments/comment_reply", comment: %>
-      <% end %>
-    </div>
+    <%= render "comments/interact", comment:, skip_comment: true %>
   </div>
 </div>

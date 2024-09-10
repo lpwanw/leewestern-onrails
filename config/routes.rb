@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   resources :comments, only: %i[] do
     resource :likes, only: %i[update]
+    resources :comments, only: %i[new create]
   end
 
   resources :users, only: %i[show] do

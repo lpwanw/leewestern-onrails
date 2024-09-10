@@ -1,8 +1,8 @@
-<%= turbo_frame_tag "comment_form_#{dom_id(post)}" do %>
+<%= turbo_frame_tag "comment_form_#{dom_id(commentable)}" do %>
   <div class="p-4 rounded-md flex">
-    <img class="w-10 h-10 rounded-full" src="<%= avatar_placeholder_url(current_user) %>" alt="Rounded avatar">
+    <img class="w-6 h-6 rounded-full" src="<%= avatar_placeholder_url(current_user) %>" alt="Rounded avatar">
     <%= form_for comment,
-                 url: post_comments_path(post),
+                 url: commentable.is_a?(Post) ? post_comments_path(commentable) : comment_comments_path(commentable),
                  html: {
                    class: "grow px-4",
                  } do |f| %>
@@ -14,8 +14,9 @@
       <div class="comment_content">
         <%= f.rich_text_area :content %>
       </div>
-      <div class="flex gap-2 mt-2">
+      <div class="flex gap-1 mt-2">
         <%= f.submit class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>
+        <%= link_to "Cancel", post_path(commentable.is_a?(Post) ? commentable : commentable.commentable), class: "text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>
       </div>
     <% end %>
   </div>

@@ -1,4 +1,4 @@
-<div class="mt-4 mx-4">
+<div class="my-4">
   <span class="font-semibold text-lg">
     Comments
   </span>
@@ -8,13 +8,15 @@
   <% end %>
 
   <% if current_user %>
-    <%= turbo_frame_tag "comment_form_#{dom_id(post)}" %>
+    <%= turbo_frame_tag dom_id(post, :comment_form) do %>
+      <%= link_to "Add a comment", new_post_comment_path(post), class: "block w-fit text-left rounded-md px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white" %>
+    <% end %>
   <% else %>
     <%= link_to "Login to comment", new_user_session_path, class: "block w-fit text-left rounded-md px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" %>
   <% end %>
 </div>
 
-<div class="mt-4 px-4 border-t space-y-4 divide-y divide-gray-200" id="<%= dom_id(post, :comments) %>">
+<div class="pt-4 border-t space-y-4 divide-y divide-gray-200" id="<%= dom_id(post, :comments) %>">
   <% post.comments.includes(:user, :rich_text_content).order(id: :desc).each do |comment| %>
     <%= render "comments/comment", comment: %>
   <% end %>

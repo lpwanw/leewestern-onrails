@@ -4,9 +4,7 @@ FactoryBot.define do
   factory :comment do
     user
     content do
-      header = "<h1>#{FFaker::Lorem.sentence}</h1>"
-      content = "<div>#{FFaker::Lorem.paragraph}</div>"
-      body = "#{header}\n#{content}"
+      body = "<div>#{FFaker::Lorem.paragraph}</div>"
       ActionText::RichText.new(body:)
     end
 

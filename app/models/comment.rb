@@ -11,4 +11,5 @@ class Comment < ApplicationRecord
   has_rich_text :content
 
   delegate :email, to: :user, prefix: :user
+  delegate :commentable, :is_a?, to: :commentable, prefix: :commentable
 end
