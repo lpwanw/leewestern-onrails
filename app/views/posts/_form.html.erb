@@ -1,18 +1,13 @@
-<div class="grow flex p-4 rounded-3xl bg-white border overflow-x-auto">
-  <img class="w-10 h-10 rounded-full" src="<%= avatar_placeholder_url(current_user) %>" alt="Rounded avatar">
-  <%= form_for post,
-               html: {
-                 class: "grow px-4",
-                 data: {
-                   turbo: false,
-                 },
-               } do |f| %>
-    <div class="w-full flex justify-between">
+<div class="grow flex p-4 rounded-3xl rounded-b-none bg-white border overflow-y-auto">
+  <%= form_for post do |f| %>
+    <div class="flex items-center gap-2">
+      <img class="w-10 h-10 rounded-full" src="<%= avatar_placeholder_url(current_user) %>" alt="Rounded avatar">
+
       <a href="#user" class="block font-semibold hover:underline">
         <%= current_user.email.split("@").first %>
       </a>
     </div>
-    <div>
+    <div class="mt-2">
       <%= f.label :title, class: "sr-only" %>
       <%= f.text_area :title, class: "w-4/6 h-12 ring-0 border-0 focus:ring-0 p-0 overflow-hidden text-xl font-bold", placeholder: "Enter post's title...", data: { controller: "text-auto-expand" } %>
     </div>

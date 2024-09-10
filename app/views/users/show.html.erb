@@ -1,4 +1,4 @@
-<div class="max-w-2xl w-full mx-auto min-h-screen flex flex-col pb-[72px] md:pb-0">
+<div class="flex flex-col h-full">
   <div class="flex items-center px-4 py-3 relative">
     <h1 class="absolute font-medium left-1/2 transform -translate-x-1/2">Profile</h1>
     <div class="flex-grow"></div>
@@ -9,7 +9,7 @@
     </button>
   </div>
 
-  <div class="grow flex flex-col rounded-3xl border bg-white">
+  <div class="grow flex flex-col rounded-3xl border rounded-b-none bg-white">
     <%= render "users/profile", user: @user %>
 
     <div id="user_profile_tab" data-permanent="true" data-controller="tab" class="flex border-b relative">
@@ -21,7 +21,7 @@
 
     <%= render "users/remind_action" %>
 
-    <div class="grow divide-y divide-gray-200 overflow-y-auto">
+    <div class="grow divide-y divide-gray-200 overflow-y-auto no-scrollbar">
       <%= render partial: "posts/post", collection: @posts %>
     </div>
   </div>

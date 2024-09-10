@@ -38,6 +38,11 @@ import "@rails/request.js";
 import "trix"
 import "@rails/actiontext"
 import $ from "jquery";
+import { Turbo } from "@hotwired/turbo-rails";
 
 window.$ = $;
 window.jQuery = $;
+
+Turbo.StreamActions.redirect_to = function() {
+    Turbo.visit(this.getAttribute("url"))
+}

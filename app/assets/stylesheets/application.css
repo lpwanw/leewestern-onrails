@@ -115,4 +115,12 @@
       @apply border border-gray-200 rounded-md p-2 min-h-10;
     }
   }
+
+  .trix-button-group--block-tools {
+    margin-left: 0 !important;
+  }
+
+  .trix-button-group--file-tools {
+    margin-left: 0 !important;
+  }
 }

@@ -3,15 +3,6 @@
 module Post::Broadcast
   extend ActiveSupport::Concern
 
-  def broadcast_interact(post, current_user)
-    Turbo::StreamsChannel.broadcast_replace_to(
-      post,
-      target: "interact_post_#{post.id}",
-      partial: "posts/interact",
-      locals: { post:, current_user: }
-    )
-  end
-
   def broadcast_comment(comment, current_user)
     Turbo::StreamsChannel.broadcast_prepend_to(
       comment.shared_post,

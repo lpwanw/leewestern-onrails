@@ -25,19 +25,27 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.new post_params
 
-    if @post.save
-      redirect_to post_path(@post)
-    else
-      render :new, status: :unprocessable_entity
+    respond_to do |format|
+      if @post.save
+        flash[:success] = t("Post created successfully")
+        respond_with_redirect(format)
+      else
+        flash[:error] = @post.errors.full_messages.join(", ")
+        respond_with_error(format, :new)
+      end
     end
   end
 
   def update
     @post.assign_attributes post_params
-    if @post.save
-      redirect_to post_path(@post)
-    else
-      render :edit, status: :unprocessable_entity
+    respond_to do |format|
+      if @post.save
+        flash[:success] = t("Post updated successfully")
+        respond_with_redirect(format)
+      else
+        flash[:error] = @post.errors.full_messages.join(", ")
+        respond_with_error(format, :edit)
+      end
     end
   end
 
@@ -61,5 +69,15 @@ class PostsController < ApplicationController
     return if @post
 
     redirect_to root_path, flash: { error: I18n.t("Not found") }
+  end
+
+  def respond_with_redirect(format)
+    format.html { redirect_to post_path(@post) }
+    format.turbo_stream { turbo_redirect_to post_path(@post) }
+  end
+
+  def respond_with_error(format, action_name)
+    format.html { render action_name, status: :unprocessable_entity }
+    format.turbo_stream
   end
 end

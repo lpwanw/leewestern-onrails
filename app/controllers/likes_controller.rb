@@ -12,8 +12,6 @@ class LikesController < ApplicationController
     else
       @like.save
     end
-
-    broadcast_interact(@post, current_user.dup)
   end
 
   private

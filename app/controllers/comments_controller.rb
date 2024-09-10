@@ -17,7 +17,6 @@ class CommentsController < ApplicationController
 
     return unless @comment.save
 
-    broadcast_interact(@post, current_user)
     broadcast_comment(@comment, current_user)
 
     respond_to do |format|
