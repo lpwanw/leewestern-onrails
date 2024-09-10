@@ -5,10 +5,10 @@ module Post::Broadcast
 
   def broadcast_comment(comment, current_user)
     Turbo::StreamsChannel.broadcast_prepend_to(
-      comment.shared_post,
-      target: "comments_post_#{comment.shared_post_id}",
+      comment.commentable,
+      target: "comments_post_#{comment.commentable_id}",
       partial: "comments/comment",
-      locals: { comment:, current_user: }
+      locals: { comment:, current_user: },
     )
   end
 end

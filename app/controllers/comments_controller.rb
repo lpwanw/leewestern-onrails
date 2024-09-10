@@ -8,12 +8,11 @@ class CommentsController < ApplicationController
   helper_method :build_comment
 
   def new
-    @comment = build_comment
+    @comment = current_user.comments.build
   end
 
   def create
-    @comment = build_comment
-    @comment.assign_attributes(comment_params)
+    @comment = current_user.comments.build(comment_params.merge(commentable: @post))
 
     return unless @comment.save
 
@@ -32,10 +31,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.required(:post).permit(:content)
-  end
-
-  def build_comment
-    current_user.posts.build(post_type: :comment, shared_post_id: @post.id, status: :published)
+    params.required(:comment).permit(:content)
   end
 end

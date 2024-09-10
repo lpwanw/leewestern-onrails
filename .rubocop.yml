@@ -33,3 +33,6 @@ Style/ClassAndModuleChildren:
   EnforcedStyle: compact
   Exclude:
     - config/application.rb
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: consistent_comma

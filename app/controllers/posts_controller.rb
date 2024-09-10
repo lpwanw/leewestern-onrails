@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   before_action :load_current_user_post, only: %i[edit update]
 
   def index
-    @pagy, @posts = pagy(Post.post.published.includes(%i[user likes]))
+    @pagy, @posts = pagy(Post.published.includes(%i[user]))
 
     respond_to do |format|
       format.html
@@ -52,11 +52,11 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.required(:post).permit(:title, :content, :shared_post_id, :status)
+    params.required(:post).permit(:title, :content, :status)
   end
 
   def load_post
-    @post = Post.post.accessible_by(current_user).find_by(id: params[:id])
+    @post = Post.accessible_by(current_user).find_by(id: params[:id])
 
     return if @post
 

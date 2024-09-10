@@ -54,36 +54,35 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_03_093909) do
 
   create_table "comments", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "post_id", null: false
-    t.bigint "parent_id"
+    t.string "commentable_type", null: false
+    t.bigint "commentable_id", null: false
+    t.integer "likes_count", default: 0
+    t.integer "comments_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["parent_id"], name: "index_comments_on_parent_id"
-    t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "post_id", null: false
+    t.string "likeable_type", null: false
+    t.bigint "likeable_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_likes_on_post_id"
-    t.index ["user_id", "post_id"], name: "index_likes_on_user_id_and_post_id", unique: true
+    t.index ["likeable_type", "likeable_id"], name: "index_likes_on_likeable"
+    t.index ["user_id", "likeable_id", "likeable_type"], name: "index_likes_on_user_id_and_likeable_id_and_likeable_type", unique: true
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "title"
+    t.string "title", null: false
     t.string "status", default: "draft"
     t.integer "likes_count", default: 0, null: false
     t.integer "comments_count", default: 0, null: false
-    t.string "post_type", default: "post", null: false
-    t.bigint "shared_post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["shared_post_id"], name: "index_posts_on_shared_post_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -114,11 +113,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_03_093909) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "comments", "comments", column: "parent_id"
-  add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
-  add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
-  add_foreign_key "posts", "posts", column: "shared_post_id"
   add_foreign_key "posts", "users"
 end

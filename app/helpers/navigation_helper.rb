@@ -5,7 +5,7 @@ module NavigationHelper
     {
       home: root_path,
       add: new_post_path,
-      user: user_path(current_user),
+      user: current_user.present? ? user_path(current_user) : new_user_session_path,
     }[key] || root_path
   end
 end

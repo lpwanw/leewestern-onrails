@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
 class Comment < ApplicationRecord
+  include Likable
+
   belongs_to :user
-  belongs_to :post
-  belongs_to :parent, class_name: "Comment", optional: true, inverse_of: :replies
-  has_many :replies, class_name: "Comment", foreign_key: :parent_id, dependent: :destroy, inverse_of: :parent
+  belongs_to :commentable, polymorphic: true, counter_cache: true
+
+  has_many :comments, as: :commentable, dependent: :destroy
 
   has_rich_text :content
 

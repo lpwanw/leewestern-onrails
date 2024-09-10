@@ -12,6 +12,10 @@ Rails.application.routes.draw do
     resources :comments, only: %i[new create]
   end
 
+  resources :comments, only: %i[] do
+    resource :likes, only: %i[update]
+  end
+
   resources :users, only: %i[show] do
     get :modal, on: :member
   end
