@@ -6,7 +6,7 @@
     <% %i[home home add home user].each do |item| %>
       <li>
         <%= link_to navigation_path(item) do %>
-          <%= render Navigation::Item.new item, { class: "active:scale-90 hover:bg-gray-200" } %>
+          <%= render Navigation::Item.new item, { class: "active:scale-90 hover:bg-gray-200" }, active: current_page?(navigation_path(item)) %>
         <% end %>
       </li>
     <% end %>
