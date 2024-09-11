@@ -31,6 +31,9 @@ application.register("tab", TabController)
 import TextAutoExpandController from "./text_auto_expand_controller"
 application.register("text-auto-expand", TextAutoExpandController)
 
+import TimeagoController from "./timeago_controller"
+application.register("timeago", TimeagoController)
+
 import ToastController from "./toast_controller"
 application.register("toast", ToastController)
 

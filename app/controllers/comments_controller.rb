@@ -5,11 +5,16 @@ class CommentsController < ApplicationController
 
   before_action :load_commentable, only: %i[new create]
   before_action :authenticate_turbo_frame, only: :new
+  before_action :load_comment, only: %i[show edit update]
   helper_method :build_comment
+
+  def show; end
 
   def new
     @comment = current_user.comments.build
   end
+
+  def edit; end
 
   def create
     @comment = current_user.comments.build(comment_params.merge(commentable: @commentable))
@@ -21,6 +26,14 @@ class CommentsController < ApplicationController
     respond_to do |format|
       format.turbo_stream
     end
+  end
+
+  def update
+    @comment = Comment.find(params[:id])
+
+    return unless @comment.update(comment_params)
+
+    render :show
   end
 
   private
@@ -37,5 +50,9 @@ class CommentsController < ApplicationController
     return if turbo_frame_request?
 
     redirect_to @commentable.is_a?(Comment) ? post_path(@commentable.commentable) : post_path(@commentable)
+  end
+
+  def load_comment
+    @comment = Comment.find(params[:id])
   end
 end

@@ -1,10 +1,10 @@
 <%= turbo_frame_tag "comment_form_#{dom_id(commentable)}" do %>
-  <div class="p-4 rounded-md flex">
+  <div class="rounded-md flex">
     <img class="w-6 h-6 rounded-full" src="<%= avatar_placeholder_url(current_user) %>" alt="Rounded avatar">
     <%= form_for comment,
                  url: commentable.is_a?(Post) ? post_comments_path(commentable) : comment_comments_path(commentable),
                  html: {
-                   class: "grow px-4",
+                   class: "grow pl-2",
                  } do |f| %>
       <div class="w-full flex justify-between">
         <a href="#user" class="block font-semibold hover:underline">

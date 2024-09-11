@@ -7,7 +7,7 @@ class LikesController < ApplicationController
     @like = Like.find_or_initialize_by(user: current_user, likeable: @likeable)
 
     if @like.persisted?
-      @like.delete
+      @like.destroy
     else
       @like.save
     end

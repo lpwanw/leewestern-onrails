@@ -1,0 +1,42 @@
+  <div class="w-full flex justify-between">
+    <div class="flex items-center gap-2">
+      <%= link_to user_path(comment.user), data: { turbo_frame: "_top" }, class: "block font-semibold hover:underline" do %>
+        <%= comment.user_email.split("@").first %>
+      <% end %>
+      <span class="text-gray-500 text-sm" data-controller="timeago" data-timeago-time-value="<%= comment.created_at.iso8601 %>">
+      </span>
+    </div>
+    <div data-controller="dropdown">
+      <button class="p-1 rounded-full hover:bg-gray-200" data-dropdown-target="trigger">
+        <svg fill="#000000" class="w-4 h-4" viewBox="0 0 32 32" enable-background="new 0 0 32 32" id="Glyph" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+          <g id="SVGRepo_iconCarrier">
+            <path d="M13,16c0,1.654,1.346,3,3,3s3-1.346,3-3s-1.346-3-3-3S13,14.346,13,16z" id="XMLID_294_"></path>
+            <path d="M13,26c0,1.654,1.346,3,3,3s3-1.346,3-3s-1.346-3-3-3S13,24.346,13,26z" id="XMLID_295_"></path>
+            <path d="M13,6c0,1.654,1.346,3,3,3s3-1.346,3-3s-1.346-3-3-3S13,4.346,13,6z" id="XMLID_297_"></path>
+          </g>
+        </svg>
+      </button>
+      <div
+        data-dropdown-target="dropdown"
+        class="z-20 border hidden bg-white divide-y divide-gray-200 rounded-lg w-44 dark:bg-gray-700">
+        <ul class="p-2 text-gray-900 dark:text-gray-200 flex flex-col gap-2">
+          <% if current_user == comment.user %>
+            <li>
+              <%= link_to "Edit",
+                          edit_comment_path(comment),
+                          data: { turbo_frame: dom_id(comment) },
+                          class: "block w-full text-left rounded-md px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" %>
+            </li>
+          <% end %>
+          <li>
+            <button
+              class="block w-full text-left rounded-md px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+              Copy
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>

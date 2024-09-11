@@ -2,8 +2,8 @@
   <div class="hidden md:flex">
     Log
   </div>
-  <ul class="w-full flex items-center justify-evenly md:flex-col">
-    <% %i[home home add home user].each do |item| %>
+  <ul class="w-full flex items-center justify-evenly md:gap-4 md:flex-col">
+    <% %i[home search add home user].each do |item| %>
       <li>
         <%= link_to navigation_path(item) do %>
           <%= render Navigation::Item.new item, { class: "active:scale-90 hover:bg-gray-200" }, active: current_page?(navigation_path(item)) %>

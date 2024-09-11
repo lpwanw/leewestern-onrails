@@ -4,12 +4,12 @@
   <div class="flex">
     <div class="px-2 md:px-4 flex-grow">
       <div class="w-full py-2 flex justify-between">
-        <img class="w-8 h-8 md:w-10 md:h-10 rounded-full" src="<%= avatar_placeholder_url(post.user) %>" alt="Rounded avatar">
+        <%= render "users/avatar_with_preview", user: post.user %>
         <a href="#user" class="block font-semibold hover:underline">
           <%= post.user_email.split("@").first %>
         </a>
         <div data-controller="dropdown" data-dropdown-placement-value="bottom">
-          <div data-dropdown-target="trigger" class="p-1 rounded-full hover:bg-gray-200">
+          <div data-dropdown-target="trigger" class="p-1 rounded-full hover:bg-gray-200 cursor-pointer">
             <svg fill="#000000" class="w-4 h-4" viewBox="0 0 32 32" enable-background="new 0 0 32 32" id="Glyph" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
               <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>

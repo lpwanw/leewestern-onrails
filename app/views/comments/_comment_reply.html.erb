@@ -1,18 +1,14 @@
-<div class="rounded-md flex">
+<div class="flex pt-2">
   <div class="flex flex-col items-center gap-2">
-    <img class="w-10 h-10 rounded-full" src="<%= avatar_placeholder_url(comment.user) %>" alt="Rounded avatar">
-    <div class="w-0.5 bg-gray-200 grow"></div>
+    <%= render "users/avatar_with_preview", user: comment.user %>
   </div>
   <div class="px-4 w-full">
-    <div class="w-full flex justify-between">
-      <a href="#user" class="block font-semibold hover:underline">
-        <%= comment.user_email.split("@").first %>
-      </a>
-      <%= comment.created_at.strftime("%B %d, %Y at %I:%M %p") %>
-    </div>
-    <div class="comment_content">
-      <%= comment.content %>
-    </div>
-    <%= render "comments/interact", comment:, skip_comment: true %>
+    <%= render "comments/comment_header", comment:, current_user: %>
+    <%= turbo_frame_tag dom_id(comment) do %>
+      <div class="comment_content">
+        <%= comment.content %>
+      </div>
+    <% end %>
+    <%= render "comments/interact", comment:, skip_comment: true, current_user: %>
   </div>
 </div>

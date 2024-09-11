@@ -1,5 +1,5 @@
 <div class="flex" id="<%= dom_id(comment, :interact) %>">
   <%= render "comments/button_like", comment:, current_user: %>
 
-  <%= render("comments/button_comment", commentable: comment) unless local_assigns[:skip_comment] %>
+  <%= render("comments/button_comment", commentable: comment, current_user:) unless local_assigns[:skip_comment] %>
 </div>

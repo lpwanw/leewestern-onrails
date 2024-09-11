@@ -1,5 +1,5 @@
 <div data-controller="post-click" data-action="click->post-click#goto" data-post-click-url-value="<%= post_path(post) %>" class="flex gap-2 w-full px-6 py-4 bg-white dark:bg-gray-800">
-  <%= render "posts/user_avatar", user: post.user %>
+  <%= render "users/avatar_with_preview", user: post.user %>
   <div>
     <div class="w-full flex justify-between">
       <%= link_to post.user_email.split("@").first,

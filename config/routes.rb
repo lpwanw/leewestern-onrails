@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :comments, only: %i[new create]
   end
 
-  resources :comments, only: %i[] do
+  resources :comments, only: %i[show edit update] do
     resource :likes, only: %i[update]
     resources :comments, only: %i[new create]
   end
