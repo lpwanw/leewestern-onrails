@@ -1,5 +1,5 @@
 <% if action_name == "show" %>
-  <div data-controller="scroll" data-scroll-to-value="<%= dom_id(post, :comments) %>" data-action="click->scroll#scrollToElement"
+  <div data-controller="scroll" data-scroll-to-value="<%= dom_id(post, :comments_section) %>" data-action="click->scroll#scrollToElement"
        class="cursor-pointer flex justify-center items-center gap-0.5 px-2 py-1 active:scale-90 rounded-full hover:bg-gray-200">
     <svg class="w-5 h-5 text-gray-800 dark:text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" transform="matrix(-1, 0, 0, 1, 0, 0)">
       <g id="SVGRepo_bgCarrier" stroke-width="0"></g>

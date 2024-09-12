@@ -1,14 +1,15 @@
-<div class="flex pt-2">
-  <div class="flex flex-col items-center gap-2">
-    <%= render "users/avatar_with_preview", user: comment.user %>
-  </div>
-  <div class="px-4 w-full">
-    <%= render "comments/comment_header", comment:, current_user: %>
-    <%= turbo_frame_tag dom_id(comment) do %>
+<%= turbo_frame_tag dom_id(comment) do %>
+  <div class="flex pt-2">
+    <div class="flex flex-col items-center gap-2">
+      <%= render "users/avatar_with_preview", user: comment.user %>
+    </div>
+    <div class="px-4 w-full">
+      <%= render "comments/comment_header", comment:, current_user: %>
+
       <div class="comment_content">
         <%= comment.content %>
       </div>
-    <% end %>
-    <%= render "comments/interact", comment:, skip_comment: true, current_user: %>
+      <%= render "comments/interact", comment:, skip_comment: true, current_user: %>
+    </div>
   </div>
-</div>
+<% end %>

@@ -12,4 +12,10 @@ class Comment < ApplicationRecord
 
   delegate :email, to: :user, prefix: :user
   delegate :commentable, :is_a?, to: :commentable, prefix: :commentable
+
+  validates :content, presence: true
+
+  def reply?
+    commentable.is_a?(Comment)
+  end
 end

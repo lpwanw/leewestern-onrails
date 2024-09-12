@@ -1,3 +1,6 @@
-<% if @comment.persisted? %>
-  <%= turbo_stream.replace dom_id(@commentable, :comment_form), partial: "shared/empty_turbo_frame", locals: { id: dom_id(@commentable, :comment_form) } %>
-<% end %>
+<%= render_turbo_flash_messages %>
+<%= turbo_stream.replace :modal, partial: "shared/empty_turbo_frame", locals: { id: :modal } %>
+<%= turbo_stream.prepend "comments_#{@comment.commentable_type.underscore}_#{@comment.commentable_id}",
+                         partial: @comment.reply? ? "comments/comment_reply" : "comments/comment",
+                         locals: { comment: @comment, enter_screen: true }
+%>

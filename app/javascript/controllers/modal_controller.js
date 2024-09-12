@@ -7,4 +7,12 @@ export default class extends Controller {
     this.modal = new Modal(this.element);
     this.modal.show();
   }
+
+  close() {
+    this.modal.hide();
+  }
+
+  disconnect() {
+    this.modal.destroy();
+  }
 }

@@ -46,3 +46,6 @@ window.jQuery = $;
 Turbo.StreamActions.redirect_to = function() {
     Turbo.visit(this.getAttribute("url"))
 }
+document.addEventListener("turbo:frame-missing", (event) => {
+  console.log("turbo:frame-missing", event.detail.response);
+});

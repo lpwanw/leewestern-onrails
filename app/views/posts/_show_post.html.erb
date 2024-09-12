@@ -1,61 +1,59 @@
 <%= turbo_stream_from post %>
 
-<div class="grow p-4 rounded-3xl rounded-b-none border overflow-y-auto bg-white no-scrollbar">
-  <div class="flex">
-    <div class="px-2 md:px-4 flex-grow">
-      <div class="w-full py-2 flex justify-between">
-        <%= render "users/avatar_with_preview", user: post.user %>
-        <a href="#user" class="block font-semibold hover:underline">
-          <%= post.user_email.split("@").first %>
-        </a>
-        <div data-controller="dropdown" data-dropdown-placement-value="bottom">
-          <div data-dropdown-target="trigger" class="p-1 rounded-full hover:bg-gray-200 cursor-pointer">
-            <svg fill="#000000" class="w-4 h-4" viewBox="0 0 32 32" enable-background="new 0 0 32 32" id="Glyph" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-              <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-              <g id="SVGRepo_iconCarrier">
-                <path d="M13,16c0,1.654,1.346,3,3,3s3-1.346,3-3s-1.346-3-3-3S13,14.346,13,16z" id="XMLID_294_"></path>
-                <path d="M13,26c0,1.654,1.346,3,3,3s3-1.346,3-3s-1.346-3-3-3S13,24.346,13,26z" id="XMLID_295_"></path>
-                <path d="M13,6c0,1.654,1.346,3,3,3s3-1.346,3-3s-1.346-3-3-3S13,4.346,13,6z" id="XMLID_297_"></path>
-              </g>
-            </svg>
-          </div>
-          <div
-            data-dropdown-target="dropdown"
-            class="z-20 border hidden bg-white divide-y divide-gray-200 rounded-lg w-44 dark:bg-gray-700">
-            <ul class="p-2 text-gray-900 dark:text-gray-200 flex flex-col gap-2">
-              <% if post.user == current_user %>
-                <li>
-                  <%= link_to edit_post_path(post), class: "block rounded-md px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" do %>
-                    Edit
-                  <% end %>
-                </li>
-              <% end %>
-
+<div class="grow py-4 rounded-3xl rounded-b-none border overflow-y-auto bg-white no-scrollbar">
+  <div class="px-4 md:px-8 flex-grow">
+    <div class="w-full py-2 flex justify-between">
+      <%= render "users/avatar_with_preview", user: post.user %>
+      <a href="#user" class="block font-semibold hover:underline">
+        <%= post.user_email.split("@").first %>
+      </a>
+      <div data-controller="dropdown" data-dropdown-placement-value="bottom">
+        <div data-dropdown-target="trigger" class="p-1 rounded-full hover:bg-gray-200 cursor-pointer">
+          <svg fill="#000000" class="w-4 h-4" viewBox="0 0 32 32" enable-background="new 0 0 32 32" id="Glyph" version="1.1" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+              <path d="M13,16c0,1.654,1.346,3,3,3s3-1.346,3-3s-1.346-3-3-3S13,14.346,13,16z" id="XMLID_294_"></path>
+              <path d="M13,26c0,1.654,1.346,3,3,3s3-1.346,3-3s-1.346-3-3-3S13,24.346,13,26z" id="XMLID_295_"></path>
+              <path d="M13,6c0,1.654,1.346,3,3,3s3-1.346,3-3s-1.346-3-3-3S13,4.346,13,6z" id="XMLID_297_"></path>
+            </g>
+          </svg>
+        </div>
+        <div
+          data-dropdown-target="dropdown"
+          class="z-20 border hidden bg-white divide-y divide-gray-200 rounded-lg w-44 dark:bg-gray-700">
+          <ul class="p-2 text-gray-900 dark:text-gray-200 flex flex-col gap-2">
+            <% if post.user == current_user %>
               <li>
-                <button
-                  data-controller="copy"
-                  data-action="click->copy#copy click->dropdown#close click->toast-provider#show"
-                  data-toast-provider-message-param="Copied!"
-                  data-toast-provider-type-param="success"
-                  data-copy-text-value="<%= post_url(post) %>"
-                  class="block w-full text-left rounded-md px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                 Copy
-                </button>
+                <%= link_to edit_post_path(post), class: "block rounded-md px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" do %>
+                  Edit
+                <% end %>
               </li>
-            </ul>
-          </div>
+            <% end %>
+
+            <li>
+              <button
+                data-controller="copy"
+                data-action="click->copy#copy click->dropdown#close click->toast-provider#show"
+                data-toast-provider-message-param="Copied!"
+                data-toast-provider-type-param="success"
+                data-copy-text-value="<%= post_url(post) %>"
+                class="block w-full text-left rounded-md px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                Copy
+              </button>
+            </li>
+          </ul>
         </div>
       </div>
-      <div>
-        <h2 class="font-bold text-xl">
-          <%= post.title %>
-        </h2>
-        <%= render "interact", post: %>
-      </div>
-      <div class="mt-4 py-2 border-t w-full">
-        <%= post.content %>
-      </div>
+    </div>
+    <div>
+      <h2 class="font-bold text-xl">
+        <%= post.title %>
+      </h2>
+      <%= render "interact", post: %>
+    </div>
+    <div class="mt-4 py-2 border-t w-full">
+      <%= post.content %>
     </div>
   </div>
 

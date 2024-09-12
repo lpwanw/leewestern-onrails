@@ -102,25 +102,21 @@
     padding-left: 0.6em;
   }
 
+  .trix-button-row {
+    flex-wrap: wrap !important;
+  }
+
+  .trix-button--icon {
+    @apply !px-2 !w-6 !h-6 !rounded-md !border !border-solid !border-gray-200;
+  }
+
+  .trix-button-group {
+    @apply !border-none;
+  }
+
   .comment_content {
-    .trix-button-group--block-tools {
-      @apply hidden;
-    }
-
-    .trix-button-group--file-tools {
-      @apply hidden;
-    }
-
     trix-editor {
       @apply border border-gray-200 rounded-md p-2 min-h-10;
     }
-  }
-
-  .trix-button-group--block-tools {
-    margin-left: 0 !important;
-  }
-
-  .trix-button-group--file-tools {
-    margin-left: 0 !important;
   }
 }

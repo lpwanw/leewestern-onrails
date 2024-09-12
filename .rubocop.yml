@@ -36,3 +36,6 @@ Style/ClassAndModuleChildren:
 
 Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: consistent_comma
+
+Rails/ActionControllerFlashBeforeRender:
+  Enabled: false

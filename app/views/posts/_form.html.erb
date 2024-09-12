@@ -1,5 +1,5 @@
-<div class="grow flex p-4 rounded-3xl rounded-b-none bg-white border overflow-y-auto">
-  <%= form_for post do |f| %>
+<div class="w-full grow flex p-4 rounded-3xl rounded-b-none bg-white border overflow-y-auto">
+  <%= form_for post, html: { class: "w-full" } do |f| %>
     <div class="flex items-center gap-2">
       <img class="w-10 h-10 rounded-full" src="<%= avatar_placeholder_url(current_user) %>" alt="Rounded avatar">
 
@@ -9,11 +9,11 @@
     </div>
     <div class="mt-2">
       <%= f.label :title, class: "sr-only" %>
-      <%= f.text_area :title, class: "w-4/6 h-12 ring-0 border-0 focus:ring-0 p-0 overflow-hidden text-xl font-bold", placeholder: "Enter post's title...", data: { controller: "text-auto-expand" } %>
+      <%= f.text_area :title, class: "w-full h-12 ring-0 border-0 focus:ring-0 p-0 overflow-hidden text-xl font-bold", placeholder: "Enter post's title...", data: { controller: "text-auto-expand" } %>
     </div>
-    <div>
+    <div class="w-full">
       <%= f.label :content %>
-      <%= f.rich_text_area :content %>
+      <%= f.rich_text_area :content, class: "w-full" %>
     </div>
     <div class="flex gap-2 mt-2">
       <%= f.button :status,

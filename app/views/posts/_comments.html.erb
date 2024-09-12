@@ -1,22 +1,20 @@
-<div class="my-4">
-  <span class="font-semibold text-lg">
+<div class="my-4" id="<%= dom_id(post, :comments_section) %>">
+  <span class="font-semibold text-lg px-4">
     Comments
   </span>
 
   <% if post.comments.empty? %>
-    <p class="text-gray-500">No comments yet</p>
+    <p class="text-gray-500 px-4">No comments yet</p>
   <% end %>
 
   <% if current_user %>
-    <%= turbo_frame_tag dom_id(post, :comment_form) do %>
-      <%= link_to "Add a comment", new_post_comment_path(post), class: "block w-fit text-left rounded-md px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white" %>
-    <% end %>
+    <%= link_to "Add a comment", new_post_comment_path(post), data: { turbo_frame: :modal }, class: "ml-4 block w-fit text-left rounded-md px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white" %>
   <% else %>
-    <%= link_to "Login to comment", new_user_session_path, class: "block w-fit text-left rounded-md px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" %>
+    <%= link_to "Login to comment", new_user_session_path, class: "ml-4 block w-fit text-left rounded-md px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" %>
   <% end %>
 </div>
 
-<div class="border-t space-y-4 divide-y divide-gray-200" id="<%= dom_id(post, :comments) %>">
+<div class="border-t flex flex-col divide-y divide-gray-200" id="<%= dom_id(post, :comments) %>">
   <% post.comments.includes(:user, :rich_text_content).order(id: :desc).each do |comment| %>
     <%= render "comments/comment", comment: %>
   <% end %>

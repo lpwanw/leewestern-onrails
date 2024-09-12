@@ -10,6 +10,9 @@ application.register("copy", CopyController)
 import DropdownController from "./dropdown_controller"
 application.register("dropdown", DropdownController)
 
+import EnterScreenController from "./enter_screen_controller"
+application.register("enter-screen", EnterScreenController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 

@@ -8,6 +8,8 @@
     <%= vite_client_tag %>
     <%= vite_stylesheet_tag "application", data: { "turbo-track": "reload" } %>
     <%= vite_javascript_tag "application" %>
+    <meta name="turbo-refresh-method" content="morph">
+    <meta name="turbo-refresh-scroll" content="preserve">
   </head>
   <body data-controller="toast-provider" class="bg-gray-100 scroll-smooth">
     <%= render "shared/toast_container" %>

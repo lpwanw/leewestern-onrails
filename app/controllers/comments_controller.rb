@@ -5,8 +5,7 @@ class CommentsController < ApplicationController
 
   before_action :load_commentable, only: %i[new create]
   before_action :authenticate_turbo_frame, only: :new
-  before_action :load_comment, only: %i[show edit update]
-  helper_method :build_comment
+  before_action :load_comment, only: %i[show edit update destroy]
 
   def show; end
 
@@ -19,12 +18,11 @@ class CommentsController < ApplicationController
   def create
     @comment = current_user.comments.build(comment_params.merge(commentable: @commentable))
 
-    return unless @comment.save
-
-    broadcast_comment(@comment, current_user)
-
-    respond_to do |format|
-      format.turbo_stream
+    if @comment.save
+      # broadcast_comment(@comment, current_user)
+      flash[:success] = t("Comment created")
+    else
+      flash[:error] = @comment.errors.full_messages.join(", ")
     end
   end
 
@@ -36,10 +34,21 @@ class CommentsController < ApplicationController
     render :show
   end
 
+  def destroy
+    @comment.destroy
+
+    flash.now[:success] = t("Comment deleted")
+  end
+
   private
 
   def load_commentable
-    @commentable = params[:comment_id] ? Comment.find(params[:comment_id]) : Post.find(params[:post_id])
+    @commentable = params[:comment_id] ? Comment.find_by(id: params[:comment_id]) : Post.find_by(id: params[:post_id])
+
+    return if @commentable
+
+    flash[:error] = t("Can not find commentable")
+    render turbo_stream: turbo_stream.redirect_to(root_path)
   end
 
   def comment_params
@@ -53,6 +62,10 @@ class CommentsController < ApplicationController
   end
 
   def load_comment
-    @comment = Comment.find(params[:id])
+    @comment = current_user.comments.find_by(id: params[:id])
+
+    return if @comment
+
+    render :deleted_comment
   end
 end
