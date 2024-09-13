@@ -1,5 +1,20 @@
 <%= turbo_frame_tag "comment_form_#{dom_id(commentable)}" do %>
-  <div class="rounded-md flex w-full p-4">
+  <div class="flex w-full px-4 pt-4">
+    <div class="flex flex-col items-center gap-2 shrink-0">
+      <img class="w-10 h-10 rounded-full" src="<%= avatar_placeholder_url(commentable.user) %>" alt="Rounded avatar">
+      <div class="w-0.5 bg-gray-200 grow"></div>
+    </div>
+
+    <div class="pl-2 w-full">
+      <span class="block font-semibold">
+        <%= commentable.user_email.split("@").first %>
+      </span>
+      <p class="line-clamp-2">
+        <%= commentable.is_a?(Post) ? commentable.title : commentable.content.to_plain_text %>
+      </p>
+    </div>
+  </div>
+  <div class="flex w-full p-4">
     <div class="flex flex-col items-center gap-2">
       <img class="w-10 h-10 rounded-full" src="<%= avatar_placeholder_url(current_user) %>" alt="Rounded avatar">
     </div>

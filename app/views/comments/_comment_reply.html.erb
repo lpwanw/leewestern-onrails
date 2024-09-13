@@ -1,7 +1,8 @@
-<%= turbo_frame_tag dom_id(comment) do %>
-  <div class="flex pt-2">
+<%= turbo_frame_tag dom_id(comment), class: "group" do %>
+  <div class="flex pt-2 <%= local_assigns[:enter_screen] ? "bg-blue-200" : "" %>" data-controller="<%= local_assigns[:enter_screen] ? "enter-screen" : "" %>">
     <div class="flex flex-col items-center gap-2">
       <%= render "users/avatar_with_preview", user: comment.user %>
+      <div class="w-0.5 bg-gray-200 grow group-last:hidden"></div>
     </div>
     <div class="px-4 w-full">
       <%= render "comments/comment_header", comment:, current_user: %>

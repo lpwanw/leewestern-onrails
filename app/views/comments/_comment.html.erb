@@ -1,17 +1,16 @@
 <%= turbo_frame_tag dom_id(comment) do %>
   <div class="rounded-md flex flex-col px-4 py-2 <%= local_assigns[:enter_screen] ? "bg-blue-200" : "" %>" data-controller="<%= local_assigns[:enter_screen] ? "enter-screen" : "" %>">
     <div class="flex gap-2">
-      <div class="flex flex-col items-center gap-2">
+      <div class="flex flex-col items-center gap-2 shrink-0">
         <%= render "users/avatar_with_preview", user: comment.user %>
         <div class="w-0.5 bg-gray-200 grow <%= "hidden" if comment.comments.empty? %>"></div>
       </div>
-      <div class="pl-2 w-full">
+      <div class="w-full">
         <%= render "comments/comment_header", comment:, current_user: %>
         <div>
           <%= comment.content %>
         </div>
         <%= render "comments/interact", comment:, current_user: %>
-        <%= turbo_frame_tag dom_id(comment, :comment_form) %>
       </div>
     </div>
     <div class="space-y-2 divide-y divide-gray-200" id="<%= dom_id(comment, :comments) %>">

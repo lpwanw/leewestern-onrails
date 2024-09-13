@@ -19,6 +19,7 @@ module.exports = {
     require("@tailwindcss/typography")({
       className: "typography",
     }),
+    require("@tailwindcss/line-clamp"),
     require("@tailwindcss/forms"),
     require("@tailwindcss/aspect-ratio"),
     require("flowbite/plugin"),

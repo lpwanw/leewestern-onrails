@@ -1,11 +1,7 @@
 <% if current_user.present? %>
   <%= link_to new_comment_comment_path(commentable),
               data: {
-                turbo_frame: dom_id(commentable, :comment_form),
-                controller: "scroll",
-                scroll_to_value: dom_id(commentable, :comment_form),
-                scroll_wait_turbo_value: true,
-                action: "click->scroll#scrollToElement",
+                turbo_frame: :modal,
               },
               class: "cursor-pointer flex justify-center items-center gap-0.5 px-2 py-1 active:scale-90 rounded-full hover:bg-gray-200" do %>
     <svg class="w-5 h-5 text-gray-800 dark:text-white" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" transform="matrix(-1, 0, 0, 1, 0, 0)">

@@ -9,6 +9,13 @@ export default class extends Controller {
   }
 
   connect() {
+    this.setTime();
+    setInterval(() => {
+      this.setTime();
+    }, 10000);
+  }
+
+  setTime() {
     this.element.textContent = moment(this.timeValue).fromNow();
   }
 }
