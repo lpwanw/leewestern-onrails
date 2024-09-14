@@ -1,7 +1,7 @@
 <%= turbo_frame_tag dom_id(comment) do %>
   <div class="rounded-md flex">
     <div class="flex flex-col items-center gap-2">
-      <img class="w-10 h-10 rounded-full" src="<%= avatar_placeholder_url(current_user) %>" alt="Rounded avatar">
+      <%= avatar_tag current_user, class: "w-10 h-10 rounded-full" %>
       <div class="w-0.5 bg-gray-200 grow"></div>
     </div>
     <%= form_for comment,

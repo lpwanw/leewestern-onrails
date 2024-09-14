@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   before_action :load_current_user_post, only: %i[edit update]
 
   def index
-    @pagy, @posts = pagy(Post.published.includes(%i[user]))
+    @pagy, @posts = pagy(Post.includes(user: [:avatar_attachment]).published.includes(%i[user]))
 
     respond_to do |format|
       format.html

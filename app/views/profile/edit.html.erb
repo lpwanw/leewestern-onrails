@@ -1,18 +1,34 @@
 <%= render "shared/modal_container" do %>
-  <%= console %>
   <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 md:w-[518px] p-6">
-    <%= form_for @profile, url: profile_path, html: { class: "flex flex-col gap-3 user-profile" } do |f| %>
-      <div>
+    <%= form_for @profile,
+                 url: profile_path,
+                 html: {
+                   class: "flex flex-col gap-3 user-profile",
+                 } do |f| %>
+      <div data-form-edit-profile-target="avatarError">
         <div class="flex items-center gap-2">
-          <div class="flex flex-col grow">
-            <%= f.fields_for :user do |user_f| %>
+          <%= f.fields_for :user do |user_f| %>
+            <div class="flex flex-col grow">
               <%= user_f.label :name %>
-              <%= user_f.text_field :name, class: "w-full border-b border-gray-200 outline-0 ring-0 border-0 focus:ring-0 focus:border-gray-800 cursor-pointer focus:cursor-text pl-0" %>
+              <%= user_f.text_field :name,
+                                    class: "w-full border-b border-gray-200 outline-0 ring-0 border-0 focus:ring-0 focus:border-gray-800 cursor-pointer focus:cursor-text pl-0" %>
+            </div>
+            <%= user_f.label :avatar, class: "cursor-pointer", data: { controller: "preview-image" }  do %>
+              <%= avatar_tag @profile.user,
+                             class: "block w-10 h-10 md:w-12 md:h-12 rounded-full",
+                             data: {
+                               "preview-image-target": "preview",
+                             } %>
+              <%= user_f.file_field :avatar,
+                                    class: "hidden",
+                                    data: {
+                                      action: "change->preview-image#preview",
+                                    } %>
             <% end %>
-          </div>
-          <img class="block w-10 h-10 md:w-12 md:h-12 rounded-full" src="<%= avatar_placeholder_url(@profile.user) %>" alt="Rounded avatar">
+          <% end %>
         </div>
         <%= render Model::ErrorMessage.new @profile.user, :name %>
+        <%= render Model::ErrorMessage.new @profile.user, :avatar %>
       </div>
 
       <div class="flex flex-col">
@@ -27,7 +43,7 @@
         <%= render Model::ErrorMessage.new @profile, :link %>
       </div>
 
-      <%= f.submit "Done", class: "mt-2 w-full py-3 bg-black rounded-lg text-white cursor-pointer" %>
+      <%= f.submit "Done", data: { action: "click->form-edit-profile#onSubmit" }, class: "mt-2 w-full py-3 bg-black rounded-lg text-white cursor-pointer" %>
     <% end %>
   </div>
 <% end %>

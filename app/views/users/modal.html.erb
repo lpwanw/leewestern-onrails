@@ -6,7 +6,7 @@
           <h2 class="text-2xl font-bold"><%= @user.email.split("@").first %></h2>
           <p class="text-gray-600"><%= @user.email.split("@").first %></p>
         </div>
-        <img class="w-10 h-10 md:w-16 md:h-16 rounded-full" src="<%= avatar_placeholder_url(@user) %>" alt="Rounded avatar">
+        <%= avatar_tag @user, class: "w-10 h-10 md:w-16 md:h-16 rounded-full" %>
       <% end %>
 
     <p class="text-gray-800 mt-4"><%= FFaker::Lorem.word %></p>

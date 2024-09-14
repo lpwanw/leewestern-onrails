@@ -4,7 +4,9 @@
       <h2 class="text-xl font-bold"><%= user.email %></h2>
       <p class="text-gray-600"><%= user.name %></p>
     </div>
-    <img class="w-16 h-16 md:w-20 md:h-20 rounded-full" src="<%= avatar_placeholder_url(user) %>" alt="Rounded avatar">
+    <%= link_to url_for(user.avatar), target: "_blank", rel: "noopener" do %>
+      <%= avatar_tag user, class: "w-16 h-16 md:w-20 md:h-20 rounded-full" %>
+    <% end %>
   </div>
 
   <div>

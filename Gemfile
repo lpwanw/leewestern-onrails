@@ -6,9 +6,11 @@ ruby "3.2.2"
 
 gem "rails", "~> 7.1.3", ">= 7.1.3.2"
 
+gem "active_storage_validations"
 gem "bootsnap", require: false
 gem "cssbundling-rails"
 gem "devise"
+gem "image_processing"
 gem "inline_svg"
 gem "jbuilder"
 gem "jsbundling-rails"

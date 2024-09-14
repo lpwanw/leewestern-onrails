@@ -19,14 +19,17 @@ application.register("hello", HelloController)
 import LikeController from "./like_controller"
 application.register("like", LikeController)
 
-import ModalController from "./show_modal_controller"
-application.register("show-modal", ModalController)
-
 import PostClickController from "./post_click_controller"
 application.register("post-click", PostClickController)
 
+import PreviewImageController from "./preview_image_controller"
+application.register("preview-image", PreviewImageController)
+
 import ScrollController from "./scroll_controller"
 application.register("scroll", ScrollController)
+
+import ShowModalController from "./show_modal_controller"
+application.register("show-modal", ShowModalController)
 
 import TabController from "./tab_controller"
 application.register("tab", TabController)

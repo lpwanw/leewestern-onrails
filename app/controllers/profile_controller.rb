@@ -22,6 +22,6 @@ class ProfileController < ApplicationController
   end
 
   def profile_params
-    params.required(:profile).permit(:bio, :link, user_attributes: [:name])
+    params.required(:profile).permit(:bio, :link, user_attributes: %i[name avatar])
   end
 end

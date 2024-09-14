@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
   include Post::Broadcast
 
   before_action :load_commentable, only: %i[new create]
-  before_action :authenticate_turbo_frame, only: :new
+  before_action :authenticate_turbo_frame_request!, only: :new
   before_action :load_comment, only: %i[show edit update destroy]
 
   def show; end
@@ -19,7 +19,6 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.build(comment_params.merge(commentable: @commentable))
 
     if @comment.save
-      # broadcast_comment(@comment, current_user)
       flash[:success] = t("Comment created")
     else
       flash[:error] = @comment.errors.full_messages.join(", ")
@@ -53,12 +52,6 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.required(:comment).permit(:content)
-  end
-
-  def authenticate_turbo_frame
-    return if turbo_frame_request?
-
-    redirect_to @commentable.is_a?(Comment) ? post_path(@commentable.commentable) : post_path(@commentable)
   end
 
   def load_comment

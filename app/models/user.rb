@@ -8,6 +8,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :confirmable, :lockable,
          :recoverable, :rememberable, :validatable, :trackable
 
+  has_one_attached :avatar
+
   has_one :profile, dependent: :destroy
   has_many :posts, dependent: :destroy
 
@@ -37,8 +39,12 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :name, length: { minimum: 2, maximum: 25 }, allow_blank: true
   validates :name, uniqueness: true
+  validates :name, format: { with: /\A[a-zA-Z0-9._]+\z/ }
 
-  delegate :bio, :link, :user_name, to: :profile
+  validates :avatar, content_type: %i[png jpg jpeg],
+                     size: { less_than: 100.megabytes }
+
+  delegate :bio, :link, to: :profile
 
   private
 

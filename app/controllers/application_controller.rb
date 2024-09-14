@@ -15,4 +15,10 @@ class ApplicationController < ActionController::Base
   def turbo_frame_name
     @turbo_frame_name ||= request.headers["Turbo-Frame"]
   end
+
+  def authenticate_turbo_frame_request!
+    return if turbo_frame_request?
+
+    redirect_to root_path
+  end
 end
