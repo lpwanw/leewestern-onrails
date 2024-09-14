@@ -19,7 +19,7 @@
       <div data-tab-target="indicator" class="absolute bottom-0 left-0 h-0.5 bg-black"></div>
     </div>
 
-    <%= render "users/remind_action", user: @user %>
+    <%= render("users/remind_action", user: @user) if current_user == @user %>
 
     <div class="grow divide-y divide-gray-200 overflow-y-auto no-scrollbar">
       <%= render partial: "posts/post", collection: @posts %>
