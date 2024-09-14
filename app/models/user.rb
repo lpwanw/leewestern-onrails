@@ -8,6 +8,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :confirmable, :lockable,
          :recoverable, :rememberable, :validatable, :trackable
 
+  has_one :profile, dependent: :destroy
   has_many :posts, dependent: :destroy
 
   has_many :likes, dependent: :delete_all
@@ -28,4 +29,35 @@ class User < ApplicationRecord
            dependent: :delete_all,
            inverse_of: :followed
   has_many :followers, through: :passive_follows, source: :follower
+
+  before_validation :init_name
+
+  after_create_commit :create_profile
+
+  validates :name, presence: true
+  validates :name, length: { minimum: 2, maximum: 25 }, allow_blank: true
+  validates :name, uniqueness: true
+
+  delegate :bio, :link, :user_name, to: :profile
+
+  private
+
+  def init_name
+    return if name.present?
+
+    base_name = email.split("@").first
+    self.name = find_unique_name base_name
+  end
+
+  def find_unique_name(base_name)
+    name = base_name
+    counter = 1
+
+    while User.exists?(name:)
+      name = "#{base_name}#{counter}"
+      counter += 1
+    end
+
+    name
+  end
 end

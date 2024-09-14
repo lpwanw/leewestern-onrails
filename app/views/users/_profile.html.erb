@@ -2,13 +2,13 @@
   <div class="flex justify-between items-center mb-2">
     <div>
       <h2 class="text-xl font-bold"><%= user.email %></h2>
-      <p class="text-gray-600"><%= user.email.split("@").first %></p>
+      <p class="text-gray-600"><%= user.name %></p>
     </div>
     <img class="w-16 h-16 md:w-20 md:h-20 rounded-full" src="<%= avatar_placeholder_url(user) %>" alt="Rounded avatar">
   </div>
 
   <div>
-    <%= FFaker::Lorem.sentence %>
+    <%= user.bio %>
   </div>
 
   <div class="flex gap-4 justify-between">
@@ -21,8 +21,9 @@
       <%= render "follows/follow_button", user: %>
     <% end %>
   <% else %>
-    <button class="w-full py-2 px-3 text-sm font-medium bg-white border border-gray-300 rounded-xl text-center mb-4">
-      Edit profile
-    </button>
+    <%= link_to "Edit Profile",
+                edit_profile_path,
+                data: { turbo_frame: :modal },
+                class: "w-full py-2 px-3 text-sm font-medium bg-white border border-gray-300 rounded-xl text-center mb-4" %>
   <% end %>
 </div>

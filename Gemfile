@@ -21,6 +21,7 @@ gem "sprockets-rails"
 gem "stimulus-rails"
 gem "turbo-rails"
 gem "tzinfo-data", platforms: %i[windows jruby]
+gem "validate_url"
 gem "view_component"
 gem "vite_rails"
 

@@ -22,9 +22,6 @@ application.register("like", LikeController)
 import ModalController from "./show_modal_controller"
 application.register("show-modal", ModalController)
 
-import ModalWraperController from "./modal_wraper_controller"
-application.register("modal-wraper", ModalWraperController)
-
 import PostClickController from "./post_click_controller"
 application.register("post-click", PostClickController)
 

@@ -25,4 +25,6 @@ Rails.application.routes.draw do
       delete :unfollow, to: "follows#destroy"
     end
   end
+
+  resource :profile, controller: :profile, only: %i[edit update]
 end

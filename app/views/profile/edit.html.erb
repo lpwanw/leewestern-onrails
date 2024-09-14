@@ -1,0 +1,33 @@
+<%= render "shared/modal_container" do %>
+  <%= console %>
+  <div class="relative bg-white rounded-lg shadow dark:bg-gray-700 md:w-[518px] p-6">
+    <%= form_for @profile, url: profile_path, html: { class: "flex flex-col gap-3 user-profile" } do |f| %>
+      <div>
+        <div class="flex items-center gap-2">
+          <div class="flex flex-col grow">
+            <%= f.fields_for :user do |user_f| %>
+              <%= user_f.label :name %>
+              <%= user_f.text_field :name, class: "w-full border-b border-gray-200 outline-0 ring-0 border-0 focus:ring-0 focus:border-gray-800 cursor-pointer focus:cursor-text pl-0" %>
+            <% end %>
+          </div>
+          <img class="block w-10 h-10 md:w-12 md:h-12 rounded-full" src="<%= avatar_placeholder_url(@profile.user) %>" alt="Rounded avatar">
+        </div>
+        <%= render Model::ErrorMessage.new @profile.user, :name %>
+      </div>
+
+      <div class="flex flex-col">
+        <%= f.label :bio %>
+        <%= f.text_field :bio, placeholder: "+ Add bio", class: "w-full border-b border-gray-200 outline-0 ring-0 border-0 focus:ring-0 focus:border-gray-800 cursor-pointer focus:cursor-text pl-0" %>
+        <%= render Model::ErrorMessage.new @profile, :bio %>
+      </div>
+
+      <div class="flex flex-col">
+        <%= f.label :link %>
+        <%= f.text_field :link, placeholder: "+ Add link", class: "w-full border-b border-gray-200 outline-0 ring-0 border-0 focus:ring-0 focus:border-gray-800 cursor-pointer focus:cursor-text pl-0" %>
+        <%= render Model::ErrorMessage.new @profile, :link %>
+      </div>
+
+      <%= f.submit "Done", class: "mt-2 w-full py-3 bg-black rounded-lg text-white cursor-pointer" %>
+    <% end %>
+  </div>
+<% end %>
