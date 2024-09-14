@@ -18,6 +18,11 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: %i[show] do
-    get :modal, on: :member
+    member do
+      get :modal
+      get :confirm_unfollow, to: "follows#confirm_unfollow"
+      post :follow, to: "follows#create"
+      delete :unfollow, to: "follows#destroy"
+    end
   end
 end

@@ -1,0 +1,9 @@
+<%= turbo_stream.replace dom_id(@user, :follow_button),
+                         partial: "follows/follow_button",
+                         locals: { user: @user }
+%>
+<%= turbo_stream.replace :modal2, partial: "shared/empty_turbo_frame", locals: { id: "modal2" } %>
+<%= turbo_stream.replace dom_id(@user, :follower_count),
+                         partial: "users/follower_count",
+                         locals: { user: @user }
+%>

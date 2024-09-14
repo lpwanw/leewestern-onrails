@@ -12,11 +12,17 @@
   </div>
 
   <div class="flex gap-4 justify-between">
-    <p class="text-gray-400 text-sm">
-      <%= pluralize(rand(1..100), "follower") %>
-    </p>
+    <%= render "users/follower_count", user: %>
   </div>
-  <button class="w-full py-2 px-3 text-sm font-medium bg-white border border-gray-300 rounded-xl text-center mb-4">
-    Edit profile
-  </button>
+  <% if current_user.id != user.id %>
+    <% if current_user.following?(user) %>
+      <%= render "follows/unfollow_button", user: %>
+    <% else %>
+      <%= render "follows/follow_button", user: %>
+    <% end %>
+  <% else %>
+    <button class="w-full py-2 px-3 text-sm font-medium bg-white border border-gray-300 rounded-xl text-center mb-4">
+      Edit profile
+    </button>
+  <% end %>
 </div>

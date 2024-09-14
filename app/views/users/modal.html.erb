@@ -1,5 +1,6 @@
 <%= render "shared/modal_container" do %>
   <div class="flex flex-col items-start p-6 min-w-[380px]">
+    <div data-show-modal-target="close"></div>
     <%= link_to user_path(@user), data: { turbo_frame: "_top" }, class: "flex items-center justify-between w-full cursor-pointer" do %>
         <div class="flex flex-col">
           <h2 class="text-2xl font-bold"><%= @user.email.split("@").first %></h2>
@@ -9,7 +10,11 @@
       <% end %>
 
     <p class="text-gray-800 mt-4"><%= FFaker::Lorem.word %></p>
-    <p class="text-sm text-gray-500 mb-6"><%= pluralize(rand(100), "follower") %></p>
-    <button class="w-full bg-black text-white px-4 py-2 rounded-xl hover:bg-gray-800">Follow</button>
+    <%= render "users/follower_count", user: @user %>
+    <% if current_user.following?(@user) %>
+      <%= render "follows/unfollow_button", user: @user %>
+    <% else %>
+      <%= render "follows/follow_button", user: @user %>
+    <% end %>
   </div>
 <% end %>

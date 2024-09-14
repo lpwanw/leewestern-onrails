@@ -1,3 +1,7 @@
+const zIndexClass = Array.from({ length: 14 }, (_,i) => {
+  return `z-[${(i + 6) * 10}]`
+});
+
 module.exports = {
   content: [
     "./app/views/**/*.html.erb",
@@ -15,11 +19,13 @@ module.exports = {
   corePlugins: {
     aspectRatio: false,
   },
+  safelist: [
+    ...zIndexClass,
+  ],
   plugins: [
     require("@tailwindcss/typography")({
       className: "typography",
     }),
-    require("@tailwindcss/line-clamp"),
     require("@tailwindcss/forms"),
     require("@tailwindcss/aspect-ratio"),
     require("flowbite/plugin"),

@@ -1,0 +1,7 @@
+<%= link_to "Unfollow",
+            confirm_unfollow_user_path(user),
+            id: dom_id(user, :follow_button),
+            data: {
+              turbo_frame: "modal2",
+            },
+            class: "w-full bg-white border text-center text-black px-4 py-2 rounded-xl hover:bg-gray-200" %>

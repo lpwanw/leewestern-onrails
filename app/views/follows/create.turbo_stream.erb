@@ -1,0 +1,8 @@
+<%= turbo_stream.replace dom_id(@user, :follow_button),
+                         partial: "follows/unfollow_button",
+                         locals: { user: @user }
+%>
+<%= turbo_stream.replace dom_id(@user, :follower_count),
+                         partial: "users/follower_count",
+                         locals: { user: @user }
+%>
