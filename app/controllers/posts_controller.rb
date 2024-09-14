@@ -56,7 +56,7 @@ class PostsController < ApplicationController
   end
 
   def load_post
-    @post = Post.accessible_by(current_user).find_by(id: params[:id])
+    @post = Post.accessible_by(current_user).includes(user: :avatar_attachment).find_by(id: params[:id])
 
     return if @post
 

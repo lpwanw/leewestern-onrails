@@ -2,6 +2,7 @@
 
 class User < ApplicationRecord
   include User::Follow
+  include NotificationTarget
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -31,6 +32,9 @@ class User < ApplicationRecord
            dependent: :delete_all,
            inverse_of: :followed
   has_many :followers, through: :passive_follows, source: :follower
+
+  # notifications
+  has_many :notifications, foreign_key: "target_user_id", dependent: :destroy, inverse_of: :target_user
 
   before_validation :init_name
 

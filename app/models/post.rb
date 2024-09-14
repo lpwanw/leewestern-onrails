@@ -2,6 +2,7 @@
 
 class Post < ApplicationRecord
   include Likable
+  include NotificationTarget
 
   enum status: { draft: "draft", published: "published" }
 
@@ -21,4 +22,8 @@ class Post < ApplicationRecord
   scope :accessible_by, (lambda do |user|
     where(user:).or(where(status: :published))
   end)
+
+  def notification_user
+    user
+  end
 end

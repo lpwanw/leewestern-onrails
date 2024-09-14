@@ -15,7 +15,7 @@
 </div>
 
 <div class="border-t flex flex-col divide-y divide-gray-200" id="<%= dom_id(post, :comments) %>">
-  <% post.comments.includes(:user, :rich_text_content).order(id: :desc).each do |comment| %>
+  <% post.comments.includes(:rich_text_content, user: :avatar_attachment).order(id: :desc).each do |comment| %>
     <%= render "comments/comment", comment: %>
   <% end %>
 </div>

@@ -3,13 +3,38 @@
     Log
   </div>
   <ul class="w-full flex items-center justify-evenly md:gap-4 md:flex-col">
-    <% %i[home search add home user].each do |item| %>
-      <li>
-        <%= link_to navigation_path(item) do %>
-          <%= render Navigation::Item.new item, { class: "active:scale-90 hover:bg-gray-200" }, active: current_page?(navigation_path(item)) %>
+    <li>
+      <%= link_to root_path do %>
+        <%= render Navigation::Item.new :home,
+                                        { class: "active:scale-90 hover:bg-gray-200" },
+                                        active: current_page?(root_path) %>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to root_path do %>
+        <%= render Navigation::Item.new :search,
+                                        { class: "active:scale-90 hover:bg-gray-200" },
+                                        active: current_page?(root_path) %>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to new_post_path do %>
+        <%= render Navigation::Item.new :add,
+                                        { class: "active:scale-90 hover:bg-gray-200" },
+                                        active: current_page?(new_post_path) %>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to new_post_path do %>
+        <%= render Navigation::Item.new :notification,
+                                        { class: "active:scale-90 hover:bg-gray-200" },
+                                        active: current_page?(new_post_path) do %>
+          <div id="notification-alert" class="<%= "hidden" if current_user&.notifications&.unread&.empty? %> translate-x-2 -translate-y-2 absolute inline-flex items-center justify-center w-2 h-2 text-xs font-bold text-white bg-red-500 rounded-full">
+
+          </div>
         <% end %>
-      </li>
-    <% end %>
+      <% end %>
+    </li>
   </ul>
   <ul class="hidden md:flex">
     <% if current_user %>

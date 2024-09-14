@@ -8,6 +8,7 @@ class Navigation::Item < ViewComponent::Base
     sign_in: "icon/sign_in",
     user: "icon/user",
     search: "icon/search",
+    notification: "icon/notification",
   }.freeze
 
   ACTIVE_ICONS = {
@@ -17,6 +18,7 @@ class Navigation::Item < ViewComponent::Base
     sign_in: "icon/sign_in",
     user: "icon/user",
     search: "icon/search",
+    notification: "icon/notification_active",
   }.freeze
 
   def initialize(icon, html_options = {}, active: false)
