@@ -46,6 +46,23 @@ class User < ApplicationRecord
 
   delegate :bio, :link, to: :profile
 
+  def bio_added?
+    bio.present?
+  end
+
+  def avatar_added?
+    avatar.attached?
+  end
+
+  def remind_action_count
+    count = 0
+    %i[bio_added? avatar_added?].each do |action|
+      count += 1 unless public_send(action)
+    end
+
+    count
+  end
+
   private
 
   def init_name

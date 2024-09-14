@@ -1,10 +1,11 @@
+<% return if user.remind_action_count.zero? %>
+
 <div class="p-6 flex justify-between">
   <h3 class="font-bold">Finish your profile</h3>
-  <p class="text-sm text-gray-600">1 left</p>
+  <p class="text-sm text-gray-600"><%= user.remind_action_count %> left</p>
 </div>
 
 <div class="grid grid-cols-3 gap-4 px-6">
-  <%= render "users/create_thread_action" %>
-  <%= render "users/add_profile_photo_action" %>
-  <%= render "users/add_bio_action" %>
+  <%= render "users/add_profile_photo_action" unless user.avatar_added? %>
+  <%= render "users/add_bio_action" unless user.bio_added? %>
 </div>
