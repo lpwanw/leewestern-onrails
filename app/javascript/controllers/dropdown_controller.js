@@ -6,7 +6,7 @@ export default class extends Controller {
   static targets = ["dropdown", "trigger"];
   static values = {
     overlay: Boolean,
-    placement: { type: String, defalt: "top" },
+    placement: { type: String, default: "top" },
   };
 
   connect() {
@@ -30,6 +30,10 @@ export default class extends Controller {
   }
 
   offsetOptions() {
+    if (this.placementValue === "bottom") {
+      return {};
+    }
+
     const offsetHeight = +this.triggerTarget.offsetHeight;
     const offsetWidth = +this.triggerTarget.offsetWidth;
     this.dropdownTarget.classList.remove("hidden");

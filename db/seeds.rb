@@ -10,7 +10,7 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
-FactoryBot.create(
+first_user = FactoryBot.create(
   :user,
   email: ENV.fetch("USER_EMAIL", nil),
   password: ENV.fetch("USER_PASSWORD", nil),
@@ -18,7 +18,12 @@ FactoryBot.create(
   confirmed_at: Time.current,
 )
 
-FactoryBot.create_list(:post, 10).each do |post|
+first_post = FactoryBot.create(:post, user: first_user)
+FactoryBot.create_list(:like, 2, likeable: first_post)
+FactoryBot.create_list(:comment, 2, commentable: first_post)
+
+FactoryBot.create_list(:post, 2).each do |post|
   FactoryBot.create_list(:comment, 2, commentable: post)
   FactoryBot.create_list(:like, 10, likeable: post)
+  post.user.follow(first_user)
 end

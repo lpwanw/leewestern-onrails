@@ -1,0 +1,11 @@
+<%= turbo_stream.append :notifications do %>
+  <%= render @notifications %>
+<% end %>
+<%= turbo_stream.remove :load_more %>
+
+<% return unless @pagy.next %>
+
+<%= turbo_stream.append :notifications do %>
+  <%= turbo_frame_tag :load_more, loading: :lazy,
+                      src: posts_path(format: :turbo_stream, page: @pagy.next) %>
+<% end %>

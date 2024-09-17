@@ -25,14 +25,21 @@
       <% end %>
     </li>
     <li>
-      <%= link_to new_post_path do %>
+      <%= link_to notifications_path do %>
         <%= render Navigation::Item.new :notification,
                                         { class: "active:scale-90 hover:bg-gray-200" },
-                                        active: current_page?(new_post_path) do %>
-          <div id="notification-alert" class="<%= "hidden" if current_user&.notifications&.unread&.empty? %> translate-x-2 -translate-y-2 absolute inline-flex items-center justify-center w-2 h-2 text-xs font-bold text-white bg-red-500 rounded-full">
+                                        active: current_page?(notifications_path) do %>
+          <div id="notification-alert" class="<%= "hidden" if current_user&.read_notification? %> translate-x-2 -translate-y-2 absolute inline-flex items-center justify-center w-2 h-2 text-xs font-bold text-white bg-red-500 rounded-full">
 
           </div>
         <% end %>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to profile_path do %>
+        <%= render Navigation::Item.new :user,
+                                        { class: "active:scale-90 hover:bg-gray-200" },
+                                        active: current_page?(profile_path) %>
       <% end %>
     </li>
   </ul>

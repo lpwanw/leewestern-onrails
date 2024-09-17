@@ -45,3 +45,6 @@ application.register("toast", ToastController)
 
 import ToastProviderController from "./toast_provider_controller"
 application.register("toast-provider", ToastProviderController)
+
+import UpdatetextController from "./updatetext_controller"
+application.register("updatetext", UpdatetextController)

@@ -1,0 +1,27 @@
+<div class="shrink-0 relative p-1 h-fit">
+  <%= helpers.avatar_tag source.user, class: "w-8 h-8 rounded-full" %>
+  <div class="flex justify-center items-center absolute right-0 bottom-0 rounded-full bg-rose-500 p-1 border-white border-2">
+    <%= render_inline_svg "icon/filled_heart", class: "!h-2 !w-2 text-white" %>
+  </div>
+</div>
+<div class="grow border-b pb-2">
+  <div class="flex gap-2">
+    <span>
+      <%= link_to source.user.name, source.user, class: "font-bold hover:underline" %>
+      <% if notification.target.likes_count > 1 %>
+        and <%= notification.target.likes_count %> others
+      <% end %>
+    </span>
+    <span class="text-gray-400"
+          data-controller="timeago"
+          data-timeago-time-value="<%= notification.created_at.iso8601 %>">
+    </span>
+  </div>
+  <p class="text-gray-400 line-clamp-2">
+    <% if notification.target_type == "Post" %>
+      <%= notification.target.title %>
+    <% else %>
+      <%= notification.target.content.to_plain_text %>
+    <% end %>
+  </p>
+</div>

@@ -26,5 +26,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resource :profile, controller: :profile, only: %i[edit update]
+  resource :profile, controller: :profile, only: %i[show edit update]
+  resources :notifications, only: %i[index] do
+    get :follow, :like, :comment, on: :collection
+  end
 end

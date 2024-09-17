@@ -28,6 +28,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.1]
       t.datetime :locked_at
 
       t.string :name, null: false, index: { unique: true }
+      t.boolean :read_notification, null: false, default: true
 
       t.timestamps null: false
     end

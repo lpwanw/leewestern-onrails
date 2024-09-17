@@ -2,7 +2,6 @@
 
 class Comment < ApplicationRecord
   include Likable
-  include NotificationAction
   include NotificationTarget
 
   has_rich_text :content
@@ -14,6 +13,8 @@ class Comment < ApplicationRecord
 
   validates :content, presence: true
 
+  after_create_commit :create_notification
+
   delegate :email, to: :user, prefix: :user
   delegate :commentable, :is_a?, to: :commentable, prefix: :commentable
 
@@ -21,15 +22,13 @@ class Comment < ApplicationRecord
     commentable.is_a?(Comment)
   end
 
-  def notification_user
-    commentable.user
-  end
+  private
 
-  def notification_actor
-    user
-  end
-
-  def notification_target
-    commentable
+  def create_notification
+    Notification.create(
+      target: commentable,
+      target_user: commentable.user,
+      source: self,
+    )
   end
 end

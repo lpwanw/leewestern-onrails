@@ -1,0 +1,62 @@
+<div class="flex flex-col h-full">
+  <div data-turbo-permanent data-controller="updatetext dropdown" data-dropdown-placement-value="bottom" id="notification_header" class="w-full flex justify-center py-2">
+    <button data-dropdown-target="trigger" class="text-gray-950 font-medium text-sm px-5 py-2.5 text-center inline-flex items-center" type="button">
+      <span data-updatetext-target="text">All</span>
+      <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+      </svg>
+    </button>
+    <!-- Dropdown menu -->
+    <div data-dropdown-target="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg border w-44 dark:bg-gray-700">
+      <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+        <li>
+          <%= link_to "All",
+                      notifications_path,
+                      data: {
+                        turbo_frame: :notification_container,
+                        action: "updatetext#updateText dropdown#close",
+                        "updatetext-text-param": "All",
+                      },
+                      class: "block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" %>
+        </li>
+        <li>
+          <%= link_to "Comments",
+                      comment_notifications_path,
+                      data: {
+                        turbo_frame: :notification_container,
+                        action: "updatetext#updateText dropdown#close",
+                        "updatetext-text-param": "Comments",
+                      },
+                      class: "block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" %>
+        </li>
+        <li>
+          <%= link_to "Follows",
+                      follow_notifications_path,
+                      data: {
+                        turbo_frame: :notification_container,
+                        action: "updatetext#updateText dropdown#close",
+                        "updatetext-text-param": "Follows",
+                      },
+                      class: "block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" %>
+        </li>
+        <li>
+          <%= link_to "Likes",
+                      like_notifications_path,
+                      data: {
+                        turbo_frame: :notification_container,
+                        action: "updatetext#updateText dropdown#close",
+                        "updatetext-text-param": "Likes",
+                      },
+                      class: "block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" %>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <%= turbo_frame_tag :notification_container, class: "grow flex" do %>
+    <ul class="grow flex flex-col rounded-3xl rounded-b-none border overflow-y-auto no-scrollbar py-2" id="notifications">
+      <%= render @notifications %>
+
+      <%= render "notifications/load_more", pagy: @pagy %>
+    </ul>
+  <% end %>
+</div>

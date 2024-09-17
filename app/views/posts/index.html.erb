@@ -24,10 +24,10 @@
       </ul>
     </div>
   </div>
-  <div class="grow rounded-3xl rounded-b-none border divide-y divide-gray-200 overflow-y-auto no-scrollbar">
+  <div class="bg-white grow rounded-3xl rounded-b-none border divide-y divide-gray-200 overflow-y-auto no-scrollbar">
     <%= turbo_frame_tag :posts, class: "block divide-y divide-gray-200" do %>
       <%= render @posts %>
     <% end %>
-    <%= turbo_frame_tag :load_more, loading: :lazy, src: posts_path(format: :turbo_stream) %>
+    <%= turbo_frame_tag :load_more, loading: :lazy, src: posts_path(format: :turbo_stream, page: @pagy.next) %>
   </div>
 </div>

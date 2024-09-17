@@ -85,15 +85,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_14_120432) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.bigint "actor_id", null: false
     t.string "target_type", null: false
     t.bigint "target_id", null: false
+    t.string "source_type", null: false
+    t.bigint "source_id", null: false
     t.bigint "target_user_id", null: false
-    t.string "action"
-    t.boolean "read", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["actor_id"], name: "index_notifications_on_actor_id"
+    t.index ["source_type", "source_id"], name: "index_notifications_on_source"
     t.index ["target_type", "target_id"], name: "index_notifications_on_target"
     t.index ["target_user_id"], name: "index_notifications_on_target_user_id"
   end
@@ -136,6 +135,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_14_120432) do
     t.string "unlock_token"
     t.datetime "locked_at"
     t.string "name", null: false
+    t.boolean "read_notification", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "followers_count", default: 0, null: false
@@ -153,7 +153,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_09_14_120432) do
   add_foreign_key "follows", "users", column: "followed_id"
   add_foreign_key "follows", "users", column: "follower_id"
   add_foreign_key "likes", "users"
-  add_foreign_key "notifications", "users", column: "actor_id"
   add_foreign_key "notifications", "users", column: "target_user_id"
   add_foreign_key "posts", "users"
   add_foreign_key "profiles", "users"

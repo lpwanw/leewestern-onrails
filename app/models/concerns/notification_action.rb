@@ -4,6 +4,8 @@ module NotificationAction
   extend ActiveSupport::Concern
 
   included do
+    has_many :active_notifications, class_name: "Notification", as: :source, dependent: :destroy
+
     after_create_commit :create_notification
   end
 
@@ -11,10 +13,9 @@ module NotificationAction
     return if notification_actor.id == notification_user.id
 
     Notification.create(
-      actor: notification_actor,
       target: notification_target,
       target_user: notification_user,
-      action: self.class.name.underscore,
+      source: self,
     )
   end
 end

@@ -3,6 +3,10 @@
 class ProfileController < ApplicationController
   before_action :load_profile
 
+  def show
+    redirect_to user_path(current_user)
+  end
+
   def edit; end
 
   def update

@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Follow < ApplicationRecord
-  include NotificationAction
-
   belongs_to :follower,
              class_name: "User",
              counter_cache: :following_count,
@@ -12,17 +10,18 @@ class Follow < ApplicationRecord
              counter_cache: :followers_count,
              inverse_of: :passive_follows
 
+  has_one :notification, as: :source, dependent: :destroy
+
   validates :follower_id, uniqueness: { scope: :followed_id }
 
-  def notification_actor
-    follower
-  end
+  after_create_commit :trigger_notification
 
-  def notification_target
-    followed
-  end
+  private
 
-  def notification_user
-    followed
+  def trigger_notification
+    create_notification(
+      target: followed,
+      target_user: followed,
+    )
   end
 end
