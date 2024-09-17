@@ -1,0 +1,32 @@
+<div class="flex flex-col h-full">
+  <div data-turbo-permanent
+       id="notification_header"
+       class="w-full flex justify-center py-2">
+    <div id="user_profile_tab"
+         data-controller="tab"
+         class="flex justify-center items-center border-b relative border rounded-md px-1 divide-x-2 divide-gray-200">
+      <%= link_to "Posts",
+                  post_search_path,
+                  class: "font-medium flex-1 text-center py-2 px-6 text-gray-400",
+                  data: {
+                    turbo_frame: :container,
+                    tab_target: "link",
+                    action: "click->tab#select",
+                  } %>
+      <%= link_to "Users",
+                  user_search_path,
+                  class: "font-medium flex-1 text-center py-2 px-6 text-gray-400",
+                  data: {
+                    turbo_frame: :container,
+                    tab_target: "link",
+                    action: "click->tab#select",
+                  } %>
+      <div data-tab-target="indicator" class="absolute bottom-0 left-0 h-0.5 bg-black"></div>
+    </div>
+  </div>
+  <ul class="grow flex flex-col rounded-3xl rounded-b-none border overflow-y-auto no-scrollbar py-4">
+    <%= turbo_frame_tag :container do %>
+      <%= render partial: "search/post", collection: @posts, as: :post %>
+    <% end %>
+  </ul>
+</div>

@@ -10,7 +10,6 @@ export default class extends Controller {
   }
 
   select(event) {
-    event.preventDefault()
     this.setActiveTab(event.currentTarget)
   }
 

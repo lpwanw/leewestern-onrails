@@ -23,6 +23,6 @@
 
     <%= turbo_frame_tag "modal" %>
     <%= turbo_frame_tag "modal2" %>
-    <%= turbo_stream_from(dom_id(current_user)) if current_user %>
+    <%= turbo_stream_from(dom_id(current_user), id: dom_id(current_user, :stream), data: { turbo_permanent: true }) if current_user %>
   </body>
 </html>

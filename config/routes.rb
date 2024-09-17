@@ -30,4 +30,8 @@ Rails.application.routes.draw do
   resources :notifications, only: %i[index] do
     get :follow, :like, :comment, on: :collection
   end
+
+  resource :search, controller: :search, only: %i[] do
+    get :user, :post, on: :collection
+  end
 end

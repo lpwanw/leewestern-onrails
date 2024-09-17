@@ -17,7 +17,7 @@ class Post < ApplicationRecord
 
   validates :content, presence: true
 
-  delegate :email, to: :user, prefix: true
+  delegate :email, :name, to: :user, prefix: true
 
   scope :accessible_by, (lambda do |user|
     where(user:).or(where(status: :published))

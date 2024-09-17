@@ -1,0 +1,23 @@
+<li class="flex text-sm gap-2 px-4 pb-2">
+  <div class="shrink-0 relative p-1 h-fit">
+    <%= avatar_tag user, class: "w-8 h-8 rounded-full" %>
+  </div>
+  <div class="grow border-b">
+    <%= link_to user.name, user, data: { turbo_frame: "_top" }, class: "font-bold hover:underline" %>
+
+    <div class="flex items-center justify-between pb-1">
+      <p class="flex-grow text-gray-400 text-sm" id="<%= dom_id(user, :follower_count) %>">
+        <%= pluralize(user.followers_count, "follower") %>
+      </p>
+      <% if signed_in? %>
+        <div class="pb-2">
+          <% if current_user.following?(user) %>
+            <%= render "follows/unfollow_button", user: %>
+          <% else %>
+            <%= render "follows/follow_button", user: %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</li>

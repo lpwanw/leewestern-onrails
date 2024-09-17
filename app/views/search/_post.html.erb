@@ -1,0 +1,21 @@
+<li class="flex text-sm gap-2 px-4 pb-2 cursor-pointer"
+    data-controller="post-click"
+    data-action="click->post-click#goto"
+    data-post-click-url-value="<%= post_path(post) %>">
+  <div class="shrink-0 relative p-1 h-fit">
+    <%= avatar_tag post.user, class: "w-8 h-8 rounded-full" %>
+  </div>
+
+  <div class="grow border-b pb-2">
+    <div class="flex gap-2">
+      <%= link_to post.user_name, post.user, data: { turbo_frame: "_top" }, class: "font-bold hover:underline" %>
+      <span class="text-gray-400"
+            data-controller="timeago"
+            data-timeago-time-value="<%= post.created_at.iso8601 %>">
+      </span>
+    </div>
+    <p class="text-gray-400 line-clamp-4">
+      <%= post.title %>
+    </p>
+  </div>
+</li>
