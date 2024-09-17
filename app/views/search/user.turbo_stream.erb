@@ -1,0 +1,11 @@
+<%= turbo_stream.append :users do %>
+  <%= render partial: "search/user", collection: @users, as: :user %>
+<% end %>
+<%= turbo_stream.remove :load_more %>
+
+<% return unless @pagy.next %>
+
+<%= turbo_stream.append :users do %>
+  <%= turbo_frame_tag :load_more, loading: :lazy,
+                      src: user_search_path(format: :turbo_stream, page: @pagy.next, q: user_params) %>
+<% end %>

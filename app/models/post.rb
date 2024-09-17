@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Post < ApplicationRecord
+  include Post::Ransack
   include Likable
   include NotificationTarget
 

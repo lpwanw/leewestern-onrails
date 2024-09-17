@@ -1,0 +1,11 @@
+<%= turbo_stream.append :posts do %>
+  <%= render partial: "search/post", collection: @posts, as: :post %>
+<% end %>
+<%= turbo_stream.remove :load_more %>
+
+<% return unless @pagy.next %>
+
+<%= turbo_stream.append :posts do %>
+  <%= turbo_frame_tag :load_more, loading: :lazy,
+                      src: post_search_path(format: :turbo_stream, page: @pagy.next, q: post_params) %>
+<% end %>

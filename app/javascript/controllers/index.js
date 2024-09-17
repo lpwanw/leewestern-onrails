@@ -13,6 +13,9 @@ application.register("dropdown", DropdownController)
 import EnterScreenController from "./enter_screen_controller"
 application.register("enter-screen", EnterScreenController)
 
+import FormSearchController from "./form_search_controller"
+application.register("form-search", FormSearchController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 

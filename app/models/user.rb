@@ -2,6 +2,7 @@
 
 class User < ApplicationRecord
   include User::Follow
+  include User::Ransack
   include NotificationTarget
 
   # Include default devise modules. Others available are:
