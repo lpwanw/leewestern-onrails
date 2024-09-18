@@ -25,6 +25,8 @@ class Comment < ApplicationRecord
   private
 
   def create_notification
+    return if user.id == commentable.user_id
+
     Notification.create(
       target: commentable,
       target_user: commentable.user,

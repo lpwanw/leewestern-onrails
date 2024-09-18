@@ -20,9 +20,11 @@ export default class extends Controller {
     this.count = this.count + (this.isLiked ? 1 : -1);
     if (this.count > 0) {
       this.countTarget.innerHTML = this.count;
+      this.countTarget.classList.remove("hidden")
     }
     if (this.count === 0) {
       this.countTarget.innerHTML = "";
+      this.countTarget.classList.add("hidden")
     }
     put(this.urlValue);
   }

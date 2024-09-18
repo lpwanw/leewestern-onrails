@@ -13,6 +13,8 @@ class Like < ApplicationRecord
   after_create_commit :trigger_notification
 
   def trigger_notification
+    return if user.id == likeable.user_id
+
     notification = Notification.find_by(
       target: likeable,
       source_type: self.class.name,
