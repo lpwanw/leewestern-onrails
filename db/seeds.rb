@@ -10,6 +10,8 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+return if Rails.env.production?
+
 first_user = FactoryBot.create(
   :user,
   email: ENV.fetch("USER_EMAIL", nil),
