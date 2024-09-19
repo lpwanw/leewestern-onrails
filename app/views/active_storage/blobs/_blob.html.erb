@@ -1,6 +1,14 @@
 <figure class="attachment attachment--<%= blob.representable? ? "preview" : "file" %> attachment--<%= blob.filename.extension %>">
   <% if blob.representable? %>
-    <%= image_tag blob.representation(resize_to_limit: local_assigns[:in_gallery] ? [800, 600] : [1024, 768]) %>
+    <% if Rails.env.production? %>
+      <%= cloudinary_url blob.key,
+                         width: local_assigns[:in_gallery] ? 800 : 1024,
+                         height: local_assigns[:in_gallery] ? 600 : 768,
+                         crop: "scale",
+                         effect: "cartoonify" %>
+    <% else %>
+      <%= image_tag blob.representation(resize_to_limit: local_assigns[:in_gallery] ? [800, 600] : [1024, 768]) %>
+    <% end %>
   <% end %>
 
   <figcaption class="attachment__caption">

@@ -27,7 +27,15 @@
 
   <div id="scroll123" class="px-12 pb-1 relative flex gap-1 cursor-grab overflow-x-hidden select-none preventGoto" data-controller="drag-scroll">
     <% post.images.each do |image| %>
-      <%= image_tag image.variant(resize_to_fit: [280, 280]), draggable: false, class: "rounded-md border object-cover" %>
+      <% if Rails.env.production? %>
+        <%= cl_image_tag image.key,
+                         width: 280,
+                         height: 280,
+                         crop: "scale",
+                         effect: "cartoonify" %>
+      <% else %>
+        <%= image_tag image.variant(resize_to_fit: [280, 280]), draggable: false, class: "rounded-md border object-cover" %>
+      <% end %>
     <% end %>
   </div>
 </div>

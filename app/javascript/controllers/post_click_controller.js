@@ -17,7 +17,6 @@ export default class extends Controller {
     }
     
     event.stopPropagation();
-    // Turbo.visit(this.urlValue);
-    console.log("clicked")
+    Turbo.visit(this.urlValue);
   }
 }
