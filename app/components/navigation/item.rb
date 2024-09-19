@@ -2,23 +2,23 @@
 
 class Navigation::Item < ViewComponent::Base
   ICONS = {
-    home: "icon/home",
-    add: "icon/add",
-    more: "icon/more",
-    sign_in: "icon/sign_in",
-    user: "icon/user",
-    search: "icon/search",
-    notification: "icon/notification",
+    home: "icon/home.svg",
+    add: "icon/add.svg",
+    more: "icon/more.svg",
+    sign_in: "icon/sign_in.svg",
+    user: "icon/user.svg",
+    search: "icon/search.svg",
+    notification: "icon/notification.svg",
   }.freeze
 
   ACTIVE_ICONS = {
-    home: "icon/home_active",
-    add: "icon/add",
-    more: "icon/more",
-    sign_in: "icon/sign_in",
-    user: "icon/user",
-    search: "icon/search",
-    notification: "icon/notification_active",
+    home: "icon/home_active.svg",
+    add: "icon/add.svg",
+    more: "icon/more.svg",
+    sign_in: "icon/sign_in.svg",
+    user: "icon/user.svg",
+    search: "icon/search.svg",
+    notification: "icon/notification_active.svg",
   }.freeze
 
   def initialize(icon, html_options = {}, active: false)
