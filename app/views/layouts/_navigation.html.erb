@@ -4,17 +4,17 @@
   </div>
   <ul class="w-full flex items-center justify-evenly md:gap-4 md:flex-col">
     <li>
-      <%= link_to root_path do %>
+      <%= link_to posts_path do %>
         <%= render Navigation::Item.new :home,
                                         { class: "active:scale-90 hover:bg-gray-200" },
-                                        active: current_page?(root_path) %>
+                                        active: current_page?(posts_path) %>
       <% end %>
     </li>
     <li>
       <%= link_to post_search_path do %>
         <%= render Navigation::Item.new :search,
                                         { class: "active:scale-90 hover:bg-gray-200" },
-                                        active: current_page?(user_search_path) %>
+                                        active: current_page?(post_search_path) %>
       <% end %>
     </li>
     <li>
@@ -39,7 +39,7 @@
       <%= link_to profile_path do %>
         <%= render Navigation::Item.new :user,
                                         { class: "active:scale-90 hover:bg-gray-200" },
-                                        active: current_page?(profile_path) %>
+                                        active: current_page?(user_path(current_user)) %>
       <% end %>
     </li>
   </ul>

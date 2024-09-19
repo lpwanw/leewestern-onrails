@@ -19,6 +19,6 @@ class ApplicationController < ActionController::Base
   def authenticate_turbo_frame_request!
     return if turbo_frame_request?
 
-    redirect_to root_path
+    redirect_to posts_path
   end
 end

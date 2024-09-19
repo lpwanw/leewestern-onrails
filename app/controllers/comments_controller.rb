@@ -47,7 +47,7 @@ class CommentsController < ApplicationController
     return if @commentable
 
     flash[:error] = t("Can not find commentable")
-    render turbo_stream: turbo_stream.redirect_to(root_path)
+    render turbo_stream: turbo_stream.redirect_to(posts_path)
   end
 
   def comment_params

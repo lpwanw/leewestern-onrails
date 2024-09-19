@@ -60,7 +60,7 @@ class PostsController < ApplicationController
 
     return if @post
 
-    redirect_to root_path, flash: { error: I18n.t("Not found") }
+    redirect_to posts_path, flash: { error: I18n.t("Not found") }
   end
 
   def load_current_user_post
@@ -68,7 +68,7 @@ class PostsController < ApplicationController
 
     return if @post
 
-    redirect_to root_path, flash: { error: I18n.t("Not found") }
+    redirect_to posts_path, flash: { error: I18n.t("Not found") }
   end
 
   def respond_with_redirect(format)
