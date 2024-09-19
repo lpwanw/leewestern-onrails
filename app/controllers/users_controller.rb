@@ -4,7 +4,10 @@ class UsersController < ApplicationController
   before_action :load_user, only: %i[show modal]
 
   def show
-    @posts = @user.posts.accessible_by(current_user).order(id: :desc)
+    @posts = @user.posts
+                  .accessible_by(current_user)
+                  .with_rich_text_content_and_embeds
+                  .order(id: :desc)
   end
 
   def modal; end
