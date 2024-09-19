@@ -1,31 +1,33 @@
 <div data-controller="post-click"
      data-action="click->post-click#goto"
      data-post-click-url-value="<%= post_path(post) %>"
-     class="flex gap-2 w-full px-6 py-1 bg-white dark:bg-gray-800">
-  <div class="shrink-0">
-    <%= render "users/avatar_with_preview", user: post.user %>
-  </div>
-  <div>
-    <div class="w-full flex justify-between">
-      <%= link_to post.user_email.split("@").first,
-                  user_path(post.user),
-                  data: {
-                    turbo_frame: "_top",
-                  },
-                  class: "block font-semibold hover:underline childLink" %>
+     class="w-full pt-1 bg-white dark:bg-gray-800 cursor-pointer">
+  <div class="flex gap-2 px-6">
+    <div class="shrink-0">
+      <%= render "users/avatar_with_preview", user: post.user %>
     </div>
-    <div class="flex flex-col gap-1">
-      <p>
-        <%= post.title %>
-      </p>
-
-      <div class="flex gap-1 overflow-x-auto no-scrollbar">
-        <% post.images.each do |image| %>
-          <%= image_tag image.variant(resize_to_fit: [280, 280]), class: "rounded-md border object-cover" %>
-        <% end %>
+    <div>
+      <div class="w-full flex justify-between">
+        <%= link_to post.user_email.split("@").first,
+                    user_path(post.user),
+                    data: {
+                      turbo_frame: "_top",
+                    },
+                    class: "block font-semibold hover:underline childLink" %>
       </div>
+      <div class="flex flex-col gap-1">
+        <p>
+          <%= post.title %>
+        </p>
 
-      <%= render "posts/interact", post: %>
+        <%= render "posts/interact", post: %>
+      </div>
     </div>
+  </div>
+
+  <div id="scroll123" class="px-12 pb-1 relative flex gap-1 cursor-grab overflow-x-hidden select-none preventGoto" data-controller="drag-scroll">
+    <% post.images.each do |image| %>
+      <%= image_tag image.variant(resize_to_fit: [280, 280]), draggable: false, class: "rounded-md border object-cover" %>
+    <% end %>
   </div>
 </div>

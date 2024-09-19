@@ -14,11 +14,13 @@
     <div data-controller="tag-input">
       <div class="mt-2 flex items-center gap-1">
         <%= f.label :tag_list, class: "mb-1" %>
-        <input type="text"
-               autocomplete="none"
-               data-tag-input-target="input"
-               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-               placeholder="Enter tag">
+        <label>
+          <input type="text"
+                 autocomplete="none"
+                 data-tag-input-target="input"
+                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                 placeholder="Enter tag">
+        </label>
         <%= f.hidden_field :tag_list,
                            data: {
                              "tag-input-target": "field",

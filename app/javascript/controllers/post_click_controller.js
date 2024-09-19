@@ -11,12 +11,13 @@ export default class extends Controller {
   goto(event) {
     const clickedElement = event.target;
     const closestLink = clickedElement.closest('a');
-    
-    if (closestLink) {
+    const closestPrevent = clickedElement.closest('.preventGoto');
+    if (closestLink || closestPrevent) {
       return;
     }
     
     event.stopPropagation();
-    Turbo.visit(this.urlValue);
+    // Turbo.visit(this.urlValue);
+    console.log("clicked")
   }
 }

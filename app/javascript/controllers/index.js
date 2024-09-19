@@ -7,6 +7,9 @@ import { application } from "./application"
 import CopyController from "./copy_controller"
 application.register("copy", CopyController)
 
+import DragScrollController from "./drag_scroll_controller"
+application.register("drag-scroll", DragScrollController)
+
 import DropdownController from "./dropdown_controller"
 application.register("dropdown", DropdownController)
 
