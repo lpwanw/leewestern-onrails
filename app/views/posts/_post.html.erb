@@ -14,10 +14,16 @@
                   },
                   class: "block font-semibold hover:underline childLink" %>
     </div>
-    <div>
+    <div class="flex flex-col gap-1">
       <p>
         <%= post.title %>
       </p>
+
+      <div class="flex gap-1 overflow-x-auto no-scrollbar">
+        <% post.images.each do |image| %>
+          <%= image_tag image.variant(resize_to_fit: [280, 280]), class: "rounded-md border object-cover" %>
+        <% end %>
+      </div>
 
       <%= render "posts/interact", post: %>
     </div>
