@@ -37,6 +37,9 @@ application.register("show-modal", ShowModalController)
 import TabController from "./tab_controller"
 application.register("tab", TabController)
 
+import TagInputController from "./tag_input_controller"
+application.register("tag-input", TagInputController)
+
 import TextAutoExpandController from "./text_auto_expand_controller"
 application.register("text-auto-expand", TextAutoExpandController)
 

@@ -50,6 +50,15 @@
       <h2 class="font-bold text-xl">
         <%= post.title %>
       </h2>
+      <ul data-tag-input-target="container" class="mt-2 flex flex-wrap items-center text-xs font-medium">
+        <% post.tag_list.each do |tag| %>
+          <li class="transition-all border border-white dark:border-black px-1 hover:bg-blue-200 text-gray-800 inline-flex items-center rounded dark:bg-gray-700 dark:text-gray-400 hover:border hover:border-blue-300">
+            <span class=" py-0.5">
+              #<%= tag %>
+            </span>
+          </li>
+        <% end %>
+      </ul>
       <%= render "interact", post: %>
     </div>
     <div class="mt-4 py-2 border-t w-full">

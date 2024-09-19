@@ -8,6 +8,7 @@ class Post < ApplicationRecord
   enum status: { draft: "draft", published: "published" }
 
   has_rich_text :content
+  acts_as_taggable_on :tags
 
   belongs_to :user
 

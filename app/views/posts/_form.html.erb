@@ -10,7 +10,25 @@
       <%= f.label :title, class: "sr-only" %>
       <%= f.text_area :title, class: "w-full h-12 ring-0 border-0 focus:ring-0 p-0 overflow-hidden text-xl font-bold", placeholder: "Enter post's title...", data: { controller: "text-auto-expand" } %>
     </div>
-    <div class="w-full">
+
+    <div data-controller="tag-input">
+      <div class="mt-2 flex items-center gap-1">
+        <%= f.label :tag_list, class: "mb-1" %>
+        <input type="text"
+               autocomplete="none"
+               data-tag-input-target="input"
+               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+               placeholder="Enter tag">
+        <%= f.hidden_field :tag_list,
+                           data: {
+                             "tag-input-target": "field",
+                           } %>
+      </div>
+      <ul data-tag-input-target="container" class="mt-2 flex flex-wrap items-center text-xs font-medium">
+      </ul>
+    </div>
+
+    <div class="w-full mt-2">
       <%= f.label :content %>
       <%= f.rich_text_area :content, class: "w-full" %>
     </div>
