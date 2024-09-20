@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   get "up" => "rails/health#show", as: :rails_health_check
 
-  root "posts#index"
+  get "app", to: "app#index"
+  get "app/*path", to: "app#index"
+
+  root to: redirect("/app", status: 302)
 
   devise_for :user
   resources :posts, only: %i[index show edit new create update] do
