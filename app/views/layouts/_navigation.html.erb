@@ -1,6 +1,8 @@
 <nav class="p-4 z-10 fixed bottom-0 w-screen left-0 md:bottom-auto md:top-0 flex flex-col justify-between md:h-screen md:w-fit bg-white md:bg-transparent">
   <div class="hidden md:flex">
-    Log
+    <%= link_to app_path do %>
+      <%= image_tag "owner.jpeg", class: "w-12 h-12 rounded-full" %>
+    <% end %>
   </div>
   <ul class="w-full flex items-center justify-evenly md:gap-4 md:flex-col">
     <li>

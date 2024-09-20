@@ -1,10 +1,74 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {Outlet} from "react-router-dom";
+import {IconHome, IconBrandGithub, IconBrandLinkedin, IconMail, IconBrandThreads} from "@tabler/icons-react";
+import {FloatingDock} from "@ui/floating-dock";
+import {cn} from "@utils";
+import ThemeToggle from "@components/theme/ThemeToggle";
 
-export default function() {
+export default function () {
+  const [theme, setTheme] = useState(
+    localStorage.getItem("color-theme") ||
+    (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+  )
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("color-theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("color-theme", "light");
+    }
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+  };
+
+  const navigationItems = [
+    {
+      title: "Home",
+      icon: (
+        <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300"/>
+      ),
+      href: "/",
+    },{
+      title: "My Writing",
+      icon: (<IconBrandThreads className="h-full w-full text-neutral-500 dark:text-neutral-300"/>),
+      href: "#",
+      onClick: () => { window.location.href = "/posts" }
+    }, {
+      title: "slast1"
+    },{
+      title: "Linkedin",
+      icon: (<IconBrandLinkedin className="h-full w-full text-neutral-500 dark:text-neutral-300"/>),
+      href: "https://www.linkedin.com/in/lpwanw"
+    }, {
+      title: "Github",
+      icon: (<IconBrandGithub className="h-full w-full text-neutral-500 dark:text-neutral-300"/>),
+      href: "https://github.com/lpwanw"
+    },{
+      title: "Mail",
+      icon: (<IconMail className="h-full w-full text-neutral-500 dark:text-neutral-300"/>),
+      href: "mailto:phuongtay2000@gmail.comm"
+    }, {
+      title: "slast2"
+    }, {
+      title: "Toggle Theme",
+      icon: <ThemeToggle theme={theme}/>,
+      onClick: toggleTheme,
+      href: "#"
+    }
+  ]
+
   return (
-    <div className="flex h-screen flex-col bg-white dark:bg-gray-900">
-      <Outlet />
+    <div className="flex h-screen flex-col bg-gray-50 dark:bg-neutral-900">
+      <FloatingDock
+        desktopClassName={cn("fixed bottom-10 z-30 left-1/2 -translate-x-1/2")}
+        mobileClassName={cn("fixed bottom-10 z-30 left-1/2 -translate-x-1/2")}
+        items={navigationItems}
+      />
+      <Outlet/>
     </div>
   )
 }
