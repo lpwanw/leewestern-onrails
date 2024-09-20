@@ -490,6 +490,7 @@ DEPENDENCIES
   dotenv
   erb_lint
   factory_bot_rails
+  faraday
   ffaker
   good_job
   image_processing
