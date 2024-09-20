@@ -5,7 +5,7 @@ export default class extends Controller {
   static targets = ["input"]
   connect() {
     this.debounce = null;
-    this.inputTarget.addEventListener('input', (event) => {
+    this.inputTarget.addEventListener('input', () => {
       clearTimeout(this.debounce)
 
       this.debounce = setTimeout(() => {
