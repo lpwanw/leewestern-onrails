@@ -1,7 +1,7 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Layout from "@pages/Layout";
-import Home from "@pages/Home";
+import React from "react"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import Layout from "@pages/Layout"
+import Home from "@pages/Home"
 
 export default (
   <Router basename={"/app"}>
@@ -12,4 +12,4 @@ export default (
       </Route>
     </Routes>
   </Router>
-);
+)

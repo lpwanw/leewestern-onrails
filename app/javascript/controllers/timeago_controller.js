@@ -1,5 +1,5 @@
-import { Controller } from "@hotwired/stimulus";
-import moment from 'moment';
+import { Controller } from "@hotwired/stimulus"
+import moment from "moment"
 
 
 // Connects to data-controller="timeago"
@@ -9,13 +9,13 @@ export default class extends Controller {
   }
 
   connect() {
-    this.setTime();
+    this.setTime()
     setInterval(() => {
-      this.setTime();
-    }, 10000);
+      this.setTime()
+    }, 10000)
   }
 
   setTime() {
-    this.element.textContent = moment(this.timeValue).fromNow();
+    this.element.textContent = moment(this.timeValue).fromNow()
   }
 }

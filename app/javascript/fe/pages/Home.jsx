@@ -1,5 +1,5 @@
-import React, {lazy} from "react";
-import {cn} from "@utils";
+import React, {lazy} from "react"
+import {cn} from "@utils"
 
 const Boxes = lazy(() => import("@ui/background-boxes"))
 

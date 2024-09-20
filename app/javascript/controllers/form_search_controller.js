@@ -4,8 +4,8 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["input"]
   connect() {
-    this.debounce = null;
-    this.inputTarget.addEventListener('input', () => {
+    this.debounce = null
+    this.inputTarget.addEventListener("input", () => {
       clearTimeout(this.debounce)
 
       this.debounce = setTimeout(() => {
@@ -17,7 +17,7 @@ export default class extends Controller {
   reset() {
     clearTimeout(this.debounce)
 
-    this.inputTarget.value = ''
+    this.inputTarget.value = ""
 
     this.element.requestSubmit()
   }

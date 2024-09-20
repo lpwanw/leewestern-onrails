@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from "react";
-import {Outlet} from "react-router-dom";
-import {IconHome, IconBrandGithub, IconBrandLinkedin, IconMail, IconBrandThreads} from "@tabler/icons-react";
-import {FloatingDock} from "@ui/floating-dock";
-import {cn} from "@utils";
-import ThemeToggle from "@components/theme/ThemeToggle";
+import React, {useEffect, useState} from "react"
+import {Outlet} from "react-router-dom"
+import {IconHome, IconBrandGithub, IconBrandLinkedin, IconMail, IconBrandThreads} from "@tabler/icons-react"
+import {FloatingDock} from "@ui/floating-dock"
+import {cn} from "@utils"
+import ThemeToggle from "@components/theme/ThemeToggle"
 
 export default function () {
   const [theme, setTheme] = useState(
@@ -13,17 +13,17 @@ export default function () {
 
   useEffect(() => {
     if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("color-theme", "dark");
+      document.documentElement.classList.add("dark")
+      localStorage.setItem("color-theme", "dark")
     } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("color-theme", "light");
+      document.documentElement.classList.remove("dark")
+      localStorage.setItem("color-theme", "light")
     }
-  }, [theme]);
+  }, [theme])
 
   const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
-  };
+    setTheme(theme === "light" ? "dark" : "light")
+  }
 
   const navigationItems = [
     {

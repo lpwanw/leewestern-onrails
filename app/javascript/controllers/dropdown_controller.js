@@ -1,13 +1,13 @@
-import { Controller } from "@hotwired/stimulus";
-import { Dropdown } from "flowbite";
+import { Controller } from "@hotwired/stimulus"
+import { Dropdown } from "flowbite"
 
 // Connects to data-controller="dropdown"
 export default class extends Controller {
-  static targets = ["dropdown", "trigger"];
+  static targets = ["dropdown", "trigger"]
   static values = {
     overlay: Boolean,
     placement: { type: String, default: "top" },
-  };
+  }
 
   connect() {
     const options = {
@@ -16,40 +16,40 @@ export default class extends Controller {
       delay: 300,
       ignoreClickOutsideClass: false,
       ...this.offsetOptions(),
-    };
+    }
 
     this.dropdown = new Dropdown(
       this.dropdownTarget,
       this.triggerTarget,
       options,
-    );
+    )
   }
 
   close() {
-    this.dropdown.hide();
+    this.dropdown.hide()
   }
 
   offsetOptions() {
     if (this.placementValue === "bottom") {
-      return {};
+      return {}
     }
 
-    const offsetHeight = +this.triggerTarget.offsetHeight;
-    const offsetWidth = +this.triggerTarget.offsetWidth;
-    this.dropdownTarget.classList.remove("hidden");
-    const dropdownOffestWidth = +this.dropdownTarget.offsetWidth;
-    this.dropdownTarget.classList.add("hidden");
+    const offsetHeight = +this.triggerTarget.offsetHeight
+    const offsetWidth = +this.triggerTarget.offsetWidth
+    this.dropdownTarget.classList.remove("hidden")
+    const dropdownOffestWidth = +this.dropdownTarget.offsetWidth
+    this.dropdownTarget.classList.add("hidden")
 
     if (this.overlayValue) {
       return {
         offsetSkidding: offsetWidth,
         offsetDistance: -offsetHeight,
-      };
+      }
     } else {
       return {
         offsetSkidding: -dropdownOffestWidth / 2,
         offsetDistance: 0,
-      };
+      }
     }
   }
 }

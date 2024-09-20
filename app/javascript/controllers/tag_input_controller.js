@@ -5,26 +5,26 @@ export default class extends Controller {
   static targets = ["input", "field", "container", "tags"]
 
   connect() {
-    this.regex = /^[a-zA-Z0-9_]+$/;
+    this.regex = /^[a-zA-Z0-9_]+$/
     this.tags = []
     this.addTag(this.fieldTarget.value)
     this.inputTarget.addEventListener("change", (e) => {
-      this.addTag(e.target.value);
-      this.inputTarget.value = "";
+      this.addTag(e.target.value)
+      this.inputTarget.value = ""
     })
     this.inputTarget.addEventListener("keydown", (e) => {
       if (!this.regex.test(e.key) || event.key === "Enter") {
-        e.preventDefault();
+        e.preventDefault()
         if(this.inputTarget.value.trim() !== "") {
           this.addTag(e.target.value)
-          this.inputTarget.value = "";
+          this.inputTarget.value = ""
         }
       }
     })
   }
 
   addTag(string) {
-    const tag_values = string.split(" ").filter(value => value.trim() !== "");
+    const tag_values = string.split(" ").filter(value => value.trim() !== "")
     this.tags = [...new Set([...this.tags, ...tag_values])].filter(tag => this.regex.test(tag))
 
     this.fieldTarget.value = this.tags
@@ -46,14 +46,14 @@ export default class extends Controller {
   removeOldItem() {
     $(this.containerTarget).children().each((_, item) => {
       if (!this.tags.includes(item.textContent)) {
-        item.remove();
+        item.remove()
       }
     })
   }
 
   removeTag({params: { tag }}) {
-    $(`#tag_${tag}`).remove();
-    this.tags = this.tags.filter(item => item !== `${tag}`);
+    $(`#tag_${tag}`).remove()
+    this.tags = this.tags.filter(item => item !== `${tag}`)
     this.fieldTarget.value = this.tags
   }
 

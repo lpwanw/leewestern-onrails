@@ -8,7 +8,7 @@ export default class extends Controller {
   }
 
   updateText({params}) {
-    const { text } = params;
-    this.textTarget.textContent = text;
+    const { text } = params
+    this.textTarget.textContent = text
   }
 }

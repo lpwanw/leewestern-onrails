@@ -21,7 +21,10 @@ export default [
     rules: {
       "react/prop-types": "off",
       "react/display-name": "off",
-      "no-undef": "warn"
+      "no-undef": "error",
+      "indent": ["error", 2],
+      "semi": ["error", "never"],
+      "quotes": ["error", "double"]
     },
     ignores: [
       "./node_modules/*"

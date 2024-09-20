@@ -8,16 +8,16 @@ export default class extends Controller {
   }
 
   preview(event) {
-    const input = event.target;
+    const input = event.target
 
     if (input.files && input.files[0]) {
-      const reader = new FileReader();
+      const reader = new FileReader()
 
       reader.onload = (e) => {
-        this.previewTarget.src = e.target.result;
-      };
+        this.previewTarget.src = e.target.result
+      }
 
-      reader.readAsDataURL(input.files[0]);
+      reader.readAsDataURL(input.files[0])
     }
   }
 }

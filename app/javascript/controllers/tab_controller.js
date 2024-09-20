@@ -16,11 +16,11 @@ export default class extends Controller {
   setActiveTab(clickedTab) {
     this.linkTargets.forEach(tab => {
       if (tab === clickedTab) {
-        tab.classList.remove('text-gray-400')
-        tab.classList.add('text-black')
+        tab.classList.remove("text-gray-400")
+        tab.classList.add("text-black")
       } else {
-        tab.classList.remove('text-black')
-        tab.classList.add('text-gray-400')
+        tab.classList.remove("text-black")
+        tab.classList.add("text-gray-400")
       }
     })
 

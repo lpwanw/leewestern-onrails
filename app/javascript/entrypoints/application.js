@@ -3,7 +3,7 @@
 //
 //    <%= vite_client_tag %>
 //    <%= vite_javascript_tag 'application' %>
-console.log("Vite ⚡️ Rails");
+console.log("Vite ⚡️ Rails")
 
 // If using a TypeScript entrypoint file:
 //     <%= vite_typescript_tag 'application' %>
@@ -14,7 +14,7 @@ console.log("Vite ⚡️ Rails");
 console.log(
   "Visit the guide for more information: ",
   "https://vite-ruby.netlify.app/guide/rails",
-);
+)
 
 // Example: Load Rails libraries in Vite.
 //
@@ -30,22 +30,22 @@ console.log(
 // Example: Import a stylesheet in app/frontend/index.css
 // import '~/index.css'
 //
-import "@hotwired/turbo-rails";
-import "../controllers";
-import "flowbite/dist/flowbite.turbo.js";
-import "@rails/request.js";
+import "@hotwired/turbo-rails"
+import "../controllers"
+import "flowbite/dist/flowbite.turbo.js"
+import "@rails/request.js"
 
 import "trix"
 import "@rails/actiontext"
-import $ from "jquery";
-import { Turbo } from "@hotwired/turbo-rails";
+import $ from "jquery"
+import { Turbo } from "@hotwired/turbo-rails"
 
-window.$ = $;
-window.jQuery = $;
+window.$ = $
+window.jQuery = $
 
 Turbo.StreamActions.redirect_to = function() {
-    Turbo.visit(this.getAttribute("url"))
+  Turbo.visit(this.getAttribute("url"))
 }
 document.addEventListener("turbo:frame-missing", (event) => {
-  console.log("turbo:frame-missing", event.detail.response);
-});
+  console.log("turbo:frame-missing", event.detail.response)
+})

@@ -3,7 +3,7 @@ import { Modal } from "flowbite"
 
 // Connects to data-controller="show_modal"
 export default class extends Controller {
-  static targets = ["modal"];
+  static targets = ["modal"]
   static values = {
     show: { type: Boolean, default: false },
     level: { type: Number, default: 1 },
@@ -15,14 +15,14 @@ export default class extends Controller {
     }
 
     this.modalTarget.classList.add(this.modalLevelClass())
-    this.modal = new Modal(this.modalTarget, options);
+    this.modal = new Modal(this.modalTarget, options)
     if (this.showValue) {
-      this.modal.show();
+      this.modal.show()
     }
   }
 
   close() {
-    this.modal.hide();
+    this.modal.hide()
   }
 
   open() {
@@ -50,6 +50,6 @@ export default class extends Controller {
   }
 
   disconnect() {
-    this.modal.destroy();
+    this.modal.destroy()
   }
 }
