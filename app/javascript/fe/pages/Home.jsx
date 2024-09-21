@@ -1,7 +1,9 @@
-import React, {lazy, useState} from "react"
+import React, {lazy, startTransition, useState} from "react"
 import {cn} from "@utils"
-import {Link} from "react-router-dom"
 import {motion, useMotionValue} from "framer-motion"
+import GrayCard from "@ui/GrayCard"
+import LoopVideo from "@ui/LoopVideo"
+import { IconSquareLetterT, IconSquareLetterA, IconSquareLetterY, IconSquareLetterN, IconSquareLetterE } from "@tabler/icons-react"
 
 const Boxes = lazy(() => import("@ui/background-boxes"))
 
@@ -24,31 +26,45 @@ export default function() {
         className="absolute inset-0 w-full h-full z-20 bg-inherit [mask-image:radial-gradient(transparent,white)] pointer-events-none"/>
 
       <Boxes>
-        <Link to={"/"}
-          className={cn(
-            "w-full",
-            "select-none absolute z-30 col-start-[20] col-span-5 row-start-[20] row-span-10"
-          )}>
-          <div
-            className={cn(
-              "select-none w-full cursor-pointer overflow-hidden shadow-2xl relative card h-96 rounded-md  mx-auto flex flex-col justify-end border border-transparent dark:border-neutral-800",
-            )}
-          >
-            <div
-              onMouseEnter={() => {showPin.set(1); setPinTitle("/home/me")}}
-              onMouseLeave={() => showPin.set(0)}
-              className={cn(
-                "select-none w-full h-full bg-amber-500 shadow-2xl",
-                "transition-all duration-500",
-                "grayscale hover:grayscale-0",
-              )}>
+        <GrayCard onMouseEnter={() => {
+          startTransition(() => {
+            showPin.set(1)
+            setPinTitle("/craft")
+          })
+        }}
+        onMouseLeave={() => {
+          startTransition(() => {
+            showPin.set(0)
+          })
+        }}
+        href={"/craft"}
+        className={"absolute z-30 col-start-[18] col-span-2 row-start-[20]"}>
+          <LoopVideo className={"h-full"} url={"https://cdn.rauno.me/flume-s2.mp4#t=0.01"}/>
+        </GrayCard>
+        <GrayCard onMouseEnter={() => {
+          startTransition(() => {
+            showPin.set(1)
+            setPinTitle("/craft")
+          })
+        }}
+        onMouseLeave={() => {
+          startTransition(() => {
+            showPin.set(0)
+          })
+        }}
+        href={"/craft"}
+        className={"absolute z-30 col-start-[27] col-span-2 row-start-[21]"}>
+          <LoopVideo url={"https://cdn.rauno.me/gooey-s.mp4#t=0.01"}/>
+        </GrayCard>
 
-            </div>
-          </div>
-        </Link>
+        <IconSquareLetterT className="dark:text-gray-200 h-full w-full absolute z-30 col-start-[20] row-start-[24] col-span-2 row-span-2 pointer-events-none" />
+        <IconSquareLetterA className="dark:text-gray-200 h-full w-full absolute z-30 col-start-[22] row-start-[26] col-span-2 row-span-2 pointer-events-none" />
+        <IconSquareLetterY className="dark:text-gray-200 h-full w-full absolute z-30 col-start-[24] row-start-[24] col-span-2 row-span-2 pointer-events-none" />
+        <IconSquareLetterN className="dark:text-gray-200 h-full w-full absolute z-30 col-start-[26] row-start-[26] col-span-2 row-span-2 pointer-events-none" />
+        <IconSquareLetterE className="dark:text-gray-200 h-full w-full absolute z-30 col-start-[28] row-start-[24] col-span-2 row-span-2 pointer-events-none" />
       </Boxes>
 
-      <motion.div style={{y: yPin, x: xPin, opacity: showPin, translateY: "-100%" }}
+      <motion.div style={{y: yPin, x: xPin, opacity: showPin, translateY: "-100%"}}
         className={cn(
           "pointer-events-none absolute top-0 left-0",
         )}>
@@ -57,13 +73,6 @@ export default function() {
 
         </div>
       </motion.div>
-
-      <h1 className={cn("md:text-4xl text-xl text-neutral-700 dark:text-white  relative z-20")}>
-      Tailwind is Awesome
-      </h1>
-      <p className="text-center mt-2 text-neutral-600 dark:text-neutral-300 relative z-20">
-        Framer motion is the best animation library ngl
-      </p>
     </div>
   )
 }

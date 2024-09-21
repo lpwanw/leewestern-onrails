@@ -1,6 +1,13 @@
 import React, {useEffect, useState} from "react"
 import {Outlet} from "react-router-dom"
-import {IconHome, IconBrandGithub, IconBrandLinkedin, IconMail, IconBrandThreads} from "@tabler/icons-react"
+import {
+  IconHome,
+  IconBrandGithub,
+  IconBrandLinkedin,
+  IconMail,
+  IconBrandThreads,
+  IconCategoryPlus,
+} from "@tabler/icons-react"
 import {FloatingDock} from "@ui/floating-dock"
 import {cn} from "@utils"
 import ThemeToggle from "@components/theme/ThemeToggle"
@@ -32,6 +39,10 @@ export default function () {
         <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300"/>
       ),
       href: "/",
+    },{
+      title: "Craft",
+      icon: (<IconCategoryPlus className="h-full w-full text-neutral-500 dark:text-neutral-300"/>),
+      href: "/craft",
     },{
       title: "My Writing",
       icon: (<IconBrandThreads className="h-full w-full text-neutral-500 dark:text-neutral-300"/>),
