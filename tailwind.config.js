@@ -6,6 +6,18 @@ const {
   default: flattenColorPalette,
 } = require("tailwindcss/lib/util/flattenColorPalette");
 
+const backgroundBoxColors = [
+  "sky-300",
+  "pink-300",
+  "green-300",
+  "yellow-300",
+  "red-300",
+  "purple-300",
+  "blue-300",
+  "indigo-300",
+  "violet-300",
+].map(color => `hover:bg-[color:var(--${color})]`)
+
 module.exports = {
   content: [
     "./app/views/**/*.html.erb",
@@ -21,12 +33,21 @@ module.exports = {
     fontFamily: {
       sans: ["Inter", "sans-serif"],
     },
+    extend: {
+      gridTemplateColumns: {
+        "boxes": "repeat(50, minmax(0, 1fr))",
+      },
+      gridTemplateRows: {
+        "boxes": "repeat(50, minmax(0, 1fr))",
+      }
+    }
   },
   corePlugins: {
     aspectRatio: false,
   },
   safelist: [
     ...zIndexClass,
+    ...backgroundBoxColors,
   ],
   plugins: [
     require("@tailwindcss/typography")({
