@@ -39,6 +39,23 @@ module.exports = {
       },
       gridTemplateRows: {
         "boxes": "repeat(50, minmax(0, 1fr))",
+      },
+      animation: {
+        scroll:
+          "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
+        'spin-slow': 'spin 3s linear infinite',
+        "blink-yellow": 'blink-yellow 3s infinite',
+      },
+      keyframes: {
+        scroll: {
+          to: {
+            transform: "translate(calc(-50% - 0.5rem))",
+          },
+        },
+        "blink-yellow": {
+          '0%, 100%': { fill: 'dark' },
+          '50%': { fill: '#fbbf24' },
+        },
       }
     }
   },

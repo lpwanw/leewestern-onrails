@@ -22,10 +22,9 @@ export default function() {
   return (
     <div
       onMouseMove={handleMouseMove}
-      className="h-full relative w-full overflow-hidden bg-gray-50 dark:bg-neutral-900 flex flex-col items-center justify-center">
+      className="text-sm md:text-base h-full relative w-full overflow-hidden bg-gray-50 dark:bg-neutral-900 flex flex-col items-center justify-center">
       <div
         className="absolute inset-0 w-full h-full z-20 bg-inherit [mask-image:radial-gradient(transparent,white)] pointer-events-none"/>
-
       <Boxes>
         <GrayCard onMouseEnter={() => {
           startTransition(() => {
@@ -58,11 +57,11 @@ export default function() {
           <LoopVideo url={"https://cdn.rauno.me/gooey-s.mp4#t=0.01"}/>
         </GrayCard>
 
-        <IconSquareLetterT className="dark:text-gray-200 h-full w-full absolute z-30 col-start-[20] row-start-[24] col-span-2 row-span-2 pointer-events-none" />
-        <IconSquareLetterA className="dark:text-gray-200 h-full w-full absolute z-30 col-start-[22] row-start-[26] col-span-2 row-span-2 pointer-events-none" />
-        <IconSquareLetterY className="dark:text-gray-200 h-full w-full absolute z-30 col-start-[24] row-start-[24] col-span-2 row-span-2 pointer-events-none" />
-        <IconSquareLetterN className="dark:text-gray-200 h-full w-full absolute z-30 col-start-[26] row-start-[26] col-span-2 row-span-2 pointer-events-none" />
-        <IconSquareLetterE className="dark:text-gray-200 h-full w-full absolute z-30 col-start-[28] row-start-[24] col-span-2 row-span-2 pointer-events-none" />
+        <IconSquareLetterT className="dark:text-gray-200 h-full w-full absolute z-30 col-start-[23] md:col-start-[20] col-span-1 row-span-1 row-start-[24] md:col-span-2 md:row-span-2 pointer-events-none" />
+        <IconSquareLetterA className="dark:text-gray-200 h-full w-full absolute z-30 col-start-[24] md:col-start-[22] col-span-1 row-span-1 row-start-[25] md:row-start-[26] md:col-span-2 md:row-span-2 pointer-events-none" />
+        <IconSquareLetterY className="dark:text-gray-200 h-full w-full absolute z-30 col-start-[25] md:col-start-[24] row-start-[24] col-span-1 row-span-1 md:col-span-2 md:row-span-2 pointer-events-none" />
+        <IconSquareLetterN className="dark:text-gray-200 h-full w-full absolute z-30 col-start-[26] md:col-start-[26] row-start-[25] md:row-start-[26] col-span-1 row-span-1 md:col-span-2 md:row-span-2 pointer-events-none" />
+        <IconSquareLetterE className="dark:text-gray-200 h-full w-full absolute z-30 col-start-[27] md:col-start-[28] row-start-[24] col-span-1 row-span-1 md:col-span-2 md:row-span-2 pointer-events-none" />
       </Boxes>
 
       <motion.div style={{y: yPin, x: xPin, opacity: showPin, translateY: "-100%"}}
