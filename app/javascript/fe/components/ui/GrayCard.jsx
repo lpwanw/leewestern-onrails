@@ -12,7 +12,7 @@ export default function ({onMouseEnter, onMouseLeave, href, className, children}
       )}>
       <div
         className={cn(
-          "select-none cursor-pointer overflow-hidden shadow-2xl relative card h-full rounded-md  mx-auto flex flex-col justify-end border border-transparent dark:border-neutral-800",
+          "select-none cursor-pointer overflow-hidden shadow-3xl relative card h-full rounded-md  mx-auto flex flex-col justify-end border border-transparent dark:border-neutral-800",
         )}
       >
         <div

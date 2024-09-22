@@ -28,35 +28,37 @@ const FloatingDockMobile = ({
             layoutId="nav"
             className="absolute bottom-full mb-2 inset-x-0 flex flex-col gap-2">
             {items.map((item, idx) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                exit={{
-                  opacity: 0,
-                  y: 10,
-                  transition: {
-                    delay: idx * 0.05,
-                  },
-                }}
-                transition={{ delay: (items.length - 1 - idx) * 0.05 }}>
-                <Link
-                  to={item.href}
+              item.href &&
+                <motion.div
+                  onClick={() => {setOpen(!open); item.onClick && item.onClick() }}
                   key={item.title}
-                  className="h-10 w-10 rounded-full bg-gray-50 dark:bg-neutral-900 flex items-center justify-center">
-                  <div className="h-4 w-4">{item.icon}</div>
-                </Link>
-              </motion.div>
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  exit={{
+                    opacity: 0,
+                    y: 10,
+                    transition: {
+                      delay: idx * 0.05,
+                    },
+                  }}
+                  transition={{ delay: (items.length - 1 - idx) * 0.05 }}>
+                  <Link
+                    to={item.href}
+                    key={item.title}
+                    className="h-16 w-16 border dark:border-gray-600 rounded-full bg-gray-50 dark:bg-neutral-900 flex items-center justify-center">
+                    <div className="h-4 w-4">{item.icon}</div>
+                  </Link>
+                </motion.div>
             ))}
           </motion.div>
         )}
       </AnimatePresence>
       <button
         onClick={() => setOpen(!open)}
-        className="h-10 w-10 rounded-full bg-gray-50 dark:bg-neutral-800 flex items-center justify-center">
+        className="h-16 w-16 rounded-full border dark:border-gray-600 bg-gray-50 dark:bg-neutral-800 flex items-center justify-center">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
           stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
           className="icon icon-tabler icons-tabler-outline icon-tabler-layout-navbar-collapse">
