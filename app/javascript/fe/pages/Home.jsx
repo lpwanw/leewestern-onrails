@@ -1,11 +1,10 @@
-import React, {lazy, startTransition, useState} from "react"
+import React, {startTransition, useState} from "react"
 import {cn} from "@utils"
 import {motion, useMotionValue} from "framer-motion"
 import GrayCard from "@ui/GrayCard"
 import LoopVideo from "@ui/LoopVideo"
 import { IconSquareLetterT, IconSquareLetterA, IconSquareLetterY, IconSquareLetterN, IconSquareLetterE } from "@tabler/icons-react"
-
-const Boxes = lazy(() => import("@ui/background-boxes"))
+import Boxes from "@ui/background-boxes"
 
 export default function() {
   const xPin = useMotionValue(0)
@@ -14,8 +13,10 @@ export default function() {
   const [pinTitle, setPinTitle] = useState("")
 
   const handleMouseMove = (e) => {
-    xPin.set(e.clientX)
-    yPin.set(e.clientY)
+    startTransition(() => {
+      xPin.set(e.clientX)
+      yPin.set(e.clientY)
+    })
   }
 
   return (

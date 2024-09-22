@@ -7,6 +7,7 @@ import {
   IconMail,
   IconBrandThreads,
   IconCategoryPlus,
+  IconRoad,
 } from "@tabler/icons-react"
 import {FloatingDock} from "@ui/floating-dock"
 import {cn} from "@utils"
@@ -44,6 +45,10 @@ export default function () {
       icon: (<IconCategoryPlus className="h-full w-full text-neutral-500 dark:text-neutral-300"/>),
       href: "/craft",
     },{
+      title: "My Career",
+      icon: (<IconRoad className="h-full w-full text-neutral-500 dark:text-neutral-300"/>),
+      href: "/career",
+    },{
       title: "My Writing",
       icon: (<IconBrandThreads className="h-full w-full text-neutral-500 dark:text-neutral-300"/>),
       href: "#",
@@ -73,7 +78,7 @@ export default function () {
   ]
 
   return (
-    <div className="flex h-screen flex-col bg-gray-50 dark:bg-neutral-900">
+    <div className="flex min-h-screen flex-col bg-gray-50 dark:bg-neutral-950 dark:text-gray-200">
       <FloatingDock
         desktopClassName={cn("fixed bottom-10 z-30 left-1/2 -translate-x-1/2")}
         mobileClassName={cn("fixed bottom-10 z-30 left-1/2 -translate-x-1/2")}
