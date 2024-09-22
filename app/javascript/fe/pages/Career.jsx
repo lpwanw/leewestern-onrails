@@ -4,6 +4,7 @@ import {cn} from "@utils"
 import {List} from "flowbite-react"
 import {Link} from "react-router-dom"
 import {InfiniteMovingCards} from "@ui/infinite-moving-cards"
+import {BackgroundBeams} from "@ui/background-beams"
 
 function Image({src, alt, className}) {
   return (<img src={src}
@@ -281,5 +282,6 @@ export default function () {
 
       <InfiniteMovingCards className={"mx-auto"} items={items}/>
     </Timeline>
+    <BackgroundBeams className={"fixed"}/>
   </div>)
 }

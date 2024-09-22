@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react"
-import {Outlet} from "react-router-dom"
+import {Outlet, useLocation} from "react-router-dom"
 import {
   IconHome,
   IconBrandGithub,
@@ -14,6 +14,7 @@ import {cn} from "@utils"
 import ThemeToggle from "@components/theme/ThemeToggle"
 
 export default function () {
+  let location = useLocation()
   const [theme, setTheme] = useState(
     localStorage.getItem("color-theme") ||
     (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
@@ -30,6 +31,7 @@ export default function () {
   }, [theme])
 
   const toggleTheme = () => {
+    if (location.pathname === "/") return
     setTheme(theme === "light" ? "dark" : "light")
   }
 

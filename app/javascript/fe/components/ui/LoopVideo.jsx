@@ -3,7 +3,7 @@ import React, {useState} from "react"
 import ReactPlayer from "react-player"
 import {cn} from "@utils"
 
-export default function({url, className}) {
+export default function({url, className, ...rest}) {
   const [hovered, setHovered] = useState(false)
 
   return (
@@ -14,7 +14,8 @@ export default function({url, className}) {
         width={"100%"}
         loop={true}
         playsinline={true}
-        url={url}
+        muted={true}
+        url={url} {...rest}
       />
     </div>
   )
