@@ -1,13 +1,29 @@
 "use client"
-import React from "react"
-import {cn} from "@utils"
+import React, { useState } from "react"
+import { cn } from "@utils"
+import { playSound } from "@context/HomeSoundContext"
 
-export const BoxesCore = ({
-  className,
-  children,
-  ...rest
-}) => {
-  const squares = new Array(50*50).fill(1)
+const Cell = ({ getRandomColor }) => {
+  const [color, setColor] = useState(getRandomColor())
+
+  const resetColor = () => {
+    setColor(getRandomColor())
+  }
+
+  return (
+    <div
+      onMouseLeave={resetColor}
+      onMouseDown={playSound}
+      className={cn(
+        "transition-all duration-[2000ms] hover:duration-0 ease-out border border-dotted border-slate-700",
+        `hover:bg-[color:var(${color})]`,
+      )}
+    ></div>
+  )
+}
+
+export const BoxesCore = ({ className, children, ...rest }) => {
+  const squares = new Array(50 * 50).fill(1)
   let colors = [
     "--sky-300",
     "--pink-300",
@@ -44,26 +60,21 @@ export const BoxesCore = ({
       style={style}
       className={cn(
         "fixed top-1/2 left-1/2 grid grid-cols-boxes grid-rows-boxes z-0 w-max",
-        className
+        className,
       )}
-      {...rest}>
+      {...rest}
+    >
       {children}
-      {
-        squares.map((_, i) => (
-          <div className="w-32 h-32 relative grid grid-cols-2 grid-rows-2" key={"square" + i}>
-            {
-              (new Array(4).fill(1)).map((_, j) => (
-                <div
-                  key={"cel_" + j}
-                  className={cn("transition-all duration-[2000ms] hover:duration-0 ease-out border border-dotted border-slate-700",
-                    `hover:bg-[color:var(${getRandomColor()})]`)}>
-
-                </div>
-              ))
-            }
-          </div>
-        ))
-      }
+      {squares.map((_, i) => (
+        <div
+          className="w-32 h-32 relative grid grid-cols-2 grid-rows-2"
+          key={"square" + i}
+        >
+          {new Array(4).fill(1).map((_, j) => (
+            <Cell key={"cell" + j + "of" + i} getRandomColor={getRandomColor} />
+          ))}
+        </div>
+      ))}
     </div>
   )
 }

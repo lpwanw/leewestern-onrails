@@ -26,7 +26,8 @@ export default defineConfig({
       "@ui": resolve(__dirname, 'app/javascript/fe/components/ui'),
       "@utils": resolve(__dirname, "app/javascript/fe/utils"),
       "@components": resolve(__dirname, "app/javascript/fe/components"),
-      "@context": resolve(__dirname, "app/javascript/fe/contexts")
+      "@context": resolve(__dirname, "app/javascript/fe/contexts"),
+      "@assets": resolve(__dirname, "app/javascript/fe/assets")
     }
   }
 });
