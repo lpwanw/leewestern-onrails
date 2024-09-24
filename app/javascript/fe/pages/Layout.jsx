@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from "react"
-import {Outlet, useLocation} from "react-router-dom"
+import React, { useEffect, useState } from "react"
+import { Outlet, useLocation } from "react-router-dom"
 import {
   IconHome,
   IconBrandGithub,
@@ -9,15 +9,17 @@ import {
   IconCategoryPlus,
   IconRoad,
 } from "@tabler/icons-react"
-import {FloatingDock} from "@ui/floating-dock"
-import {cn} from "@utils"
+import { FloatingDock } from "@ui/floating-dock"
+import { cn } from "@utils"
 import ThemeToggle from "@components/theme/ThemeToggle"
 
 export default function () {
   let location = useLocation()
   const [theme, setTheme] = useState(
     localStorage.getItem("color-theme") ||
-    (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+      (window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light"),
   )
 
   useEffect(() => {
@@ -39,44 +41,67 @@ export default function () {
     {
       title: "Home",
       icon: (
-        <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300"/>
+        <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
       href: "/",
-    },{
+    },
+    {
       title: "Craft",
-      icon: (<IconCategoryPlus className="h-full w-full text-neutral-500 dark:text-neutral-300"/>),
+      icon: (
+        <IconCategoryPlus className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
       href: "/craft",
-    },{
+    },
+    {
       title: "My Career",
-      icon: (<IconRoad className="h-full w-full text-neutral-500 dark:text-neutral-300"/>),
+      icon: (
+        <IconRoad className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
       href: "/career",
-    },{
+    },
+    {
       title: "My Writing",
-      icon: (<IconBrandThreads className="h-full w-full text-neutral-500 dark:text-neutral-300"/>),
+      icon: (
+        <IconBrandThreads className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
       href: "#",
-      onClick: () => { window.location.href = "/posts" }
-    }, {
-      title: "slast1"
-    },{
+      onClick: () => {
+        window.location.href = "/posts"
+      },
+    },
+    {
+      title: "slast1",
+    },
+    {
       title: "Linkedin",
-      icon: (<IconBrandLinkedin className="h-full w-full text-neutral-500 dark:text-neutral-300"/>),
-      href: "https://www.linkedin.com/in/lpwanw"
-    }, {
+      icon: (
+        <IconBrandLinkedin className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "https://www.linkedin.com/in/lpwanw",
+    },
+    {
       title: "Github",
-      icon: (<IconBrandGithub className="h-full w-full text-neutral-500 dark:text-neutral-300"/>),
-      href: "https://github.com/lpwanw"
-    },{
+      icon: (
+        <IconBrandGithub className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "https://github.com/lpwanw",
+    },
+    {
       title: "Mail",
-      icon: (<IconMail className="h-full w-full text-neutral-500 dark:text-neutral-300"/>),
-      href: "mailto:phuongtay2000@gmail.comm"
-    }, {
-      title: "slast2"
-    }, {
+      icon: (
+        <IconMail className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "mailto:phuongtay2000@gmail.comm",
+    },
+    {
+      title: "slast2",
+    },
+    {
       title: "Toggle Theme",
-      icon: <ThemeToggle theme={theme}/>,
+      icon: <ThemeToggle theme={theme} />,
       onClick: toggleTheme,
-      href: "#"
-    }
+      href: "#",
+    },
   ]
 
   return (
@@ -86,7 +111,7 @@ export default function () {
         mobileClassName={cn("fixed bottom-10 z-30 left-1/2 -translate-x-1/2")}
         items={navigationItems}
       />
-      <Outlet/>
+      <Outlet />
     </div>
   )
 }

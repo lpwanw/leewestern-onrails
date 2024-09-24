@@ -1,10 +1,10 @@
-const flowbite = require("flowbite-react/tailwind");
+const flowbite = require("flowbite-react/tailwind")
 const zIndexClass = Array.from({ length: 14 }, (_,i) => {
   return `z-[${(i + 6) * 10}]`
-});
+})
 const {
   default: flattenColorPalette,
-} = require("tailwindcss/lib/util/flattenColorPalette");
+} = require("tailwindcss/lib/util/flattenColorPalette")
 
 const backgroundBoxColors = [
   "sky-300",
@@ -25,7 +25,7 @@ module.exports = {
     "./app/helpers/**/*.rb",
     "./app/assets/stylesheets/**/*.css",
     "./app/javascript/**/*.{js,jsx}",
-    './node_modules/flowbite/**/*.js',
+    "./node_modules/flowbite/**/*.js",
     flowbite.content(),
   ],
   darkMode: "class",
@@ -42,8 +42,8 @@ module.exports = {
       },
       animation: {
         scroll: "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
-        'spin-slow': 'spin 3s linear infinite',
-        "blink-yellow": 'blink-yellow 3s infinite',
+        "spin-slow": "spin 3s linear infinite",
+        "blink-yellow": "blink-yellow 3s infinite",
         aurora: "aurora 60s linear infinite",
       },
       keyframes: {
@@ -61,8 +61,8 @@ module.exports = {
           },
         },
         "blink-yellow": {
-          '0%, 100%': { fill: 'dark' },
-          '50%': { fill: '#fbbf24' },
+          "0%, 100%": { fill: "dark" },
+          "50%": { fill: "#fbbf24" },
         },
       }
     }
@@ -84,15 +84,15 @@ module.exports = {
     flowbite.plugin(),
     addVariablesForColors,
   ],
-};
+}
 
 function addVariablesForColors({ addBase, theme }) {
-  let allColors = flattenColorPalette(theme("colors"));
+  let allColors = flattenColorPalette(theme("colors"))
   let newVars = Object.fromEntries(
     Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
-  );
+  )
 
   addBase({
     ":root": newVars,
-  });
+  })
 }

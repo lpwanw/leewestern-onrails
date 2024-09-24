@@ -25,7 +25,8 @@ export default defineConfig({
       "@pages": resolve(__dirname, 'app/javascript/fe/pages'),
       "@ui": resolve(__dirname, 'app/javascript/fe/components/ui'),
       "@utils": resolve(__dirname, "app/javascript/fe/utils"),
-      "@components": resolve(__dirname, "app/javascript/fe/components")
+      "@components": resolve(__dirname, "app/javascript/fe/components"),
+      "@context": resolve(__dirname, "app/javascript/fe/contexts")
     }
   }
 });
