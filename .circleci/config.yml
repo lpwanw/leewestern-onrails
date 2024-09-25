@@ -3,13 +3,26 @@
 version: 2.1
 orbs:
   ruby: circleci/ruby@2.0.1
+
+executors:
+  ubuntu:
+    machine:
+      image: ubuntu-2204:current
+
 jobs:
   test-ruby:
     docker:
       - image: cimg/ruby:3.2.2-node
       - image: cimg/postgres:14.13
+        environment:
+          POSTGRES_USER: user
+          POSTGRES_DB: rails_threads_test
+          POSTGRES_PASSWORD: ""
     environment:
       RAILS_ENV: test
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: ""
+    executor: ubuntu
     steps:
       - checkout
       - ruby/install-deps
@@ -23,11 +36,10 @@ jobs:
           name: rspec test
           command: bundle exec rspec
   deploy:
-    # This is an example deploy job, not actually used by the workflow
     docker:
       - image: cimg/base:stable
+    executor: ubuntu
     steps:
-      # Replace this with steps to deploy to users
       - run:
           name: deploy
           command: '#e.g. ./deploy.sh'
