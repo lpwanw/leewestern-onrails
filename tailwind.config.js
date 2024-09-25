@@ -1,5 +1,5 @@
 const flowbite = require("flowbite-react/tailwind")
-const zIndexClass = Array.from({ length: 14 }, (_,i) => {
+const zIndexClass = Array.from({ length: 14 }, (_, i) => {
   return `z-[${(i + 6) * 10}]`
 })
 const {
@@ -16,7 +16,7 @@ const backgroundBoxColors = [
   "blue-300",
   "indigo-300",
   "violet-300",
-].map(color => `hover:bg-[color:var(--${color})]`)
+].map((color) => `hover:bg-[color:var(--${color})]`)
 
 module.exports = {
   content: [
@@ -24,7 +24,7 @@ module.exports = {
     "./app/components/**/*.html.erb",
     "./app/helpers/**/*.rb",
     "./app/assets/stylesheets/**/*.css",
-    "./app/javascript/**/*.{js,jsx}",
+    "./app/frontend/**/*.{js,jsx}",
     "./node_modules/flowbite/**/*.js",
     flowbite.content(),
   ],
@@ -35,13 +35,14 @@ module.exports = {
     },
     extend: {
       gridTemplateColumns: {
-        "boxes": "repeat(50, minmax(0, 1fr))",
+        boxes: "repeat(50, minmax(0, 1fr))",
       },
       gridTemplateRows: {
-        "boxes": "repeat(50, minmax(0, 1fr))",
+        boxes: "repeat(50, minmax(0, 1fr))",
       },
       animation: {
-        scroll: "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
+        scroll:
+          "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
         "spin-slow": "spin 3s linear infinite",
         "blink-yellow": "blink-yellow 3s infinite",
         aurora: "aurora 60s linear infinite",
@@ -64,16 +65,13 @@ module.exports = {
           "0%, 100%": { fill: "dark" },
           "50%": { fill: "#fbbf24" },
         },
-      }
-    }
+      },
+    },
   },
   corePlugins: {
     aspectRatio: false,
   },
-  safelist: [
-    ...zIndexClass,
-    ...backgroundBoxColors,
-  ],
+  safelist: [...zIndexClass, ...backgroundBoxColors],
   plugins: [
     require("@tailwindcss/typography")({
       className: "typography",
@@ -89,7 +87,7 @@ module.exports = {
 function addVariablesForColors({ addBase, theme }) {
   let allColors = flattenColorPalette(theme("colors"))
   let newVars = Object.fromEntries(
-    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, val]),
   )
 
   addBase({

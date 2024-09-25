@@ -12,7 +12,7 @@ export default defineConfig({
           "config/routes.rb",
           "app/views/**/*",
           "app/components/**/*",
-          "app/javascript/**/*",
+          "app/frontend/**/*",
         ],
         delay: 300,
       },
@@ -21,13 +21,13 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      "@routes": resolve(__dirname, 'app/javascript/fe/routes'),
-      "@pages": resolve(__dirname, 'app/javascript/fe/pages'),
-      "@ui": resolve(__dirname, 'app/javascript/fe/components/ui'),
-      "@utils": resolve(__dirname, "app/javascript/fe/utils"),
-      "@components": resolve(__dirname, "app/javascript/fe/components"),
-      "@context": resolve(__dirname, "app/javascript/fe/contexts"),
-      "@assets": resolve(__dirname, "app/javascript/fe/assets")
+      "@routes": resolve(__dirname, 'app/frontend/app/routes'),
+      "@pages": resolve(__dirname, 'app/frontend/app/pages'),
+      "@ui": resolve(__dirname, 'app/frontend/app/components/ui'),
+      "@utils": resolve(__dirname, "app/frontend/app/utils"),
+      "@components": resolve(__dirname, "app/frontend/app/components"),
+      "@context": resolve(__dirname, "app/frontend/app/contexts"),
+      "@assets": resolve(__dirname, "app/frontend/app/assets")
     }
   }
 });
