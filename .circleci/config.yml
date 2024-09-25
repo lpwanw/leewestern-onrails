@@ -4,9 +4,8 @@ version: 2.1
 orbs:
   ruby: circleci/ruby@2.0.1
 
-
 jobs:
-  test-ruby:
+  unittest:
     docker:
       - image: cimg/ruby:3.2.2-node
       - image: cimg/postgres:14.13
@@ -30,6 +29,31 @@ jobs:
       - run:
           name: rspec test
           command: bundle exec rspec
+  lint:
+    docker:
+      - image: cimg/ruby:3.2.2-node
+    environment:
+      RAILS_ENV: development
+    steps:
+      - checkout
+      - ruby/install-deps
+      - node/install-packages:
+          pkg-manager: yarn
+      - run:
+          name: rubocop
+          command: bundle exec rubocop
+      - run:
+          name: rails_best_practices
+          command: bundle exec rails_best_practices
+      - run:
+          name: breakman
+          command: bundle exec breakman
+      - run:
+          name: Erb Lint
+          command: bundle exec erblint --lint-all
+      - run:
+          name: Js Lint
+          command: yarn run lint
   deploy:
     docker:
       - image: cimg/base:stable
@@ -40,7 +64,8 @@ jobs:
 workflows:
   build-and-test:
     jobs:
-      - test-ruby
+      - lint
+#      - unittest
     # - deploy:
     #     requires:
     #       - test-ruby
