@@ -1,4 +1,4 @@
-import React, { startTransition } from "react"
+import React, { startTransition, Suspense } from "react"
 import { cn } from "@utils"
 import { motion, useMotionValue } from "framer-motion"
 import GrayCard from "@ui/GrayCard"
@@ -32,54 +32,60 @@ export default function () {
     >
       <div className="absolute inset-0 w-full h-full z-20 bg-inherit [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
       <Boxes>
-        <GrayCard
-          href={"/craft"}
-          onMouseEnter={() => {
-            showPin.set(1)
-            pinTitle.set("/craft")
-          }}
-          onMouseLeave={() => {
-            showPin.set(0)
-          }}
-          className={
-            "absolute z-30 col-start-[21] md:col-start-[18] col-span-2 row-start-[22] md:row-start-[20]"
-          }
-        >
-          <LoopVideo
-            className={"h-full"}
-            url={"https://cdn.rauno.me/flume-s2.mp4#t=0.01"}
-          />
-        </GrayCard>
-        <GrayCard
-          href={"/craft"}
-          onMouseEnter={() => {
-            showPin.set(1)
-            pinTitle.set("/craft")
-          }}
-          onMouseLeave={() => {
-            showPin.set(0)
-          }}
-          className={
-            "absolute z-30 col-start-[25] md:col-start-[27] col-span-2 row-start-[22] md:row-start-[21]"
-          }
-        >
-          <LoopVideo url={"https://cdn.rauno.me/gooey-s.mp4#t=0.01"} />
-        </GrayCard>
-        <GrayCard
-          href={"/career"}
-          onMouseEnter={() => {
-            showPin.set(1)
-            pinTitle.set("/career")
-          }}
-          onMouseLeave={() => {
-            showPin.set(0)
-          }}
-          className={
-            "absolute z-30 col-start-[26] md:col-start-[27] col-span-2 row-start-[28] md:row-start-[29]"
-          }
-        >
-          <LoopVideo url={"https://cdn.rauno.me/gooey-s.mp4#t=0.01"} />
-        </GrayCard>
+        <Suspense fallback={<></>}>
+          <GrayCard
+            href={"/craft"}
+            onMouseEnter={() => {
+              showPin.set(1)
+              pinTitle.set("/craft")
+            }}
+            onMouseLeave={() => {
+              showPin.set(0)
+            }}
+            className={
+              "absolute z-30 col-start-[21] md:col-start-[18] col-span-2 row-start-[22] md:row-start-[20]"
+            }
+          >
+            <LoopVideo
+              className={"h-full"}
+              url={"https://cdn.rauno.me/flume-s2.mp4#t=0.01"}
+            />
+          </GrayCard>
+        </Suspense>
+        <Suspense fallback={<></>}>
+          <GrayCard
+            href={"/craft"}
+            onMouseEnter={() => {
+              showPin.set(1)
+              pinTitle.set("/craft")
+            }}
+            onMouseLeave={() => {
+              showPin.set(0)
+            }}
+            className={
+              "absolute z-30 col-start-[25] md:col-start-[27] col-span-2 row-start-[22] md:row-start-[21]"
+            }
+          >
+            <LoopVideo url={"https://cdn.rauno.me/gooey-s.mp4#t=0.01"} />
+          </GrayCard>
+        </Suspense>
+        <Suspense fallback={<></>}>
+          <GrayCard
+            href={"/career"}
+            onMouseEnter={() => {
+              showPin.set(1)
+              pinTitle.set("/career")
+            }}
+            onMouseLeave={() => {
+              showPin.set(0)
+            }}
+            className={
+              "absolute z-30 col-start-[26] md:col-start-[27] col-span-2 row-start-[28] md:row-start-[29]"
+            }
+          >
+            <LoopVideo url={"https://cdn.rauno.me/gooey-s.mp4#t=0.01"} />
+          </GrayCard>
+        </Suspense>
 
         <IconSquareLetterT className="dark:text-gray-200 h-full w-full absolute z-30 col-start-[23] md:col-start-[20] row-start-[25] col-span-1 row-span-1  md:col-span-2 md:row-span-2 pointer-events-none" />
         <IconSquareLetterA className="dark:text-gray-200 h-full w-full absolute z-30 col-start-[24] md:col-start-[22] row-start-[26] col-span-1 row-span-1  md:row-start-[26] md:col-span-2 md:row-span-2 pointer-events-none" />

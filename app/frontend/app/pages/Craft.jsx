@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react"
+import React, { Suspense, useEffect, useState } from "react"
 import CraftCard from "@ui/CraftCard"
+import { CardSkeleton } from "@skeletons/CardPageSkeleton"
 
 const crafts = [
   {
@@ -64,13 +65,15 @@ export default function () {
       {itemsCols.map((items, index) => (
         <div key={"col+" + index} className={"flex h-fit flex-col gap-2"}>
           {items.map(({ name, date, url, videoUrl }) => (
-            <CraftCard
-              name={name}
-              date={date}
-              url={url}
-              videoUrl={videoUrl}
-              key={name + "_" + date}
-            />
+            <Suspense key={name + "_" + date} fallback={<CardSkeleton />}>
+              <CraftCard
+                name={name}
+                date={date}
+                url={url}
+                videoUrl={videoUrl}
+                key={name + "_" + date}
+              />
+            </Suspense>
           ))}
         </div>
       ))}

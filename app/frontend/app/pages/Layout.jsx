@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { Suspense, useEffect, useState } from "react"
 import { Outlet, useLocation } from "react-router-dom"
 import {
   IconHome,
@@ -12,6 +12,7 @@ import {
 import { FloatingDock } from "@ui/floating-dock"
 import { cn } from "@utils"
 import ThemeToggle from "@components/theme/ThemeToggle"
+import LoadingPage from "@pages/LoadingPage"
 
 export default function () {
   let location = useLocation()
@@ -111,7 +112,9 @@ export default function () {
         mobileClassName={cn("fixed bottom-10 z-30 left-1/2 -translate-x-1/2")}
         items={navigationItems}
       />
-      <Outlet />
+      <Suspense fallback={<LoadingPage />}>
+        <Outlet />
+      </Suspense>
     </div>
   )
 }

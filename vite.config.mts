@@ -28,7 +28,8 @@ export default defineConfig({
       "@utils": resolve(__dirname, "app/frontend/app/utils"),
       "@components": resolve(__dirname, "app/frontend/app/components"),
       "@context": resolve(__dirname, "app/frontend/app/contexts"),
-      "@assets": resolve(__dirname, "app/frontend/app/assets")
+      "@assets": resolve(__dirname, "app/frontend/app/assets"),
+      "@skeletons": resolve(__dirname, "app/frontend/app/components/skeletons")
     }
   }
 });
