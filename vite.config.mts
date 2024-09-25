@@ -5,6 +5,7 @@ import {resolve} from "path";
 
 export default defineConfig({
   clearScreen: false,
+  build: { sourcemap: false },
   plugins: [
     Rails({
       fullReload: {
