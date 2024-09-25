@@ -55,6 +55,7 @@ development:
 test:
   <<: *default
   database: rails_threads_test
+  host: <%= ENV.fetch("POSTGRES_HOST") %>
   user: <%= ENV.fetch("POSTGRES_USER") %>
   password: <%= ENV.fetch("POSTGRES_PASSWORD") %>
 

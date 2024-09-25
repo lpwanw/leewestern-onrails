@@ -12,12 +12,12 @@ jobs:
       - image: cimg/postgres:14.13
         environment:
           POSTGRES_USER: user
-          POSTGRES_DB: rails_threads_test
           POSTGRES_PASSWORD: ""
     environment:
       RAILS_ENV: test
       POSTGRES_USER: user
       POSTGRES_PASSWORD: ""
+      POSTGRES_HOST: "localhost"
     steps:
       - checkout
       - ruby/install-deps
