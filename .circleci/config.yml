@@ -3,6 +3,7 @@
 version: 2.1
 orbs:
   ruby: circleci/ruby@2.0.1
+  node: circleci/node@4.7.0
 
 jobs:
   unittest:
@@ -47,7 +48,7 @@ jobs:
           command: bundle exec rails_best_practices
       - run:
           name: breakman
-          command: bundle exec breakman
+          command: bundle exec brakeman
       - run:
           name: Erb Lint
           command: bundle exec erblint --lint-all
@@ -65,7 +66,7 @@ workflows:
   build-and-test:
     jobs:
       - lint
-#      - unittest
+      - unittest
     # - deploy:
     #     requires:
     #       - test-ruby
