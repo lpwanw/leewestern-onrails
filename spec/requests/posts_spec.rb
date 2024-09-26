@@ -40,6 +40,7 @@ RSpec.describe PostsController, type: :controller do
       {
         post: {
           title:,
+          content: "<h1>This is the content</h1>",
         },
       }
     end

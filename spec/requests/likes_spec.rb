@@ -25,7 +25,7 @@ RSpec.describe LikesController, type: :controller do
     end
 
     context "when it destroy like" do
-      before { create(:like, user:, post:) }
+      before { create(:like, user:, likeable: post) }
 
       it { expect { subject }.to change(Like, :count).by(-1) }
     end
