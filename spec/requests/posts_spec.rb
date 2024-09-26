@@ -6,7 +6,7 @@ RSpec.describe PostsController, type: :controller do
   describe "GET index" do
     subject { get :index }
 
-    let(:posts) { create_list(:post, 10) }
+    let(:posts) { create_list(:post, 10, status: :published) }
 
     before do
       subject
@@ -14,7 +14,7 @@ RSpec.describe PostsController, type: :controller do
 
     it { expect(response).to have_http_status(:ok) }
     it { expect(response).to render_template(:index) }
-    it { expect(assigns[:posts]).to eq posts }
+    it { expect(assigns[:posts]).to eq posts.reverse }
   end
 
   describe "GET new" do

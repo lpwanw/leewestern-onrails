@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   def index
     @pagy, @posts = pagy(Post.includes(user: [:avatar_attachment])
                              .with_rich_text_content_and_embeds
-                             .published)
+                             .published.order(id: :desc))
 
     respond_to do |format|
       format.html
