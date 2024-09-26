@@ -27,6 +27,36 @@ RSpec.describe Post do
     end
   end
 
+  describe "Scopes" do
+    describe ".accessible_by" do
+      subject { Post.accessible_by(user) }
+
+      let(:user) { create(:user) }
+
+      context "when post belongs_to user" do
+        let!(:post) { create(:post, user:, status: :draft) }
+
+        it { is_expected.to include(post) }
+      end
+
+      context "when post not belongs_to user" do
+        let!(:post) { create(:post, status:) }
+
+        context "when status is draft" do
+          let(:status) { :draft }
+
+          it { is_expected.not_to include(post) }
+        end
+
+        context "when status is published" do
+          let(:status) { :published }
+
+          it { is_expected.to include(post) }
+        end
+      end
+    end
+  end
+
   describe "#liked_by?" do
     subject { post.liked_by?(user) }
 
@@ -42,5 +72,21 @@ RSpec.describe Post do
     context "when not liked by user" do
       it { is_expected.to be false }
     end
+  end
+
+  describe "#notification_user" do
+    subject { post.notification_user }
+
+    let(:post) { create(:post) }
+
+    it { is_expected.to eq post.user }
+  end
+
+  describe "#images" do
+    subject { post.images }
+
+    let(:post) { create(:post) }
+
+    it { is_expected.to be_empty }
   end
 end
