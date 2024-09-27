@@ -30,7 +30,7 @@ RSpec.describe Post do
 
   describe "Scopes" do
     describe ".accessible_by" do
-      subject { Post.accessible_by(user) }
+      subject { described_class.accessible_by(user) }
 
       let(:user) { create(:user) }
 

@@ -13,7 +13,7 @@ RSpec.describe Comment do
   describe "#reply?" do
     subject { comment.reply? }
 
-    let(:comment) { create(:comment, commentable: )}
+    let(:comment) { create(:comment, commentable:) }
 
     context "when commentable is a Post" do
       let(:commentable) { create(:post) }

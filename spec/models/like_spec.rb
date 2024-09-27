@@ -25,7 +25,7 @@ RSpec.describe Like do
       expect(like).to have_received(:trigger_notification)
     end
 
-    it { expect { like.save }.to change(Notification, :count).by(1)}
+    it { expect { like.save }.to change(Notification, :count).by(1) }
   end
 
   describe "#revert_notification_source" do
