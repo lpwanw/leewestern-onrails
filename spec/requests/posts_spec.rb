@@ -92,9 +92,21 @@ RSpec.describe PostsController, type: :controller do
     let(:post) { create(:post) }
     let(:id) { post.id }
 
-    before { subject }
+    context "when response ok" do
+      before { subject }
 
-    it { expect(response).to have_http_status(:ok) }
-    it { expect(response).to render_template(:show) }
+      it { expect(response).to have_http_status(:ok) }
+      it { expect(response).to render_template(:show) }
+    end
+
+    context "when not found" do
+      let(:id) { "invalid" }
+
+      before { subject }
+
+      it { expect(response).to have_http_status(:redirect) }
+      it { expect(flash[:error]).to eq I18n.t("Not found") }
+      it { expect(response).to redirect_to(posts_path) }
+    end
   end
 end

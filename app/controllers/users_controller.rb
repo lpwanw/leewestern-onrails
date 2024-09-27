@@ -2,6 +2,7 @@
 
 class UsersController < ApplicationController
   before_action :load_user, only: %i[show modal]
+  before_action :authenticate_turbo_frame_request!, only: :modal
 
   def show
     @posts = @user.posts
@@ -16,5 +17,11 @@ class UsersController < ApplicationController
 
   def load_user
     @user = User.find_by id: params[:id]
+  end
+
+  def authenticate_turbo_frame_request!
+    return if turbo_frame_request?
+
+    redirect_to posts_path
   end
 end
