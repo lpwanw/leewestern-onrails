@@ -9,7 +9,6 @@ RSpec.describe UsersController, type: :controller do
     let(:user) { create(:user) }
     let(:format) { :html }
 
-
     context "when format is html" do
       before do
         sign_in user

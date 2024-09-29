@@ -6,7 +6,7 @@ RSpec.describe PostsController, type: :controller do
   describe "GET index" do
     subject { get :index }
 
-    let(:posts) { create_list(:post, 10, status: :published) }
+    let(:posts) { create_list(:post, 2, status: :published) }
 
     before do
       subject

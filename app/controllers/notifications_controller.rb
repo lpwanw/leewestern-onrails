@@ -32,13 +32,13 @@ class NotificationsController < ApplicationController
   def load_more_path
     case action_name
     when "like"
-      like_notifications_path(format: :turbo_stream, page: pagy.next)
+      like_notifications_path(format: :turbo_stream, page: @pagy.next)
     when "comment"
-      comment_notifications_path(format: :turbo_stream, page: pagy.next)
+      comment_notifications_path(format: :turbo_stream, page: @pagy.next)
     when "follow"
-      follow_notifications_path(format: :turbo_stream, page: pagy.next)
+      follow_notifications_path(format: :turbo_stream, page: @pagy.next)
     else
-      notifications_path(format: :turbo_stream, page: pagy.next)
+      notifications_path(format: :turbo_stream, page: @pagy.next)
     end
   end
 

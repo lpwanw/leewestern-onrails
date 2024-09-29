@@ -2,6 +2,7 @@
 
 class FollowsController < ApplicationController
   before_action :set_user
+  before_action :authenticate_turbo_frame_request!, only: :confirm_unfollow
 
   def create
     current_user.follow(@user)
@@ -17,5 +18,11 @@ class FollowsController < ApplicationController
 
   def set_user
     @user = User.find(params[:followed_id] || params[:id])
+  end
+
+  def authenticate_turbo_frame_request!
+    return if turbo_frame_request?
+
+    redirect_to user_path(@user)
   end
 end
