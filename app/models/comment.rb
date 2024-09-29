@@ -10,10 +10,11 @@ class Comment < ApplicationRecord
   belongs_to :commentable, polymorphic: true, counter_cache: true
 
   has_many :comments, as: :commentable, dependent: :destroy
+  has_one :notification, as: :source, dependent: :destroy
 
   validates :content, presence: true
 
-  after_create_commit :create_notification
+  after_create_commit :trigger_notification
 
   delegate :email, to: :user, prefix: :user
   delegate :commentable, :is_a?, to: :commentable, prefix: :commentable
@@ -24,7 +25,7 @@ class Comment < ApplicationRecord
 
   private
 
-  def create_notification
+  def trigger_notification
     return if user.id == commentable.user_id
 
     Notification.create(

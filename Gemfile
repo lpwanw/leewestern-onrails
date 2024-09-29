@@ -61,5 +61,5 @@ group :test do
   gem "rails-controller-testing"
   gem "selenium-webdriver"
   gem "shoulda-matchers", "~> 6.0"
-  gem "simplecov", require: false
+  gem "simplecov"
 end

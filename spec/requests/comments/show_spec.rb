@@ -7,7 +7,7 @@ RSpec.describe CommentsController, type: :controller do
     subject { get :show, params: }
 
     let(:user) { create(:user) }
-    let(:id) { create(:comment, user: ).id }
+    let(:id) { create(:comment, user:).id }
     let(:params) do
       {
         id:,

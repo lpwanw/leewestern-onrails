@@ -32,7 +32,7 @@ RSpec.describe CommentsController, type: :controller do
     context "when it response error" do
       let(:content) { "" }
 
-      before {subject}
+      before { subject }
 
       it { expect(response).to have_http_status(:no_content) }
     end

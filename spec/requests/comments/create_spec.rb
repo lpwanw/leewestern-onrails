@@ -45,7 +45,7 @@ RSpec.describe CommentsController, type: :controller do
     context "when it response error" do
       let(:content) { "" }
 
-      before {subject}
+      before { subject }
 
       it { expect(response).to have_http_status(:ok) }
       it { expect(flash[:error]).to eq "Content can't be blank" }
