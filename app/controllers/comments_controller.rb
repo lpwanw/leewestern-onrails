@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
 class CommentsController < ApplicationController
-  include Post::Broadcast
-
   before_action :load_commentable, only: %i[new create]
-  before_action :authenticate_turbo_frame_request!, only: :new
+  before_action :authenticate_turbo_frame_request!, only: %i[new edit]
   before_action :load_comment, only: %i[show edit update destroy]
 
   def show; end

@@ -2,6 +2,7 @@
 
 class ProfileController < ApplicationController
   before_action :load_profile
+  before_action :authenticate_turbo_frame_request!, only: :edit
 
   def show
     redirect_to user_path(current_user)
@@ -27,5 +28,11 @@ class ProfileController < ApplicationController
 
   def profile_params
     params.required(:profile).permit(:bio, :link, user_attributes: %i[name avatar])
+  end
+
+  def authenticate_turbo_frame_request!
+    return if turbo_frame_request?
+
+    redirect_to user_path(current_user)
   end
 end
