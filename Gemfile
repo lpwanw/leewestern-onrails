@@ -11,6 +11,7 @@ gem "acts-as-taggable-on"
 gem "bootsnap", require: false
 gem "cloudinary"
 gem "devise"
+gem "devise-async"
 gem "faraday"
 gem "good_job"
 gem "image_processing"

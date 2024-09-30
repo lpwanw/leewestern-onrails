@@ -1,3 +1,30 @@
-<p>Welcome <%= @email %>!</p>
-<p>Ysou can confirm your account email through the link below:</p>
-<p><%= link_to "Confirm my account", confirmation_url(@resource, confirmation_token: @token) %></p>
+<h1 class="sm-leading-8" style="margin: 0 0 24px; font-size: 24px; font-weight: 600; color: #000001">
+  Hello, <%= @email %>
+</h1>
+<p style="margin: 0; line-height: 24px">
+  Is it you we're looking for?
+  <br>
+  <br>
+  Please confirm your email address by clicking the button below:
+</p>
+<div role="separator" style="line-height: 24px">&zwj;</div>
+<div>
+  <a href="<%= confirmation_url(@resource, confirmation_token: @token) %>" style="color: #f8fafc; background-color: #4338ca; display: inline-block; border-radius: 4px; padding: 16px 24px; font-size: 16px; line-height: 1; font-weight: 600; text-decoration: none">
+    <!--[if mso]>
+<i style="mso-font-width: 150%; mso-text-raise: 30px" hidden>&emsp;</i>
+<![endif]-->
+    <span style="mso-text-raise: 16px">
+                  Confirm email address &rarr;
+                </span>
+    <!--[if mso]>
+<i hidden style="mso-font-width: 150%;">&emsp;&#8203;</i>
+<![endif]-->
+  </a>
+</div>
+<div role="separator" style="height: 1px; line-height: 1px; margin: 32px 0; background-color: #e2e8f0">&zwj;</div>
+<p style="margin: 0;">
+  If you didn't sign up for TayNe, you can safely ignore this email.
+  <br>
+  <br>
+  Thanks, <br>
+</p>
