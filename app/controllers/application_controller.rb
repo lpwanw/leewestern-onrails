@@ -21,4 +21,12 @@ class ApplicationController < ActionController::Base
 
     redirect_to posts_path
   end
+
+  def after_sign_in_path_for(_)
+    posts_path
+  end
+
+  def after_sign_out_path_for(_)
+    posts_path
+  end
 end

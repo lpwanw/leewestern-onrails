@@ -73,6 +73,7 @@ class User < ApplicationRecord
     return if name.present?
 
     base_name = email.split("@").first
+    base_name = base_name.gsub(/[^a-zA-Z0-9._]/, "")
     self.name = find_unique_name base_name
   end
 
