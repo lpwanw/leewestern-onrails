@@ -64,3 +64,8 @@ group :test do
   gem "shoulda-matchers", "~> 6.0"
   gem "simplecov"
 end
+
+# sentry
+gem "sentry-rails"
+gem "sentry-ruby"
+gem "stackprof"
