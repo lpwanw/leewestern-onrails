@@ -13,7 +13,7 @@ export default defineConfig({
           "config/routes.rb",
           "app/views/**/*",
           "app/components/**/*",
-          "app/frontend/**/*",
+          "app/javascripts/**/*",
         ],
         delay: 300,
       },
@@ -22,14 +22,14 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      "@routes": resolve(__dirname, 'app/frontend/app/routes'),
-      "@pages": resolve(__dirname, 'app/frontend/app/pages'),
-      "@ui": resolve(__dirname, 'app/frontend/app/components/ui'),
-      "@utils": resolve(__dirname, "app/frontend/app/utils"),
-      "@components": resolve(__dirname, "app/frontend/app/components"),
-      "@context": resolve(__dirname, "app/frontend/app/contexts"),
-      "@assets": resolve(__dirname, "app/frontend/app/assets"),
-      "@skeletons": resolve(__dirname, "app/frontend/app/components/skeletons")
+      "@routes": resolve(__dirname, 'app/javascripts/app/routes'),
+      "@pages": resolve(__dirname, 'app/javascripts/app/pages'),
+      "@ui": resolve(__dirname, 'app/javascripts/app/components/ui'),
+      "@utils": resolve(__dirname, "app/javascripts/app/utils"),
+      "@components": resolve(__dirname, "app/javascripts/app/components"),
+      "@context": resolve(__dirname, "app/javascripts/app/contexts"),
+      "@assets": resolve(__dirname, "app/javascripts/app/assets"),
+      "@skeletons": resolve(__dirname, "app/javascripts/app/components/skeletons")
     }
   }
 });

@@ -21,8 +21,8 @@
     "vite-plugin-ruby": "^5.0.0"
   },
   "scripts": {
-    "lint": "eslint 'app/frontend/**/*.{js,jsx}'",
-    "lint:fix": "eslint 'app/frontend/**/*.{js,jsx}' --fix"
+    "lint": "eslint 'app/javascripts/**/*.{js,jsx}'",
+    "lint:fix": "eslint 'app/javascripts/**/*.{js,jsx}' --fix"
   },
   "dependencies": {
     "@heroicons/react": "^2.1.5",

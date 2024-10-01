@@ -24,7 +24,7 @@ module.exports = {
     "./app/components/**/*.html.erb",
     "./app/helpers/**/*.rb",
     "./app/assets/stylesheets/**/*.css",
-    "./app/frontend/**/*.{js,jsx}",
+    "./app/javascripts/**/*.{js,jsx}",
     "./node_modules/flowbite/**/*.js",
     flowbite.content(),
   ],
