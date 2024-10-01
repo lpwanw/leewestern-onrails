@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CommentsController < ApplicationController
-  before_action :load_commentable, only: %i[new create]
+  before_action :load_post, only: %i[new create]
   before_action :authenticate_turbo_frame_request!, only: %i[new edit]
   before_action :load_comment, only: %i[show edit update destroy]
 
@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
   def edit; end
 
   def create
-    @comment = current_user.comments.build(comment_params.merge(commentable: @commentable))
+    @comment = current_user.comments.build(comment_params.merge(post: @post))
 
     if @comment.save
       flash[:success] = t("Comment created")
@@ -39,12 +39,12 @@ class CommentsController < ApplicationController
 
   private
 
-  def load_commentable
-    @commentable = params[:comment_id] ? Comment.find_by(id: params[:comment_id]) : Post.find_by(id: params[:post_id])
+  def load_post
+    @post = Post.find_by(id: params[:post_id])
 
-    return if @commentable
+    return if @post
 
-    flash[:error] = t("Can not find commentable")
+    flash[:error] = t("Can not find Post")
     render turbo_stream: turbo_stream.redirect_to(posts_path)
   end
 

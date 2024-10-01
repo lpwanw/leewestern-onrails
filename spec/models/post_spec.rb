@@ -75,14 +75,6 @@ RSpec.describe Post do
     end
   end
 
-  describe "#notification_user" do
-    subject { post.notification_user }
-
-    let(:post) { create(:post) }
-
-    it { is_expected.to eq post.user }
-  end
-
   describe "#images" do
     subject { post.images }
 

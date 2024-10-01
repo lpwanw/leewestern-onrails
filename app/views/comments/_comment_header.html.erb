@@ -1,7 +1,7 @@
   <div class="w-full flex justify-between">
     <div class="flex items-center gap-2">
       <%= link_to user_path(comment.user), data: { turbo_frame: "_top" }, class: "block font-semibold hover:underline" do %>
-        <%= comment.user_email.split("@").first %>
+        <%= comment.user_name %>
       <% end %>
       <span class="text-gray-500 text-sm" data-controller="timeago" data-timeago-time-value="<%= comment.created_at.iso8601 %>">
       </span>

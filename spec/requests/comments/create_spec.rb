@@ -23,12 +23,12 @@ RSpec.describe CommentsController, type: :controller do
       sign_in user
     end
 
-    context "when not found commentable" do
+    context "when not found Post" do
       let(:post_id) { "invalid_id" }
 
       before { subject }
 
-      it { expect(flash[:error]).to eq I18n.t("Can not find commentable") }
+      it { expect(flash[:error]).to eq I18n.t("Can not find Post") }
     end
 
     context "when it response successful" do

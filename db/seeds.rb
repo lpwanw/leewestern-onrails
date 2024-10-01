@@ -22,10 +22,10 @@ first_user = FactoryBot.create(
 
 first_post = FactoryBot.create(:post, user: first_user)
 FactoryBot.create_list(:like, 2, likeable: first_post)
-FactoryBot.create_list(:comment, 2, commentable: first_post)
+FactoryBot.create_list(:comment, 2, post: first_post)
 
 FactoryBot.create_list(:post, 2).each do |post|
-  FactoryBot.create_list(:comment, 2, commentable: post)
+  FactoryBot.create_list(:comment, 2, post:)
   FactoryBot.create_list(:like, 10, likeable: post)
   post.user.follow(first_user)
 end
