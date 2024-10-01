@@ -1,32 +1,31 @@
-<%= turbo_frame_tag "comment_form_#{dom_id(commentable)}" do %>
+<%= turbo_frame_tag "comment_form_#{dom_id(post)}" do %>
   <div class="flex w-full px-4 pt-4">
-    <div class="flex flex-col items-center gap-2 shrink-0">
-      <%= avatar_tag commentable.user, class: "w-10 h-10 rounded-full" %>
-      <div class="w-0.5 bg-gray-200 grow"></div>
+    <div class="shrink-0 flex flex-col items-center gap-2">
+      <%= avatar_tag post.user, class: "w-10 h-10 rounded-full" %>
     </div>
 
     <div class="pl-2 w-full">
       <span class="block font-semibold">
-        <%= commentable.user_email.split("@").first %>
+        <%= post.user_name %>
       </span>
       <p class="line-clamp-2">
-        <%= commentable.is_a?(Post) ? commentable.title : commentable.content.to_plain_text %>
+        <%= post.title %>
       </p>
     </div>
   </div>
   <div class="flex w-full p-4">
-    <div class="flex flex-col items-center gap-2">
+    <div class="flex flex-col items-center gap-2 shrink-0">
       <%= avatar_tag current_user, class: "w-10 h-10 rounded-full" %>
     </div>
     <%= form_for comment,
-                 url: commentable.is_a?(Post) ? post_comments_path(commentable) : comment_comments_path(commentable),
+                 url: post_comments_path(post),
                  html: {
                    class: "grow pl-2 w-full",
                  } do |f| %>
       <div class="w-full flex justify-between">
-        <a href="#user" class="block font-semibold hover:underline">
-          <%= current_user.email.split("@").first %>
-        </a>
+        <span class="block font-semibold">
+          <%= current_user.name %>
+        </span>
       </div>
       <div class="comment_content">
         <%= f.rich_text_area :content %>

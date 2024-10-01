@@ -10,8 +10,6 @@ class Like < ApplicationRecord
 
   validates :user_id, uniqueness: { scope: %i[likeable_id likeable_type] }
 
-  delegate :notification_user, to: :likeable
-
   after_create_commit :trigger_notification
   before_destroy :revert_notification_source
 

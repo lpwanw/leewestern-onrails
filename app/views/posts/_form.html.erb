@@ -3,7 +3,7 @@
     <div class="flex items-center gap-2">
       <%= avatar_tag current_user, class: "w-10 h-10 rounded-full" %>
       <a href="#user" class="block font-semibold hover:underline">
-        <%= current_user.email.split("@").first %>
+        <%= current_user.name %>
       </a>
     </div>
     <div class="mt-2">

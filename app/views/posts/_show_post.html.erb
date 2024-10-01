@@ -5,7 +5,7 @@
     <div class="w-full py-2 flex justify-between">
       <%= render "users/avatar_with_preview", user: post.user %>
       <a href="#user" class="block font-semibold hover:underline">
-        <%= post.user_email.split("@").first %>
+        <%= post.user_name %>
       </a>
       <div data-controller="dropdown" data-dropdown-placement-value="bottom">
         <div data-dropdown-target="trigger" class="p-1 rounded-full hover:bg-gray-200 cursor-pointer">

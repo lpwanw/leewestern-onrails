@@ -8,7 +8,7 @@
     </div>
     <div>
       <div class="w-full flex justify-between">
-        <%= link_to post.user_email.split("@").first,
+        <%= link_to post.user_name,
                     user_path(post.user),
                     data: {
                       turbo_frame: "_top",

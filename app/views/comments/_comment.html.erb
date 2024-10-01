@@ -3,7 +3,6 @@
     <div class="flex gap-2">
       <div class="flex flex-col items-center gap-2 shrink-0">
         <%= render "users/avatar_with_preview", user: comment.user %>
-        <div class="w-0.5 bg-gray-200 grow <%= "hidden" if comment.comments.empty? %>"></div>
       </div>
       <div class="w-full">
         <%= render "comments/comment_header", comment:, current_user: %>
@@ -12,11 +11,6 @@
         </div>
         <%= render "comments/interact", comment:, current_user: %>
       </div>
-    </div>
-    <div class="space-y-2 divide-y divide-gray-200" id="<%= dom_id(comment, :comments) %>">
-      <% comment.comments.includes(:user, :rich_text_content).order(id: :desc).each do |comment| %>
-        <%= render "comments/comment_reply", comment:, current_user: %>
-      <% end %>
     </div>
   </div>
 <% end %>

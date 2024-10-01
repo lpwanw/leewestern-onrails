@@ -12,7 +12,7 @@ class Post < ApplicationRecord
 
   belongs_to :user
 
-  has_many :comments, as: :commentable, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   validates :title, presence: true
   validates :title, length: { maximum: 255 }, allow_blank: true
@@ -25,10 +25,6 @@ class Post < ApplicationRecord
   scope :accessible_by, (lambda do |user|
     where(user:).or(where(status: :published))
   end)
-
-  def notification_user
-    user
-  end
 
   def images
     embeds.select(&:image?)

@@ -8,6 +8,6 @@ FactoryBot.define do
       ActionText::RichText.new(body:)
     end
 
-    commentable factory: :post
+    post
   end
 end

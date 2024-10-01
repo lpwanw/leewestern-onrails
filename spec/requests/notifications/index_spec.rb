@@ -11,7 +11,7 @@ RSpec.describe NotificationsController, type: :controller do
 
     before do
       sign_in current_user
-      create_list(:comment, 3, commentable: post)
+      create_list(:comment, 3, post:)
       subject
     end
 
