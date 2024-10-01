@@ -1,24 +1,83 @@
-# README
+# Lee Western's Blog
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Summary
 
-Things you may want to cover:
+This is a personal website of Lê Phương Tây(Lee Western)
 
-* Ruby version
+See [leewestern.com](https://www.leewestern.com/)
 
-* System dependencies
+## Tech Stack
 
-* Configuration
+This is a fullstack Rails application
 
-* Database creation
+![Rails](https://img.shields.io/badge/rails-%23CC0000.svg?style=for-the-badge&logo=ruby-on-rails&logoColor=white)
 
-* Database initialization
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 
-* How to run the test suite
+## Installation
 
-* Services (job queues, cache servers, search engines, etc.)
+### Tools
 
-* Deployment instructions
+- rvm
+- ruby >= 3.1
+- node >= 18
+- yarn
+- posgresql >= 14.0
 
-* ...
+### Clone
+
+```bash
+  git clone https://github.com/lpwanw/rails-threads.git
+```
+
+### Prepration
+
+```bash
+  rails db:prepare
+```
+
+## Run project
+
+To run this project
+
+```bash
+  bin/dev
+```
+
+### Test
+
+Rspec
+
+```bash
+  rspec
+  # for only models
+  rspec spec/models/
+```
+
+### cucumber
+
+```bash
+  # will update soon
+```
+
+## Features
+
+- use TailwindCss for style
+
+### On the porfolio
+
+- React for really rich UI
+
+### On the blogs
+
+- Hotwrite driven the UI
+    * turbo-frame for modal
+    * Inline edit comment
+    * broad-cast for notification
+- Authentication with devise & devise-async for background email
+- Post with ActionText for trix editor
+- Notification use broadcast with ActionCable for realtime update
+
+## Authors
+
+- [@lpwanw](https://www.github.com/lpwanw)
