@@ -3,8 +3,9 @@
              as: resource_name,
              url: confirmation_path(resource_name),
              html: {
-               method: :post, class: "w-full"
-             }) do |f| %>
+               method: :post,
+               class: "w-full",
+             },) do |f| %>
   <div class="mt-2">
     <%= f.label :email, class: "sr-only" %>
     <%= f.email_field :email,

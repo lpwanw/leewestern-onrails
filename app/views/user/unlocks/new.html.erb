@@ -4,8 +4,8 @@
              url: unlock_path(resource_name),
              html: {
                method: :post,
-               class: "w-full"
-             }) do |f| %>
+               class: "w-full",
+             },) do |f| %>
   <div class="mt-2">
     <%= f.label :email, class: "sr-only" %>
     <%= f.email_field :email,
@@ -16,7 +16,6 @@
                       class: "py-4 px-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
     <%= render Model::ErrorMessage.new(resource, :email) %>
   </div>
-
 
   <%= f.submit "Resend unlock instructions", class: "cursor-pointer w-full rounded-xl py-4 flex justify-center bg-gray-950 mt-2 text-gray-50 dark:bg-gray-50 dark:text-gray-950" %>
 <% end %>
