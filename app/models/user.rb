@@ -70,7 +70,7 @@ class User < ApplicationRecord
   private
 
   def init_name
-    return if name.present?
+    return if name.present? || email.blank?
 
     base_name = email.split("@").first
     base_name = base_name.gsub(/[^a-zA-Z0-9._]/, "")

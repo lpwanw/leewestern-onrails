@@ -1,21 +1,29 @@
-<h2>Log in</h2>
-<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { data: { turbo: false }}) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<h1 class="font-bold mt-2">Log in with your email</h1>
+<%= form_for(resource,
+             as: resource_name,
+             url: session_path(resource_name),
+             html: {
+               data: {
+                 turbo: false,
+               },
+               class: "w-full"
+             }) do |f| %>
+  <div class="mt-2">
+    <%= f.label :email, class: "sr-only" %>
+    <%= f.email_field :email,
+                      autofocus: true,
+                      placeholder: "Email",
+                      autocomplete: "email",
+                      class: "py-4 px-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
   </div>
-  <div class="field">
-    <%= f.label :password %><br>
-    <%= f.password_field :password, autocomplete: "current-password" %>
+  <div class="mt-2">
+    <%= f.label :password, class: "sr-only" %>
+    <%= f.password_field :password,
+                         autocomplete: "current-password",
+                         placeholder: "Password", class: "py-4 px-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
   </div>
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
+
+  <%= f.submit "Log in", class: "cursor-pointer w-full rounded-xl py-4 flex justify-center bg-gray-950 mt-2 text-gray-50 dark:bg-gray-50 dark:text-gray-950" %>
 <% end %>
+
 <%= render "user/shared/links" %>

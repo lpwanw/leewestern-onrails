@@ -10,6 +10,9 @@ application.register("copy", CopyController)
 import DragScrollController from "./drag_scroll_controller"
 application.register("drag-scroll", DragScrollController)
 
+import FormValidationController from "./form_validation_controller"
+application.register("form-validation", FormValidationController)
+
 import DropdownController from "./dropdown_controller"
 application.register("dropdown", DropdownController)
 

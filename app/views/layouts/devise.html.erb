@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>RailsThreads</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= vite_client_tag %>
-    <%= vite_stylesheet_tag "application", data: { "turbo-track": "reload" } %>
-    <%= vite_javascript_tag "application" %>
-  </head>
-  <body>
-    <div class="container">
-      <%= yield %>
-    </div>
-  </body>
+<head>
+  <title>RailsThreads</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= vite_client_tag %>
+  <%= vite_stylesheet_tag "application", data: { "turbo-track": "reload" } %>
+  <%= vite_javascript_tag "application" %>
+</head>
+<body data-controller="toast-provider" class="bg-gray-100 scroll-smooth">
+<%= render "shared/toast_container" %>
+
+<div class="mt-10 md:mt-40 flex flex-col items-center justify-center max-w-sm mx-auto">
+  <%= link_to posts_path do %>
+    <%= image_tag "logo.png", class: "size-20 cursor-pointer" %>
+  <% end %>
+  <%= yield %>
+</div>
+</body>
 </html>
