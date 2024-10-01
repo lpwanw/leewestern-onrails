@@ -22,7 +22,7 @@ This is a fullstack Rails application
 - ruby >= 3.1
 - node >= 18
 - yarn
-- posgresql >= 14.0
+- postgresql >= 14.0
 
 ### Clone
 
