@@ -33,16 +33,4 @@ pipeline {
             }
         }
     }
-
-    post {
-        always {
-            // This will always run, useful for cleanup if needed
-        }
-        success {
-            // Optional: Notifications or success messages
-        }
-        failure {
-            // Optional: Handle failure, such as sending notifications
-        }
-    }
 }
