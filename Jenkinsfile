@@ -15,9 +15,9 @@ node {
     stage("Build") {
         script {
             mainImage.inside("-v ${volumeName}:/app") {
-                sh 'mkdir -p ${BUNDLE_PATH}'
+                sh 'mkdir -p /app/vendor/bundle'
                 // Ensure proper ownership
-                sh 'chown -R $(id -u):$(id -g) ${BUNDLE_PATH}'
+                sh 'chown -R $(id -u):$(id -g) /app/vendor/bundle'
                 sh 'bundle config set path \'/app/vendor/bundle\''
                 sh 'bundle install'
             }
