@@ -15,6 +15,7 @@ node {
     stage("Build") {
         script {
             mainImage.inside("-v ${volumeName}:/app") {
+                sh 'chown -R $(id -u):$(id -g) /app/vendor/bundle'
                 sh 'bundle config set path \'/app/vendor/bundle\''
                 sh 'bundle install'
             }
