@@ -4,28 +4,23 @@ node {
     def mainImage = docker.image("ruby:3.2.2")
 
     stage("Build") {
-        steps {
-            script {
+        script {
                 mainImage.inside {
                     sh 'bundle install'
                 }
             }
-        }
     }
 
     stage("Rubocop") {
-        steps {
-            script {
+        script {
                 mainImage.inside {
                     sh 'bundle exec rubocop'
                 }
             }
-        }
     }
 
     stage("RSpec") {
-        steps {
-            script {
+        script {
                 docker.image('postgres').withRun("-e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=password -p 5432:5432") { container ->
                     mainImage.inside("--link ${container.id}:postgres") {
                        withEnv(
@@ -42,6 +37,5 @@ node {
                     }  
                 }
             }
-        }
     }
 }
