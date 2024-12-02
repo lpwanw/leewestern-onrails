@@ -3,6 +3,7 @@ node {
         BUNDLE_PATH = "/app/vendor/bundle"
         DATABASE_URL = "postgres://postgres:password@postgres:5432/"
         RAILS_ENV = "test"
+        BUNDLE_CACHE = "true"
         DATABASE_CLEANER_ALLOW_REMOTE_DATABASE_URL = "true"
     }
 
