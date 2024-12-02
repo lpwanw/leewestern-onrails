@@ -16,19 +16,15 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 script {
-                    // Ensure Ruby and Bundler are available
-                    sh 'ruby -v'  // Check Ruby version
-                    sh 'gem install bundler'  // Install Bundler if it's not installed
-                    sh 'bundle install'  // Install the required gems
-                }
-            }
-        }
+                    // Run the entire build inside the Docker container
+                    docker.image(DOCKER_IMAGE).inside {
+                        // Install dependencies using Bundler
+                        sh 'gem install bundler'
+                        sh 'bundle install'
 
-        stage('Run RuboCop') {
-            steps {
-                script {
-                    // Run RuboCop directly
-                    sh 'bundle exec rubocop'
+                        // Run RuboCop
+                        sh 'bundle exec rubocop'
+                    }
                 }
             }
         }
