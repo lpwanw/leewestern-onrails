@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script {
                     // Run the entire build inside the Docker container
-                    docker.image(DOCKER_IMAGE).inside {
+                    docker.image('ruby:3.2.2').inside {
                         // Install dependencies using Bundler
                         sh 'gem install bundler'
                         sh 'bundle install'
