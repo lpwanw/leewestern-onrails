@@ -1,36 +1,44 @@
 pipeline {
-    agent any  // Run on any available Jenkins agent
-    
+    agent any  // This runs the pipeline on any available Jenkins agent
+
     environment {
-        // Set Ruby version (ensure it's installed in the Docker image)
-        RUBY_VERSION = '3.2.2'
-        // The location where gems will be installed inside the Docker container
         GEM_HOME = '/usr/local/bundle'
+        RUBY_VERSION = '3.2.2' // Set the Ruby version you are using
     }
 
     stages {
         stage('Checkout') {
             steps {
-                // Clone the repository
+                // Clone the repository from GitHub
                 git branch: 'main', url: 'https://github.com/lpwanw/leewestern-onrails.git'
             }
         }
 
-         stage('Run RuboCop in Docker') {
+        stage('Install Dependencies') {
             steps {
                 script {
-                    // Use Docker container with Ruby 3.2.2
-                    docker.image('ruby:3.2.2').inside("-e GEM_HOME=${GEM_HOME} -v") {
-                        // Install the required gems from Gemfile
-                        sh 'gem install bundler'
-                        sh 'bundle install'
-
-                        // Run RuboCop to check the Ruby code style
-                        sh 'bundle exec rubocop'
-                    }
+                    // Ensure Ruby and Bundler are available
+                    sh 'ruby -v'  // Check Ruby version
+                    sh 'gem install bundler'  // Install Bundler if it's not installed
+                    sh 'bundle install'  // Install the required gems
                 }
             }
         }
 
+        stage('Run RuboCop') {
+            steps {
+                script {
+                    // Run RuboCop directly
+                    sh 'bundle exec rubocop'
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            // Clean up any temporary files or artifacts, if needed
+            cleanWs()
+        }
     }
 }
