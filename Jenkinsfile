@@ -29,11 +29,4 @@ pipeline {
             }
         }
     }
-
-    post {
-        always {
-            // Clean up any temporary files or artifacts, if needed
-            cleanWs()
-        }
-    }
 }
