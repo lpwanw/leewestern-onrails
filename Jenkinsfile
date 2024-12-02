@@ -15,7 +15,7 @@ node {
     stage("Build") {
         script {
             mainImage.inside("-v ${volumeName}:/app") {
-                sh 'bundle install'
+                sh 'bundle install --path ${BUNDLE_PATH} --jobs 4 --retry 3'
             }
         }
     }
