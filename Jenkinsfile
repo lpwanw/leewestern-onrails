@@ -1,36 +1,18 @@
-pipeline {
-    agent {
-        docker { image 'ruby:3.2.2' }
-    }
-
-    environment {
-        RUBY_VERSION = '3.2.2' // Set the Ruby version you are using
-    }
-
-    stages {
-        stage('Checkout') {
-            steps {
-                // Clone the repository from GitHub
-                git branch: 'main', url: 'https://github.com/lpwanw/leewestern-onrails.git'
-            }
-        }
-
-         stage('Install Dependencies') {
-            steps {
-                script {
-                    // Ensure Ruby and Bundler are available
-                    sh 'ruby -v'
-                    sh 'bundle install'
-                }
-            }
-        }
-
-        stage('Run RuboCop') {
-            steps {
-                script {
-                    // Run RuboCop directly
-                    sh 'bundle exec rubocop'
-                }
+node {
+    checkout scm
+    docker.image('postgres').withRun("-e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=password -p 5432:5432") { container ->
+        docker.image("ruby:3.2.2").inside("--link ${container.id}:postgres") {
+            withEnv(
+                [
+                    "DATABASE_URL=postgres://postgres:password@postgres:5432/", 
+                    "RAILS_ENV=test",
+                    "DATABASE_CLEANER_ALLOW_REMOTE_DATABASE_URL=true"
+                ]
+            ) {
+                sh 'bundle install'
+                sh 'bin/rails db:create'
+                sh 'bin/rails db:migrate'
+                sh 'bundle exec rspec'
             }
         }
     }
