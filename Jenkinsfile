@@ -19,10 +19,7 @@ pipeline {
             steps {
                 script {
                     // Ensure Ruby and Bundler are available
-                    sh 'ls'
-                    sh 'ruby -v'  // Check Ruby version
-                    // sh 'gem install bundler'  // Install Bundler if it's not installed
-                    sh 'bundle install'  // Install the required gems
+                    sh 'docker --version'
                 }
             }
         }
