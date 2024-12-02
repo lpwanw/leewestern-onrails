@@ -3,6 +3,8 @@ pipeline {
 
     environment {
         RUBY_VERSION = '3.2.2' // Set the Ruby version you are using
+        GEM_HOME = '/var/lib/jenkins/.gem'
+        GEM_PATH = '/var/lib/jenkins/.gem'
     }
 
     stages {
