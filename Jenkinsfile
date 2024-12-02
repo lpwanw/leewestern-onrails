@@ -19,7 +19,8 @@ pipeline {
             steps {
                 script {
                     // Ensure Ruby and Bundler are available
-                    sh 'docker --version'
+                    sh 'ruby -v'
+                    sh 'bundle install'
                 }
             }
         }
