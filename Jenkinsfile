@@ -12,12 +12,16 @@ node {
     def mainImage = docker.image("ruby:3.2.2")
     def volumeName = "my_persistent_volume"
 
+    stage("Prepare Environment") {
+        script {
+            // Ensure the mounted volume directory is writable
+            sh "docker run --rm -v ${volumeName}:/app alpine sh -c 'mkdir -p /app/vendor/bundle && chmod -R 777 /app/vendor'"
+        }
+    }
+
     stage("Build") {
         script {
             mainImage.inside("-v ${volumeName}:/app") {
-                sh 'mkdir -p /app/vendor/bundle'
-                // Ensure proper ownership
-                sh 'chown -R $(id -u):$(id -g) /app/vendor/bundle'
                 sh 'bundle config set path \'/app/vendor/bundle\''
                 sh 'bundle install'
             }
