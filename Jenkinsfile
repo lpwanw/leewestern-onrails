@@ -16,26 +16,11 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
+         stage('Run RuboCop in Docker') {
             steps {
                 script {
-                    // You can use an existing Docker image with Ruby or build your own.
-                    // Here, we assume the Docker image includes Ruby 3.2.2, Bundler, and RuboCop.
-
-                    // Pulling a Ruby 3.2.2 image with Rails setup
-                    dockerImage = docker.image('ruby:3.2.2')
-
-                    // Run the command inside the Ruby Docker container
-                    dockerImage.pull()  // Make sure the image is up to date
-                }
-            }
-        }
-
-        stage('Install Dependencies & Run RuboCop') {
-            steps {
-                script {
-                    // Run inside the Ruby Docker container
-                    dockerImage.inside("--env GEM_HOME=${GEM_HOME} --workdir /workspace") {
+                    // Use Docker container with Ruby 3.2.2
+                    docker.image('ruby:3.2.2').inside("-e GEM_HOME=${GEM_HOME} -v") {
                         // Install the required gems from Gemfile
                         sh 'gem install bundler'
                         sh 'bundle install'
