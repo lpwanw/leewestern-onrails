@@ -1,12 +1,10 @@
 pipeline {
-    agent any  // This runs the pipeline on any available Jenkins agent
+    agent {
+        docker { image 'ruby:3.2.2' }
+    }
 
     environment {
         RUBY_VERSION = '3.2.2' // Set the Ruby version you are using
-    }
-
-    agent {
-        docker { image 'ruby:3.2.2' }
     }
 
     stages {
