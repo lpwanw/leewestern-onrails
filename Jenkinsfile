@@ -3,14 +3,14 @@ pipeline {
 
     environment {
         // Set the Ruby version if using RVM or rbenv
-        RUBY_VERSION = '3.0.0'
+        RUBY_VERSION = '3.2.2'
     }
 
     stages {
         stage('Checkout') {
             steps {
                 // Clone the GitHub repository
-                git branch: 'main', url: 'https://github.com/your-user/your-repo.git'
+                git branch: 'main', url: 'https://github.com/lpwanw/leewestern-onrails.git'
             }
         }
 
