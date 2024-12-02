@@ -2,7 +2,6 @@ pipeline {
     agent any  // This runs the pipeline on any available Jenkins agent
 
     environment {
-        GEM_HOME = '/usr/local/bundle'
         RUBY_VERSION = '3.2.2' // Set the Ruby version you are using
     }
 
